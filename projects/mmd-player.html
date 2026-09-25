@@ -33,7 +33,7 @@
     }
   </script>
   <link rel="icon" href="../favicon.gif" type="image/gif">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?v=20260925-footer-stacked">
   <link rel="stylesheet" href="../css/preview-modal.css">
   <link rel="stylesheet" href="../css/image-viewer.css?v=20260925-preview-modal">
 </head>
@@ -185,18 +185,20 @@
 
   </main>
 
-  <footer class="py-8 text-muted text-xs">
-    <div class="flex justify-between items-center max-w-4xl mx-auto px-6">
-      <span>&copy; 2026 Younsoo Lim</span>
-      <div class="language-switcher" role="group" aria-label="Language">
-        <button type="button" class="btn btn--ghost" data-lang="ko" lang="ko" aria-label="Ko — 한국어" aria-pressed="true"><span>Ko</span></button>
-        <span aria-hidden="true">/</span>
-        <button type="button" class="btn btn--ghost" data-lang="en" lang="en" aria-label="En — English" aria-pressed="false"><span>En</span></button>
-      </div>
+  <footer class="site-footer py-8 text-muted text-xs">
+    <div class="footer-layout max-w-4xl mx-auto px-6">
+      <span class="footer-copyright">&copy; 2026 Younsoo Lim</span>
+      <label class="footer-language language-switcher">
+        <span id="footer-language-label" data-ko="언어:">Language:</span>
+        <select class="language-select" data-language-select aria-labelledby="footer-language-label">
+          <option value="ko" lang="ko">한국어</option>
+          <option value="en" lang="en">English</option>
+        </select>
+      </label>
     </div>
   </footer>
 
-  <script src="../js/i18n.js"></script>
+  <script src="../js/i18n.js?v=20260925-language-auto"></script>
   <script src="../js/theme.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/preview-modal.js"></script>

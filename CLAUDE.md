@@ -11,6 +11,7 @@ TA 포트폴리오 기반으로 통합 중인 사이트. GitHub Pages + 커스�
 - 현재 디자인 기준은 [docs/style-guide.md](docs/style-guide.md), 시각 예시는 [component-library.html](component-library.html)을 따른다. 공통 스타일을 변경하면 둘을 함께 갱신한다. 초기 `docs/plans/2026-02-15-*`는 과거 기획이다.
 - 새 상세 페이지는 [docs/project-template.md](docs/project-template.md)와 `projects/_template.html`을 출발점으로 사용한다. 템플릿과 컴포넌트 문서는 공개 목록에 추가하지 않는다.
 - 공개 페이지는 `index.html`, `resume.html`, `projects/*.html`에서 편집한다.
+- 언어 선택은 푸터의 `언어:` / `Language:` 네이티브 드롭다운(한국어 / English)을 사용한다. 처음에는 브라우저 선호 언어에 맞는 항목을 선택하고, 직접 선택은 `portfolio.language`에 저장한다. 새 페이지는 공통 `js/i18n.js`를 유지한다.
 - 한글 `data-ko`와 영문 본문을 함께 수정한다. 담당 범위, 프로젝트 상태와 수치의 측정 조건을 구분한다.
 - 모든 별도 미리보기는 현재 페이지의 공통 모달을 사용한다. `css/preview-modal.css`·`js/preview-modal.js`를 먼저 로드하고 유형별 뷰어를 연결한다. 왼쪽 닫기 아이콘·가운데 이름·오른쪽 주 동작 아이콘, 모바일 전체 화면, Esc·배경 클릭·포커스 복귀를 공통으로 유지한다. 사진·도표에는 `data-image-viewer`와 `css/image-viewer.css`·`js/image-viewer.js`, 이력서에는 `data-resume-viewer`와 resume-viewer CSS/JS를 사용한다. 새 영상·문서 미리보기도 같은 모달 안에 구현한다. 본문 영상 재생과 프로젝트·외부 서비스 탐색 링크는 각각의 원래 동작을 유지한다. 상세 규칙은 스타일 가이드의 “모든 미리보기는 모달”을 따른다.
 - 이력서 HTML 수정 시 다운로드용 `assets/resume.pdf`도 재생성하고 확인한다.

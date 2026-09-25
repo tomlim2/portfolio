@@ -55,7 +55,7 @@ mkdir -p assets/images/project-slug
 - 관련 프로젝트 링크 또는 필요 없는 항목.
 - 내부 템플릿 안내 배너와 `noindex` 메타. 초안 단계에서는 유지한다.
 
-한국어는 `data-ko`, 영어는 요소 본문을 함께 수정한다. 번역 대상 요소 안에 이미지 뷰어 링크나 버튼을 넣지 않는다. 역할·기간·상태 같은 고유 정보는 두 언어에서 같은 사실을 말해야 한다.
+한국어는 `data-ko`, 영어는 요소 본문을 함께 수정한다. 푸터의 `언어:` / `Language:` 드롭다운과 공통 `js/i18n.js`를 유지한다. 처음에는 시스템 언어에 맞는 한국어·English가 선택되며, 직접 선택한 언어는 페이지 이동·재방문에도 저장된다. 번역 대상 요소 안에 이미지 뷰어 링크나 버튼을 넣지 않는다. 역할·기간·상태 같은 고유 정보는 두 언어에서 같은 사실을 말해야 한다.
 
 ### 컴포넌트 코드 가져오기
 
@@ -103,11 +103,11 @@ python3 -m http.server 8780 --bind 127.0.0.1 --directory _site
 - `[REPLACE]`, 내부 배너, 샘플 이미지·예시 수치가 남아 있지 않다.
 - 빌드의 링크·앵커·제목 검증을 통과한다. `h1`은 하나, 섹션 ID는 고유하다.
 - 390px와 데스크톱에서 가로 넘침, 제목·캡션 잘림, 이미지 왜곡이 없다.
-- Ko/En 전환 후 콘텐츠가 사라지지 않고 메뉴·이미지 확대가 작동한다.
+- 시스템 언어에 맞는 초기 선택, 한국어/English 전환과 새로고침·페이지 이동 후 선택 유지를 확인하고 메뉴·이미지 확대가 작동한다.
 - Tab/Enter로 미리보기 열기, 확대/맞춤, 모달 내 Tab 순환, Esc·바깥 배경 클릭 닫기와 원래 트리거로의 포커스 복귀를 확인한다.
 - 영상·외부 데모·관련 작업·기존 URL을 실제로 열어 확인한다.
 - 원본 근거와 담당 범위·출시 상태가 일치한다.
 
 프로젝트 하나씩 커밋해 이식 단위를 분리한다. 배포는 README의 절차와 사용자의 배포 요청을 따른다.
 
-SNS 링크에는 일반 기호 대신 `assets/brands/`의 실제 SVG 로고와 `.brand-icon`을 사용한다. [SNS·커서 규칙](style-guide.md#sns-아이콘--브랜드-svg)에 따라 이동 링크와 버튼·이미지 뷰어 동작은 기본 손 모양, 이력서 미리보기는 `data-resume-viewer` 링크와 공통 preview-modal CSS/JS와 `css/resume-viewer.css` · `js/resume-viewer.js`로 모달을 열고(`href`는 `../resume-viewer.html` 폴백, Google Fonts에 `close,description,download` 포함), 닫기·다운로드 아이콘 사이에 이름을 중앙 정렬하며, 파일을 저장하는 링크에는 `download`를 사용해 다운로드 커서를 적용한다.
+SNS 링크에는 일반 기호 대신 `assets/brands/`의 실제 SVG 로고와 `.brand-icon`을 사용한다. [SNS·커서 규칙](style-guide.md#sns-아이콘--브랜드-svg)에 따라 이동 링크와 버튼·이미지 뷰어 동작은 기본 손 모양, 이력서 미리보기는 `data-resume-viewer` 링크와 공통 preview-modal CSS/JS와 `css/resume-viewer.css` · `js/resume-viewer.js`로 모달을 열고(`href`는 `../resume-viewer.html` 폴백, Google Fonts에 `article_person,close,download` 포함), 닫기·다운로드 아이콘 사이에 이름을 중앙 정렬하며, 파일을 저장하는 링크에는 `download`를 사용해 다운로드 커서를 적용한다.

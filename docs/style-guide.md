@@ -102,7 +102,7 @@
 <p class="text-muted text-sm leading-relaxed" data-ko="문제와 해결 과정을 한국어로 설명합니다.">Describe the problem and the solution in English.</p>
 ```
 
-영문을 본문에, 한국어를 `data-ko`에 넣는다. 초기 표시 언어는 항상 한국어이며 페이지 이동·새로고침 후 선택 언어는 유지되지 않는다. `data-en`은 스크립트가 원래 HTML을 저장할 때 생성한다. 이력서 HTML은 한국어 전용 별도 레이아웃이다.
+영문을 본문에, 한국어를 `data-ko`에 넣는다. 처음에는 브라우저의 선호 언어에 맞는 한국어·English 항목이 선택된다. 직접 선택한 한국어·영어는 저장되어 페이지 이동·새로고침·다음 방문에도 유지된다. `data-en`은 스크립트가 원래 HTML을 저장할 때 생성한다. 이력서 HTML은 한국어 전용 별도 레이아웃이다.
 
 스크립트는 번역 대상 요소의 `innerHTML`을 교체한다. 이미지 링크·버튼·폼·복잡한 섹션 전체에 `data-ko`를 붙이지 말고 **교체할 텍스트 요소에만** 붙인다. 특히 이미지 뷰어 링크를 번역 컨테이너 안에 넣으면 이벤트 연결을 잃을 수 있다. `alt`, `aria-label`, 문서 제목과 메타 설명은 자동 번역되지 않는다.
 
@@ -163,22 +163,29 @@
 
 본문 링크는 `text-accent hover:underline`, 내비는 `text-body hover:text-heading`을 사용한다. 외부 새 탭 링크에는 `target="_blank" rel="noopener"`를 함께 쓴다. 아이콘 링크에는 `aria-label`을 제공한다. `data-tip`은 hover·키보드 포커스 보조 설명이며 접근 가능한 이름을 대신하지 않는다.
 
-홈 내비는 스크롤 다운 시 숨고 위로 스크롤하면 나타난다. 모바일 메뉴는 `#hamburger-btn` / `#mobile-menu`를 사용하고 링크 클릭 후 닫힌다. 메뉴 버튼의 `.mobile-menu-toggle`은 768px 이상에서 숨기는 배치 규칙이다. 일부 오래된 상세에는 모바일 메뉴가 없으므로 새 페이지는 템플릿의 메뉴를 따른다. 푸터는 저작권과 `.language-switcher` 언어 선택 그룹을 사용한다. `Ko`·`En`은 각각 독립된 Text only + Ghost 버튼이며, `/`는 클릭 동작이 없는 장식 문자다.
+홈 내비는 스크롤 다운 시 숨고 위로 스크롤하면 나타난다. 모바일 메뉴는 `#hamburger-btn` / `#mobile-menu`를 사용하고 링크 클릭 후 닫힌다. 메뉴 버튼의 `.mobile-menu-toggle`은 768px 이상에서 숨기는 배치 규칙이다. 일부 오래된 상세에는 모바일 메뉴가 없으므로 새 페이지는 템플릿의 메뉴를 따른다. 홈 푸터는 **왼쪽 저작권 · 가운데 tomandlim@gmail.com / 이력서 / 깃허브 / 링크드인 · 오른쪽 언어 선택**으로 배치한다. `.footer-layout`은 좌우 열 너비가 같은 3열 grid이며, `.footer-copyright`, `.footer-links`, `.footer-language`를 순서대로 놓는다. 가운데 목록 안의 `.footer-item`에 `.btn.btn--ghost.footer-link`를 사용한다. 푸터 텍스트·링크·언어 선택은 모두 12px / 16px이며, 조작 높이는 44px를 유지한다. 이력서는 공통 미리보기 모달, GitHub·LinkedIn은 외부 새 탭, 이메일은 `mailto:`로 연결한다. 라벨은 `data-ko`로 번역하며 링크 자체를 번역 과정에서 교체하지 않는다. 언어 선택은 보이는 라벨을 `aria-labelledby`로 연결한다.
 
-### 언어 선택 — Ko / En
+가운데 링크 묶음은 푸터 중심에 정렬하고 링크 사이에 24px 간격과 장식 세로 구분선을 둔다. 구분선은 CSS로 그려 스크린리더가 읽지 않게 한다. `.site-footer`의 컨테이너 너비가 800px 이하이면 첫 행 저작권, 둘째 행 이메일·이력서·깃허브·링크드인, 셋째 행 언어 선택으로 나누어 모두 가운데 정렬한다. 이때 링크 간격은 16px로 줄이고 구분선을 숨기며 필요한 경우 순서대로 줄바꿈한다. 이메일 주소는 한 항목으로 유지한다. 상세 페이지의 간소화 푸터는 넓은 화면에서 저작권과 언어 선택을 좌우에 배치하고, 좁은 화면에서는 두 항목을 순서대로 가운데 정렬한다.
 
-`.language-switcher`는 `role="group"`과 접근 가능한 이름을 가지며 두 `.btn.btn--ghost`를 나란히 배치한다. 각 버튼은 공통 44px 최소 클릭 영역, 패딩, 글자 크기를 유지한다. `data-lang`이 언어를 지정하고 `js/i18n.js`가 모든 언어 버튼의 `aria-pressed`를 동기화한다. 버튼 DOM을 교체하지 않아 전환 후 포커스가 유지된다.
+### 언어 선택 — Language 드롭다운
 
-선택된 글자는 opacity 1, 미선택 글자는 0.4다. 미선택 글자도 hover·키보드 포커스 시 opacity 1이 되고, hover 색상은 공통 Ghost의 accent를 따른다. 언어 선택 그룹에서는 선택·누름 상태에도 배경과 테두리가 투명하다. opacity는 글자에만 적용하여 포커스 외곽선은 흐려지지 않는다.
+`.language-switcher`는 보이는 `언어:` / `Language:` 라벨과 네이티브 `select[data-language-select]`를 사용한다. 선택지는 **한국어 / English**이며, 처음에는 시스템 언어에 맞는 항목을 자동으로 선택한다. 별도의 System 항목은 표시하지 않는다. 높이 44px, 기본 글자 14px / 20px(푸터 안에서는 12px / 16px), 투명 배경, hover accent 색상과 2px 포커스 외곽선을 사용한다. 네이티브 선택 목록으로 키보드·터치 조작을 제공하며 선택 컨트롤 자체를 번역 과정에서 교체하지 않는다.
 
-Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한다. 이미 선택된 언어를 다시 눌러도 다른 언어로 바뀌지 않는다. `/`에는 `aria-hidden="true"`를 지정하며 구분자·그룹 여백에는 클릭 동작을 연결하지 않는다. 페이지 로드 시 항상 한국어로 시작하며 선택을 저장하지 않는다.
+1. 저장한 `ko` / `en` 설정이 있으면 우선 적용한다. 선택은 사이트 출처별 `localStorage`의 `portfolio.language`에 저장한다.
+2. 저장한 설정이 없으면 `navigator.languages`의 순서대로 지원 언어(`ko`, `en`)를 찾는다. `ko-KR`, `en-US` 같은 지역 코드는 기본 언어로 해석하며 목록이 없으면 `navigator.language`를 사용한다. 둘 다 지원하지 않는 경우 영어를 표시한다.
+3. 자동으로 감지한 언어는 저장하지 않는다. 저장한 선택이 없는 동안에는 브라우저의 `languagechange`도 반영한다. 직접 선택하면 그 값을 저장하고 시스템 언어가 바뀌어도 유지한다.
+4. 페이지 이동·새로고침과 방문 재개 시 저장한 설정을 읽는다. 뒤로가기 캐시 복원은 `pageshow`, 같은 출처의 다른 탭 변경은 `storage` 이벤트로 반영한다. 저장이 차단된 환경에서도 현재 페이지의 언어 변경은 작동한다.
+
+`html[lang]`과 모든 드롭다운은 실제 표시 언어(`ko` / `en`)로 일치한다. 자동 감지한 영어도 드롭다운에는 `English`로 표시한다. `data-language-preference`는 내부적으로 자동 감지(`system`)와 명시적 선택(`ko` / `en`)을 구분한다. 공통 `js/i18n.js`를 사용하며, 한국어 전용 이력서 본문을 자동 번역하지는 않는다.
 
 ```html
-<div class="language-switcher" role="group" aria-label="Language">
-  <button type="button" class="btn btn--ghost" data-lang="ko" lang="ko" aria-label="Ko — 한국어" aria-pressed="true"><span>Ko</span></button>
-  <span aria-hidden="true">/</span>
-  <button type="button" class="btn btn--ghost" data-lang="en" lang="en" aria-label="En — English" aria-pressed="false"><span>En</span></button>
-</div>
+<label class="language-switcher">
+  <span>Language:</span>
+  <select class="language-select" data-language-select aria-label="Language">
+    <option value="ko" lang="ko">한국어</option>
+    <option value="en" lang="en">English</option>
+  </select>
+</label>
 ```
 
 ### 버튼 — Kind · Theme · Style
@@ -195,7 +202,7 @@ Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한�
 | Style | Filled | `.btn.btn--filled`: 기본 버튼 배경·텍스트, 보이는 테두리 없음 |
 | Style | Ghost | `.btn.btn--ghost`: 투명 배경·테두리 + 기본 텍스트 |
 
-모든 종류에서 최소 높이 44px, 반경 6px, 글자 14px / 줄높이 20px / weight 500을 사용한다. 아이콘 전용 버튼은 44×44px, 나머지는 10px 16px 패딩과 8px 내부 간격을 사용한다. 아이콘은 `icon-sm`으로 20px / weight 300을 유지한다. 긴 레이블은 줄바꿈하여 버튼 높이를 늘릴 수 있다. 아이콘과 번역할 텍스트는 별도 span으로 둔다.
+모든 종류에서 최소 높이 44px, 반경 6px, 글자 14px / 줄높이 20px / weight 500을 사용한다. 아이콘 전용 버튼은 기본 44×44px이며, `.icon-group` 안에서는 32×44px로 좁힌다. 나머지는 10px 16px 패딩과 8px 내부 간격을 사용한다. 아이콘은 `icon-sm`으로 20px / weight 300을 유지한다. 긴 레이블은 줄바꿈하여 버튼 높이를 늘릴 수 있다. 아이콘과 번역할 텍스트는 별도 span으로 둔다.
 
 | 버튼 색상 토큰 | Light | Dark | 용도 |
 |---|---|---|---|
@@ -224,13 +231,14 @@ Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한�
 | 사용 위치 | 공통 클래스 |
 |---|---|
 | 모바일 메뉴·목차, 이력서·소셜 아이콘 링크 | `btn btn--ghost btn--icon` |
-| 푸터 Ko/En·언어 예시·테마 선택 | `btn btn--ghost` |
+| 테마 선택 | `btn btn--ghost` |
+| 언어 설정 | `language-select` 네이티브 드롭다운 |
 | 코드 복사·이미지 원본 크기 | `btn` (Outline) |
 | 뷰어·이전 모달 닫기 | `btn btn--ghost` |
 | 이전 비밀번호 폼·확인 모달 | `btn btn--filled` |
 | 문서의 펼치기 summary | `btn btn--ghost btn--disclosure` |
 
-`.btn--disclosure`는 가로 전체 너비·왼쪽 정렬만 담당하는 배치 규칙이다. 메뉴 표시 여부·모달 너비 등 배치는 별도로 지정하되 44px 조작 영역과 공통 상태 스타일을 유지한다. 본문 텍스트 링크·프로젝트 카드와 브라우저 기본 영상 컨트롤은 각각의 네이티브 패턴을 유지한다.
+`.btn--disclosure`는 가로 전체 너비·왼쪽 정렬만 담당하는 배치 규칙이다. 메뉴 표시 여부·모달 너비 등 배치는 별도로 지정하되 기본 44px 조작 영역과 공통 상태 스타일을 유지한다. 아이콘만 모은 `.icon-group`은 가로 32px · 세로 44px 예외를 사용한다. 본문 텍스트 링크·프로젝트 카드와 브라우저 기본 영상 컨트롤은 각각의 네이티브 패턴을 유지한다.
 
 ### 툴팁 — 짧은 보조 라벨
 
@@ -253,7 +261,7 @@ Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한�
 
 - 아이콘 전용 동작·목적지의 짧은 이름에 사용한다. `Resume`, `GitHub`, `Email`처럼 대상이나 동작을 명확히 쓴다. 「여기를 클릭」처럼 목적을 설명하지 않는 문구는 피한다. 보이는 버튼 이름이 충분하면 같은 말을 툴팁으로 반복하지 않는다.
 - 한 줄의 짧은 명사·동사구로 작성한다. 오류, 비활성 이유, 필수 안내, 긴 설명, 링크·버튼·이미지는 툴팁에 넣지 않는다. 이런 내용은 보이는 본문이나 별도 도움말에 둔다.
-- 트리거는 네이티브 `button` 또는 `a`를 사용하고 아이콘 전용은 공통 44px 조작 영역을 유지한다. 장식 아이콘에는 `aria-hidden="true"`, 트리거에는 목적을 나타내는 `aria-label`을 제공한다. 접근 가능한 이름에 툴팁의 라벨을 포함하고, 새 탭 등 필요한 맥락을 덧붙인다. `data-tip`만으로 접근 가능한 이름을 제공했다고 간주하지 않는다.
+- 트리거는 네이티브 `button` 또는 `a`를 사용하고 아이콘 전용은 기본 44×44px, `.icon-group` 안에서는 32×44px 조작 영역을 사용한다. 장식 아이콘에는 `aria-hidden="true"`, 트리거에는 목적을 나타내는 `aria-label`을 제공한다. 접근 가능한 이름에 툴팁의 라벨을 포함하고, 새 탭 등 필요한 맥락을 덧붙인다. `data-tip`만으로 접근 가능한 이름을 제공했다고 간주하지 않는다.
 - 같은 요소에 `title`을 함께 넣어 브라우저 기본 툴팁과 중복 표시하지 않는다. `disabled` 버튼은 키보드로 접근할 수 없으므로 설명을 툴팁에 의존하지 않는다.
 - 터치 화면에서는 hover 표시를 전제로 하지 않는다. 탭은 원래 버튼·링크 동작을 실행한다. 툴팁을 읽기 위한 첫 탭을 요구하거나 중요한 정보를 툴팁에만 두지 않는다.
 - `data-tip`과 `aria-label`은 현재 언어 스크립트가 자동 번역하지 않는다. 브랜드 이름 등 공통 라벨을 사용하고, 번역이 필요한 라벨은 두 속성의 언어를 함께 관리한다. 트리거 전체에 `data-ko`를 붙여 아이콘·버튼 구조를 교체하지 않는다.
@@ -266,11 +274,11 @@ Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한�
 
 ```html
 <!-- 저장소 루트 기준. 상세 페이지는 ../ 경로 사용.
-     공통 preview-modal CSS/JS → resume-viewer CSS/JS 순서로 포함. close,description,download 폰트 필요. -->
+     공통 preview-modal CSS/JS → resume-viewer CSS/JS 순서로 포함. article_person,close,download 폰트 필요. -->
 <a href="resume-viewer.html" data-resume-viewer
    class="btn btn--ghost btn--icon"
    aria-label="Resume" data-tip="Resume">
-  <span class="material-symbols-outlined icon-sm" aria-hidden="true">description</span>
+  <span class="material-symbols-outlined icon-sm" aria-hidden="true">article_person</span>
 </a>
 ```
 
@@ -285,7 +293,7 @@ Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한�
 | 독립 아이콘 예시 | `material-symbols-outlined` | 24px / 24 | 300 |
 | 버튼·텍스트 옆 아이콘 | `material-symbols-outlined icon-sm` | 20px / 20 | 300 |
 
-색상은 주변 글자색을 상속한다. 아이콘만 있는 버튼·링크의 조작 영역은 아이콘 크기와 별개로 44px 이상 확보하고, 목적을 나타내는 `aria-label`을 제공한다. 장식 아이콘에는 `aria-hidden="true"`를 붙인다. 아이콘 이름은 번역하지 않으며 아이콘 span을 `data-ko` 텍스트 요소 밖에 둔다.
+색상은 주변 글자색을 상속한다. 아이콘만 있는 버튼·링크의 조작 영역은 아이콘 크기와 별개로 기본 44×44px, `.icon-group` 안에서는 32×44px로 확보하고, 목적을 나타내는 `aria-label`을 제공한다. 장식 아이콘에는 `aria-hidden="true"`를 붙인다. 아이콘 이름은 번역하지 않으며 아이콘 span을 `data-ko` 텍스트 요소 밖에 둔다.
 
 아이콘 폰트는 사용하는 페이지의 head에서 로드하고, 그 뒤에 공통 `css/style.css`를 로드한다. Google Fonts 요청에도 **`wght=300`을 명시**하고 `icon_names`는 실제 사용하는 이름만 알파벳순으로 나열한다. 아래 예시는 `download`, `menu`, `open_in_new`만 로드한다.
 
@@ -303,7 +311,7 @@ Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한�
 
 홈·상세·내부 문서·템플릿·이미지 뷰어의 일반 UI 아이콘에 적용한다. **SNS·브랜드 아이콘은 예외**이며 GitHub·LinkedIn의 실제 SVG 로고를 사용한다. `code`·`work` 같은 일반 기호로 서비스를 대신하지 않는다. 서비스 이름은 `aria-label`과 `data-tip` 또는 보이는 텍스트로 명시한다. 이전/다음 링크는 `arrow_back` / `arrow_forward`, 새 탭 표시는 `open_in_new`를 쓴다. 본문 안의 수치·파이프라인 화살표는 문장 일부다.
 
-아이콘만 있는 링크에는 `.btn.btn--ghost.btn--icon`을 사용한다. 44×44px flex 컨테이너 안에 아이콘을 중앙 정렬하므로 텍스트 baseline 차이로 높이가 어긋나지 않는다. 본문에서 텍스트와 함께 쓰는 링크는 `.icon-label`로 중앙 정렬하고 8px 간격을 둔다.
+아이콘만 있는 링크에는 `.btn.btn--ghost.btn--icon`을 사용한다. 기본 44×44px(아이콘 그룹은 32×44px) flex 컨테이너 안에 아이콘을 중앙 정렬하므로 텍스트 baseline 차이로 높이가 어긋나지 않는다. 본문에서 텍스트와 함께 쓰는 링크는 `.icon-label`로 중앙 정렬하고 8px 간격을 둔다.
 
 일반 UI용 SVG도 같은 Google Outlined / weight 300 / Fill 0 / Grade 0 원본을 사용한다. `assets/icons/`에 공식 20px 원본과 라이선스를 보관하며 [출처·변환 규칙](../assets/icons/README.md)을 따른다. 이력서의 좁은 연락처 행은 이 원본을 13px로 축소해 HTML과 PDF에 함께 반영한다. 다운로드 커서는 같은 원본에 흰 원형 배경을 더한 24px SVG/PNG다. details 화살표는 `chevron_right.svg` CSS mask로 표시한다.
 
@@ -311,9 +319,11 @@ Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한�
 
 ### SNS 아이콘 — 브랜드 SVG
 
-`assets/brands/github.svg`와 `linkedin.svg`의 실제 로고를 사용하며 [출처·관리 규칙](../assets/brands/README.md)을 기록한다. `.brand-icon`은 SVG mask를 20×20px 안에 비율을 유지해 표시하고, `.btn.btn--ghost.btn--icon`의 44×44px 클릭 영역 중앙에 둔다. 일반 아이콘과 baseline을 섞어 정렬하지 않는다.
+`assets/brands/github.svg`와 `linkedin.svg`의 실제 로고를 사용하며 [출처·관리 규칙](../assets/brands/README.md)을 기록한다. `.brand-icon`의 레이아웃 상자는 20×20px이며, 실제 SVG mask는 16×16px 안에 비율을 유지해 중앙 표시한다. 면이 많은 브랜드 로고를 작게 표시해 내부 여백이 있는 Google Outlined 아이콘과 시각적 크기를 맞춘다. `.btn.btn--ghost.btn--icon`의 클릭 영역은 기본 44×44px, `.icon-group` 안에서는 32×44px이며 중앙 정렬을 유지하고 일반 아이콘과 baseline을 섞어 정렬하지 않는다.
 
-브랜드 로고는 가장 가까운 테마의 중립적인 버튼 글자색을 유지하며 hover 시 로고 opacity만 0.7로 바뀐다. 배경·테두리는 Ghost 규칙을 따른다. Google 아이콘의 weight 300 규칙은 로고에 적용하지 않는다. 이력서 연락처 행은 같은 SVG 경로를 13px로 사용하고 PDF에도 반영한다.
+브랜드 로고는 `color: inherit`과 `background: currentColor`로 버튼 색상을 따른다. Ghost 버튼을 hover하면 Google 아이콘과 동일한 `--c-accent` 파란색으로 바뀌며 opacity는 1을 유지한다. 배경·테두리는 Ghost 규칙을 따른다. Google 아이콘의 weight 300 규칙은 로고에 적용하지 않는다. 이력서 연락처 행은 같은 SVG 경로를 13px로 사용하고 PDF에도 반영한다.
+
+아이콘끼리 모인 행은 `.icon-group`으로 묶는다. 각 `.btn--icon`은 가로 32px · 세로 44px, 추가 gap은 0이며 클릭 영역을 겹치지 않는다. 소셜·툴팁 그룹 예시에 적용한다. 홈 푸터는 텍스트 링크를 사용한다. 실제 아이콘 크기는 Google 20px 상자 / SNS 16px 도형을 유지한다. 단독 아이콘·메뉴·모달 상단은 기본 44×44px를 사용한다.
 
 ```html
 <a href="https://github.com/tomlim2" target="_blank" rel="noopener"
@@ -354,7 +364,7 @@ LinkedIn은 `brand-icon--linkedin`을 사용한다. SVG 파일 경로는 공통 
 
 ### 이력서 — 열기와 다운로드 분리
 
-홈의 Resume 링크에 `data-resume-viewer`를 붙이면 현재 페이지의 네이티브 `dialog`로 열린다. `css/preview-modal.css` · `js/preview-modal.js`를 먼저 포함한 뒤 `css/resume-viewer.css` · `js/resume-viewer.js`를 포함하고 Google Fonts `icon_names`에 `close,description,download`를 추가한다. 일반 손 모양 커서를 사용하며, JavaScript 미지원 또는 수정 키 클릭 시 `href="resume-viewer.html"`의 독립 읽기 화면을 사용할 수 있다.
+홈의 Resume 링크에 `data-resume-viewer`를 붙이면 현재 페이지의 네이티브 `dialog`로 열린다. `css/preview-modal.css` · `js/preview-modal.js`를 먼저 포함한 뒤 `css/resume-viewer.css` · `js/resume-viewer.js`를 포함하고 Google Fonts `icon_names`에 `article_person,close,download`를 추가한다. 일반 손 모양 커서를 사용하며, JavaScript 미지원 또는 수정 키 클릭 시 `href="resume-viewer.html"`의 독립 읽기 화면을 사용할 수 있다.
 
 상단은 **왼쪽 닫기 아이콘 · 가운데 이름(임연수 / Younsoo Lim) · 오른쪽 다운로드 아이콘**의 3열이다. 양쪽은 `44px`, 가운데는 `minmax(0, 1fr)`로 이름의 중심을 유지한다. 닫기는 `button`, 다운로드는 `a[download]`이며 둘 다 `.btn.btn--ghost.btn--icon`을 사용한다. Google 아이콘은 weight 300, 접근 가능한 이름과 짧은 툴팁을 제공한다. 툴바 끝의 툴팁은 가장자리 안쪽으로 정렬해 잘림을 방지한다. 다운로드는 `download="Younsoo-Lim-Resume.pdf"`로 원본 PDF를 저장하며 다운로드 커서를 사용한다.
 
@@ -430,7 +440,7 @@ LinkedIn은 `brand-icon--linkedin`을 사용한다. SVG 파일 경로는 공통 
 1. 공통 규칙을 바꿨다면 이 문서와 [Component Library](../component-library.html)를 함께 갱신한다.
 2. 신규 페이지·에셋을 `site-public.json`에 추가하고 `python3 scripts/build_site.py`를 실행한다.
 3. 390px / 데스크톱에서 긴 제목·캡션·표·이미지 비율을 확인한다.
-4. Ko/En 전환, 모바일 메뉴, 이미지 확대·Escape·포커스 복귀, 영상 조작을 확인한다.
+4. 시스템 언어에 맞는 초기 선택, 한국어/English 전환·설정 유지, 모바일 메뉴, 이미지 확대·Escape·포커스 복귀, 영상 조작을 확인한다.
 5. 새 프로젝트의 설명·홈 카드·이력서·근거 기록이 일치하는지 확인한다. 이력서를 수정한 경우 PDF도 갱신한다.
 
 컴포넌트 문서와 템플릿은 `site-public.json`에서 제외되어 일반 `_site/` 미리보기에는 없다. 내부 예시를 볼 때만 저장소 루트에서 실행한다.

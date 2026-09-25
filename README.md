@@ -37,7 +37,7 @@ Shotloom is the fourth Selected Work card, after NPR Shading & Look Development,
 
 - **Hosting** — GitHub Pages + custom domain
 - **Styling** — Tailwind CSS + custom CSS variables
-- **Language** — Korean by default; English content is paired with `data-ko` attributes
+- **Language** — The Language dropdown initially selects Korean or English from browser preferences and saves explicit choices. English content is paired with `data-ko` attributes
 - **Legacy encryption** — AES-256-GCM helpers remain in `js/auth.js` and `js/crypto.js`; the current checked-in project pages contain plain HTML
 
 ## Structure
