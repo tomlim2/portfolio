@@ -5,7 +5,8 @@
   var targets = links.map(function (link) {
     return document.getElementById(link.hash.slice(1));
   });
-  var currentLabel = document.querySelector('.cl-toc-current');
+  var menuButton = disclosure.querySelector('summary');
+  var menuIcon = menuButton.querySelector('.material-symbols-outlined');
   var desktop = window.matchMedia('(min-width: 768px)');
   var activeIndex = -1;
   var scheduled = false;
@@ -27,7 +28,6 @@
       if (i === index) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
-    currentLabel.textContent = links[index].textContent;
   }
 
   function scheduleUpdate() {
@@ -38,14 +38,40 @@
 
   function syncLayout() {
     disclosure.open = desktop.matches;
+    syncMenuButton();
     scheduleUpdate();
   }
 
+  function syncMenuButton() {
+    var expanded = !desktop.matches && disclosure.open;
+    menuIcon.textContent = expanded ? 'close' : 'menu';
+    menuButton.setAttribute('aria-label', expanded ? '섹션 이동 메뉴 닫기' : '섹션 이동 메뉴 열기');
+  }
+
+  function closeMenu(restoreFocus) {
+    if (desktop.matches || !disclosure.open) return;
+    disclosure.open = false;
+    if (restoreFocus) menuButton.focus({ preventScroll: true });
+  }
+
+  disclosure.addEventListener('toggle', syncMenuButton);
   disclosure.addEventListener('click', function (event) {
     var link = event.target.closest('a[href^="#"]');
     if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    if (!desktop.matches) disclosure.open = false;
+    closeMenu(false);
     // Native anchors retain deep links, keyboard focus, and browser history.
+  });
+  document.addEventListener('pointerdown', function (event) {
+    if (!disclosure.contains(event.target)) closeMenu(disclosure.contains(document.activeElement));
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !desktop.matches && disclosure.open) {
+      event.preventDefault();
+      closeMenu(true);
+    }
+  });
+  disclosure.addEventListener('focusout', function (event) {
+    if (!disclosure.contains(event.relatedTarget)) closeMenu(false);
   });
   window.addEventListener('scroll', scheduleUpdate, { passive: true });
   window.addEventListener('resize', scheduleUpdate);
