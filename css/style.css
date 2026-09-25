@@ -1,4 +1,5 @@
 /* ── Design System ── */
+/* Usage: docs/style-guide.md. Visual examples: component-library.html. */
 
 :root {
   /* Background — pure white for max contrast */
@@ -7,11 +8,11 @@
   --c-surface: 245 245 247;
   /* Border — clear but not heavy */
   --c-border: 225 225 230;
-  /* Muted — secondary text (WCAG AA on white: 4.6:1) */
+  /* Muted — secondary text; check contrast against its actual background */
   --c-muted: 110 110 115;
-  /* Body — primary readable text (WCAG AAA: 14.5:1) */
+  /* Body — primary readable text */
   --c-body: 40 40 45;
-  /* Heading — near-black for maximum weight (WCAG AAA: 19:1) */
+  /* Heading — softer gray than body; also used for labels and hover states */
   --c-heading: 85 85 90;
   /* Accent — single brand color */
   --c-accent: 80 95 230;
@@ -28,14 +29,11 @@
 }
 
 /*
-  Typography Scale (7 steps):
-  --t-display: 2.0rem    hero, page titles
-  --t-h2:      1.25rem   section headings
-  --t-h3:      1.05rem   card/panel headings, nav
-  --t-body:    0.9375rem body text (15px)
-  --t-small:   0.8125rem labels, meta, captions (13px)
-  --t-xs:      0.75rem   fine print, timestamps (12px)
-  --t-micro:   0.6875rem tooltip, decorative (11px)
+  Typography reference, not CSS custom properties:
+  display: 2rem; section heading: 1.25rem; base card title: 1.05rem;
+  body: 0.9375rem; detail: 0.8125rem; caption: 0.75rem; tooltip: 0.6875rem.
+  Hero summary is fluid. Overlay cards override titles to 1.1rem and
+  subtitles to 0.875rem. See docs/style-guide.md for context and weights.
 */
 
 /* ── Code Blocks (always dark) ── */

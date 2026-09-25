@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Component Library — ta-portfolio</title>
+  <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Rashi+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,6 +34,7 @@
   </script>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/image-viewer.css">
   <style>
     .cl-swatch {
       width: 80px; height: 80px; border-radius: 12px;
@@ -58,8 +60,14 @@
     <!-- Header -->
     <p class="cl-label" style="margin-bottom:0.5rem">INTERNAL</p>
     <h1 class="page-title" style="margin-bottom:0.75rem;">Component Library</h1>
-    <p class="text-muted text-sm mb-2">All UI parts used in ta-portfolio</p>
-    <p class="text-muted text-xs mb-0">By listing them out like this, you can spot things like "elements with similar roles but different UIs" or "whether the color palette is functional." If you tweak the parts you use, the quality of the assembled website will naturally improve.</p>
+    <p class="text-muted text-sm mb-2">Current portfolio components · Updated 2026-09-25</p>
+    <p class="text-muted text-sm mb-4">Examples use the shared site CSS. Internal specimen frames are documentation UI, not project card styles. Legacy and optional patterns are labeled below.</p>
+    <div class="flex flex-wrap gap-4 text-sm">
+      <a href="docs/style-guide.md" class="text-accent hover:underline">Style guide</a>
+      <a href="docs/project-template.md" class="text-accent hover:underline">Authoring guide</a>
+      <a href="projects/_template.html" class="text-accent hover:underline">Project template</a>
+      <a href="#language-controls" class="text-accent hover:underline">Language / theme preview</a>
+    </div>
 
     <div class="cl-divider"></div>
 
@@ -114,6 +122,7 @@
         </div>
       </div>
 
+      <p class="text-sm text-muted mb-6">Light is the current public default. Dark tokens are retained for internal preview; public pages do not expose a theme toggle.</p>
       <p class="cl-label">Dark Mode — Background</p>
       <div class="flex flex-wrap gap-6 mb-10">
         <div class="text-center">
@@ -184,12 +193,18 @@
 
       <p class="cl-label">1. Hero Tagline — Noto Rashi Hebrew / 2.0rem / 400 / .hero-tagline</p>
       <div class="cl-specimen mb-8">
-        <p class="hero-tagline text-body">Technical Artist who keeps<br>carving until I want it myself</p>
+        <p class="hero-tagline text-body" data-ko="테크니컬 아티스트">Technical Artist</p>
       </div>
+
+      <p class="cl-label">Hero Summary — .hero-summary / clamp(1.05rem, 2.1vw, 1.35rem) / line-height 1.75</p>
+      <div class="cl-specimen mb-8">
+        <p class="hero-summary text-body" data-ko="시각적 표현을 위한 기술을 탐색·검증하고, 창작자가 활용하는 도구와 제작 파이프라인으로 구현합니다.">I explore and validate technologies for visual expression, then turn them into tools and production pipelines for creators.</p>
+      </div>
+      <p class="text-sm text-muted mb-6">Ko uses Noto Sans KR for titles and body. En uses Noto Rashi Hebrew for selected title classes. Use the language control below to inspect both.</p>
 
       <p class="cl-label">2. Page Title — Noto Rashi Hebrew / 2.0rem / 700 / .page-title</p>
       <div class="cl-specimen mb-8">
-        <h1 class="page-title">MMD Player</h1>
+        <p class="page-title">MMD Player</p>
       </div>
 
       <p class="cl-label">3. Section Title (H2) — Noto Sans KR / 1.25rem (text-xl) / 700</p>
@@ -221,15 +236,15 @@
 
       <p class="cl-label">8. Nav Logo — Noto Sans KR / 1.25rem / 700 / .nav-logo</p>
       <div class="cl-specimen mb-8">
-        <span class="nav-logo">Younsoo Lim</span>
+        <nav aria-label="Logo specimen"><a href="index.html" class="nav-logo">Younsoo Lim</a></nav>
       </div>
 
       <p class="cl-label">9. Nav Links — Noto Rashi Hebrew / 0.875rem</p>
       <div class="cl-specimen">
-        <div class="flex gap-8" style="font-family:'Noto Rashi Hebrew',serif; font-size:0.875rem;">
-          <span class="text-body">Projects</span>
-          <span class="text-body">About</span>
-        </div>
+        <nav aria-label="Link typography specimen"><div class="nav-links flex gap-8">
+          <a href="index.html#projects" class="text-body">Projects</a>
+          <a href="index.html#about" class="text-body">About</a>
+        </div></nav>
       </div>
     </section>
 
@@ -239,32 +254,29 @@
     <section class="cl-section">
       <h2>Cards</h2>
 
-      <p class="cl-label">Project Card — center-aligned, card-title on h3, single-line subtitle</p>
+      <p class="cl-label">Current Project Card — 16:9 image / persistent bottom overlay / whole-card link</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        <div class="card group block overflow-hidden transition">
-          <div class="block relative overflow-hidden aspect-video bg-surface rounded">
-            <div class="card-thumb w-full h-full bg-gradient-to-br from-surface to-border flex items-center justify-center text-muted text-xs">Thumbnail (aspect-video)</div>
-          </div>
-          <div class="py-5 text-center">
-            <div class="flex items-center justify-center gap-2 mb-0">
-              <h3 class="card-title">Project Title</h3>
+        <a href="projects/mmd-player.html" class="card-overlay group">
+          <div class="card-overlay-inner">
+            <img src="assets/images/mmd-player/thumb.png" alt="MMD Player preview" width="1920" height="1080" class="card-overlay-img" loading="lazy" decoding="async">
+            <div class="card-overlay-text">
+              <h3 class="card-title">MMD Player</h3>
+              <p class="card-subtitle" data-ko="PMX 원본 검증용 개인 도구 · WebGPU 표현 실험">Personal PMX validation tool · WebGPU experiments</p>
             </div>
-            <p class="text-body mb-3 font-extralight card-subtitle">One-line description — key outcome or metric</p>
           </div>
-        </div>
-
-        <div class="card group block overflow-hidden transition">
-          <div class="block relative overflow-hidden aspect-video bg-surface rounded">
-            <div class="card-thumb w-full h-full bg-gradient-to-br from-surface to-border flex items-center justify-center text-muted text-xs">Thumbnail (aspect-video)</div>
-          </div>
-          <div class="py-5 text-center">
-            <div class="flex items-center justify-center gap-2 mb-0">
-              <h3 class="card-title">Another Project</h3>
+        </a>
+        <a href="projects/shotloom.html" class="card-overlay group">
+          <div class="card-overlay-inner">
+            <img src="assets/images/shotloom/thumbnail-editor-v2.png" alt="AI-retouched Shotloom editor thumbnail" width="1668" height="943" class="card-overlay-img" loading="lazy" decoding="async">
+            <span class="absolute top-3 right-3 px-2 py-1 bg-black/70 text-white text-xs rounded" data-ko="AI 보정 썸네일">AI-retouched thumbnail</span>
+            <div class="card-overlay-text">
+              <h3 class="card-title">Shotloom</h3>
+              <p class="card-subtitle" data-ko="웹 3D 에디터 · 리타게터·서비스 연동·편집 UX">Web 3D editor · Retargeting, service integration &amp; editing UX</p>
             </div>
-            <p class="text-body mb-3 font-extralight card-subtitle">Single-line subtitle with font-extralight</p>
           </div>
-        </div>
+        </a>
       </div>
+      <p class="text-sm text-muted">Overlay titles override the base class to 1.1rem / 600, subtitles to 0.875rem. Hover scales the image to 1.04 over 0.5s. Titles remain visible on touch screens. Cards navigate; they do not open the image viewer.</p>
     </section>
 
     <div class="cl-divider"></div>
@@ -312,23 +324,15 @@ console.log(`Converted ${result.count} models`);</code></pre>
           </tbody>
         </table>
       </div>
-      <p class="cl-label" style="margin-top:2rem;">Metrics Table — Apple/Stripe style</p>
+      <p class="cl-label" style="margin-top:2rem;">Metrics Table — shared .tbl / .lbl / .val-r / .gain</p>
       <p class="text-xs mb-4" style="color:rgb(var(--c-muted))">Uppercase small headers, tabular-nums right-aligned numbers, gain-pill badges (10% accent bg), subtle row hover. No vertical borders.</p>
-      <style>
-        .cl-metrics th { padding: 0.75rem 0; font-size: 0.75rem; font-weight: 500; color: rgb(var(--c-muted)); text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid rgb(var(--c-border)); }
-        .cl-metrics td { padding: 1rem 0; border-bottom: 1px solid rgb(var(--c-border) / 0.15); }
-        .cl-metrics tr:last-child td { border-bottom: none; }
-        .cl-metrics tbody tr { transition: background 0.15s; }
-        .cl-metrics tbody tr:hover { background: rgb(var(--c-surface) / 0.5); }
-        .cl-metrics th:nth-child(n+2), .cl-metrics td:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; }
-        .cl-gain { display: inline-block; padding: 2px 10px; border-radius: 4px; background: rgb(var(--c-accent) / 0.1); color: rgb(var(--c-accent)); font-weight: 500; }
-      </style>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm cl-metrics">
-          <thead><tr><th class="text-left">Item</th><th>Before</th><th>After</th><th>Gain</th></tr></thead>
+        <table class="tbl">
+          <caption class="text-xs text-muted text-left mb-3">Fictional specimen values, not portfolio claims. Real results must include measurement conditions.</caption>
+          <thead><tr><th scope="col">Item</th><th scope="col" class="!text-right">Before</th><th scope="col" class="!text-right">After</th><th scope="col" class="!text-right">Gain</th></tr></thead>
           <tbody>
-            <tr><td class="text-heading font-medium pr-4">Example A</td><td class="text-muted">40ms</td><td class="text-muted">19ms</td><td><span class="cl-gain">52%↓</span></td></tr>
-            <tr><td class="text-heading font-medium pr-4">Example B</td><td class="text-muted">56ms</td><td class="text-muted">18ms</td><td><span class="cl-gain">68%↓</span></td></tr>
+            <tr><td class="lbl">Example A</td><td class="val-r">40ms</td><td class="val-r">20ms</td><td class="val-r"><span class="gain">50%↓</span></td></tr>
+            <tr><td class="lbl">Example B</td><td class="val-r">50ms</td><td class="val-r">20ms</td><td class="val-r"><span class="gain">60%↓</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -375,7 +379,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
             <img src="assets/cursor-wave.png" alt="wave" class="w-6 h-6" style="image-rendering: auto;">
           </div>
           <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">cursor-wave</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">avatar hover</p>
+          <p class="text-xs" style="color:rgb(var(--c-muted))">legacy avatar hover</p>
         </div>
         <div class="text-center">
           <div class="cl-swatch flex items-center justify-center" style="background:rgb(var(--c-surface)); cursor: url('assets/cursor-link.png') 12 12, pointer;">
@@ -435,7 +439,8 @@ console.log(`Converted ${result.count} models`);</code></pre>
         </div>
       </div>
 
-      <p class="cl-label">Password Modal</p>
+      <p class="cl-label">Legacy Password Modal — retained reference, not a new-page pattern</p>
+      <p class="text-sm text-muted mb-4">Current case studies are public HTML. Do not use this specimen as a content-protection workflow; see CLAUDE.md for the legacy status.</p>
       <div class="cl-specimen">
         <div class="w-full max-w-sm mx-auto">
           <div class="flex items-center justify-center w-12 h-12 rounded-full bg-bg border border-border mb-4 mx-auto">
@@ -444,7 +449,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
           <p class="text-center text-muted text-sm mb-4">NDA project.<br>Enter password to view.</p>
           <div class="flex gap-2">
             <input type="password" placeholder="Password" disabled class="min-w-0 flex-1 bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-heading placeholder-muted">
-            <button class="shrink-0 px-5 py-2.5 bg-heading text-bg text-sm font-medium rounded-lg">Unlock</button>
+            <button disabled class="shrink-0 px-5 py-2.5 bg-heading text-bg text-sm font-medium rounded-lg">Unlock</button>
           </div>
           <p class="text-red-400 text-xs mt-3 text-center">Incorrect password</p>
         </div>
@@ -459,13 +464,14 @@ console.log(`Converted ${result.count} models`);</code></pre>
 
       <p class="cl-label">Top Nav — fixed / bg-bg/80 / backdrop-blur-md / h-16</p>
       <div class="cl-specimen mb-8">
-        <div class="flex items-center justify-between">
-          <span class="nav-logo">Younsoo Lim</span>
+        <nav aria-label="Navigation specimen" class="flex flex-wrap items-center justify-between gap-6">
+          <a href="index.html" class="nav-logo">Younsoo Lim</a>
           <div class="nav-links flex gap-8 text-sm text-body">
-            <span class="hover:text-heading transition cursor-pointer" style="font-family:'Noto Rashi Hebrew',serif; font-size:0.875rem;">Projects</span>
-            <span class="hover:text-heading transition cursor-pointer" style="font-family:'Noto Rashi Hebrew',serif; font-size:0.875rem;">About</span>
+            <a href="index.html#projects" class="hover:text-heading transition">Projects</a>
+            <a href="index.html#about" class="hover:text-heading transition">About</a>
           </div>
-        </div>
+        </nav>
+        <p class="text-xs text-muted mt-4">Static specimen: public navigation is fixed. The project template includes the working mobile menu.</p>
       </div>
 
       <p class="cl-label">Prev / Next — flex justify-between / border-t / pt-8</p>
@@ -480,23 +486,23 @@ console.log(`Converted ${result.count} models`);</code></pre>
     <div class="cl-divider"></div>
 
     <!-- ==================== LANGUAGE TOGGLE ==================== -->
-    <section class="cl-section">
+    <section id="language-controls" class="cl-section">
       <h2>Language Toggle</h2>
 
       <p class="cl-label">Language Toggle — Ko / En button (click each label directly)</p>
       <div class="cl-specimen mb-8">
         <div class="text-muted text-xs">
-          <button style="font-size:inherit; font-weight:inherit; letter-spacing:0.05em; cursor:pointer; padding:0; border:none; background:none; color:inherit;"><span>Ko</span> / <span style="opacity:0.4">En</span></button>
+          <button id="lang-toggle" type="button" aria-label="Toggle language">Ko / En</button>
         </div>
-        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Active language is full opacity, inactive is 0.4. Click Ko or En directly to switch. i18n.js swaps data-ko/data-en content.</p>
+        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Working control: switches translated samples and title fonts. Page load always starts in Korean; the choice is not persisted. Active label opacity is 1, inactive 0.4.</p>
       </div>
 
-      <p class="cl-label">Theme Toggle — Light / Dark button (click each label directly)</p>
+      <p class="cl-label">Internal Theme Preview — Lt / Dk (not exposed on public pages)</p>
       <div class="cl-specimen">
         <div class="text-muted text-xs">
-          <button style="font-size:inherit; font-weight:inherit; letter-spacing:0.05em; cursor:pointer; padding:0; border:none; background:none; color:inherit;"><span>Light</span> / <span style="opacity:0.4">Dark</span></button>
+          <button id="theme-toggle" type="button" aria-label="Preview color theme">Lt / Dk</button>
         </div>
-        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Click Light or Dark directly. theme.js toggles data-theme attribute on html element.</p>
+        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Working internal preview. theme.js sets data-theme="dark" on html; reload returns to light. Color swatches above deliberately retain their labeled values.</p>
       </div>
     </section>
 
@@ -653,18 +659,56 @@ console.log(`Converted ${result.count} models`);</code></pre>
     <section class="cl-section">
       <h2>Footer</h2>
 
-      <p class="cl-label">Site Footer — py-8 / flex justify-between / copyright left, toggles right</p>
+      <p class="cl-label">Current Site Footer — py-8 / copyright left, language control right</p>
       <div class="cl-specimen">
         <div class="py-6 text-muted text-xs">
           <div class="flex justify-between items-center">
             <span>&copy; 2026 Younsoo Lim</span>
-            <span><button style="font-size:inherit; font-weight:inherit; letter-spacing:0.05em; cursor:pointer; padding:0; border:none; background:none; color:inherit;"><span>Ko</span> / <span style="opacity:0.4">En</span></button> &middot; <button style="font-size:inherit; font-weight:inherit; letter-spacing:0.05em; cursor:pointer; padding:0; border:none; background:none; color:inherit;"><span>Light</span> / <span style="opacity:0.4">Dark</span></button></span>
+            <span aria-label="Static language control specimen"><span>Ko</span> / <span style="opacity:0.4">En</span></span>
           </div>
         </div>
       </div>
+      <p class="text-xs text-muted mt-4">Static layout example. Use the working language control above; each public page has one lang-toggle ID.</p>
+    </section>
+
+    <div class="cl-divider"></div>
+    <section id="media" class="cl-section">
+      <h2>Media &amp; Image Viewer</h2>
+      <p class="cl-label">Detail image — original ratio / figure + caption / data-image-viewer</p>
+      <figure class="mb-8">
+        <a href="assets/images/shotloom/thumbnail-editor-v2.png" data-image-viewer class="block" aria-label="Enlarge the AI-retouched Shotloom example">
+          <img src="assets/images/shotloom/thumbnail-editor-v2.png" alt="AI-retouched Shotloom editor thumbnail used as a component example" width="1668" height="943" class="w-full h-auto" loading="lazy" decoding="async">
+        </a>
+        <figcaption class="text-xs text-muted mt-2 text-center" data-ko="예시 · 실제 에디터 화면을 바탕으로 AI 보정한 Shotloom 썸네일. 클릭하면 확대됩니다.">Example · AI-retouched Shotloom thumbnail based on an editor screenshot. Click to enlarge.</figcaption>
+      </figure>
+      <p class="text-sm text-muted mb-8">Working viewer: actual-size / fit, Escape or close button, backdrop close, and return to the trigger. Captions follow the current language. Home cards, videos, and demo links do not use this viewer.</p>
+      <p class="cl-label">New-page video default — user-controlled, inline, metadata preload</p>
+      <video controls playsinline preload="metadata" class="w-full h-auto max-w-xl mx-auto" aria-label="Matcap Painter component example" src="assets/images/matcap-painter/shader-mode-demo.mp4"></video>
+      <p class="text-xs text-muted mt-2 text-center">Example footage from Matcap Painter. Existing pages also contain decorative autoplay loops.</p>
+    </section>
+
+    <div class="cl-divider"></div>
+    <section id="responsive" class="cl-section">
+      <h2>Responsive &amp; Spacing</h2>
+      <div class="overflow-x-auto">
+        <table class="tbl">
+          <thead><tr><th scope="col">Pattern</th><th scope="col">Current value</th></tr></thead>
+          <tbody>
+            <tr><td class="lbl">Home / detail maximum</td><td class="val">1400px / 896px, including 24px side padding</td></tr>
+            <tr><td class="lbl">Card grid</td><td class="val">1 column below 768px; 2 columns at 768px and up; 24px gap</td></tr>
+            <tr><td class="lbl">Main section spacing</td><td class="val">Detail mb-16: 64px; title mb-4: 16px; paragraph mb-6: 24px</td></tr>
+            <tr><td class="lbl">Navigation</td><td class="val">64px tall; mobile menu below 768px</td></tr>
+            <tr><td class="lbl">Reduced motion</td><td class="val">CSS transitions and smooth scrolling reduced; autoplay media is separate</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-muted mt-6">Check 390px and desktop widths, long Korean/English copy, table scrolling, keyboard image-viewer controls, and the mobile menu in the <a href="projects/_template.html" class="text-accent hover:underline">project template</a>.</p>
     </section>
 
   </main>
 
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/image-viewer.js"></script>
 </body>
 </html>

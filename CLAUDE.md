@@ -8,6 +8,8 @@ TA 포트폴리오 기반으로 통합 중인 사이트. GitHub Pages + 커스�
 
 ## 콘텐츠 수정
 
+- 현재 디자인 기준은 [docs/style-guide.md](docs/style-guide.md), 시각 예시는 [component-library.html](component-library.html)을 따른다. 공통 스타일을 변경하면 둘을 함께 갱신한다. 초기 `docs/plans/2026-02-15-*`는 과거 기획이다.
+- 새 상세 페이지는 [docs/project-template.md](docs/project-template.md)와 `projects/_template.html`을 출발점으로 사용한다. 템플릿과 컴포넌트 문서는 공개 목록에 추가하지 않는다.
 - 공개 페이지는 `index.html`, `resume.html`, `projects/*.html`에서 편집한다.
 - 한글 `data-ko`와 영문 본문을 함께 수정한다. 담당 범위, 프로젝트 상태와 수치의 측정 조건을 구분한다.
 - 프로젝트의 사진·도표는 원본 이미지 링크에 `data-image-viewer`를 붙이고 `css/image-viewer.css`·`js/image-viewer.js`를 포함해 같은 페이지에서 확대한다. 홈페이지 프로젝트 카드, 영상, 외부 데모 링크는 이미지 뷰어 대상으로 바꾸지 않는다.
