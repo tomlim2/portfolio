@@ -110,9 +110,6 @@
       var line = Math.round(parseFloat(style.lineHeight) * 100) / 100;
       label.textContent = font + ' · ' + size + 'px · ' + style.fontWeight + ' · 줄높이 ' + (Number.isFinite(line) ? line + 'px' : style.lineHeight);
     });
-    document.querySelectorAll('[data-preview-language]').forEach(function (button) {
-      button.setAttribute('aria-pressed', String(button.dataset.lang === document.documentElement.lang));
-    });
   }
 
   function scheduleSpecs() {
@@ -133,6 +130,12 @@
   document.querySelectorAll('[data-button-demo]').forEach(function (button) {
     button.addEventListener('click', function () {
       document.getElementById('button-demo-status').textContent = button.dataset.buttonDemo + ' · clicked';
+    });
+  });
+
+  document.querySelectorAll('[data-cursor-demo]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      document.getElementById('cursor-demo-status').textContent = 'Action completed · 기본 손 모양 커서를 사용하는 동작입니다.';
     });
   });
 

@@ -74,7 +74,8 @@ mkdir -p assets/images/project-slug
 
 - 대표 결과는 문맥을 이해할 수 있는 이미지·영상 하나부터 시작한다.
 - 캡처 속 UI·노드 텍스트가 잘리지 않도록 상세 이미지는 원본 비율을 유지한다.
-- 사진·도표는 `figure > a[data-image-viewer] > img`와 `figcaption`을 사용한다.
+- 모든 별도 미리보기는 [공통 모달 규칙](style-guide.md#모든-미리보기는-모달)을 따른다. 왼쪽 닫기 · 가운데 이름 · 오른쪽 주 동작을 유지한다.
+- 사진·도표는 `figure > a[data-image-viewer] > img`와 `figcaption`을 사용한다. 템플릿에 포함된 preview-modal CSS/JS → image-viewer CSS/JS 로드 순서를 유지한다. 짧은 제목이 필요하면 `data-preview-title` · `data-preview-title-ko`를 지정한다.
 - 아래쪽 정적 이미지는 실제 크기와 lazy loading을 적용한다. 큰 GIF·영상은 이식 시 용량과 재생 방식을 함께 검토한다.
 - 영상 기본 예시: `<video controls playsinline preload="metadata" class="w-full h-auto" src="../assets/images/project-slug/demo.mp4"></video>`.
 - Before/After는 같은 조건의 비교인지 밝힌다. 측정 표에는 단위·환경·측정 범위를 캡션이나 본문에 둔다.
@@ -103,8 +104,10 @@ python3 -m http.server 8780 --bind 127.0.0.1 --directory _site
 - 빌드의 링크·앵커·제목 검증을 통과한다. `h1`은 하나, 섹션 ID는 고유하다.
 - 390px와 데스크톱에서 가로 넘침, 제목·캡션 잘림, 이미지 왜곡이 없다.
 - Ko/En 전환 후 콘텐츠가 사라지지 않고 메뉴·이미지 확대가 작동한다.
-- Tab/Enter로 이미지 열기, 확대/맞춤, Escape 닫기와 포커스 복귀를 확인한다.
+- Tab/Enter로 미리보기 열기, 확대/맞춤, 모달 내 Tab 순환, Esc·바깥 배경 클릭 닫기와 원래 트리거로의 포커스 복귀를 확인한다.
 - 영상·외부 데모·관련 작업·기존 URL을 실제로 열어 확인한다.
 - 원본 근거와 담당 범위·출시 상태가 일치한다.
 
 프로젝트 하나씩 커밋해 이식 단위를 분리한다. 배포는 README의 절차와 사용자의 배포 요청을 따른다.
+
+SNS 링크에는 일반 기호 대신 `assets/brands/`의 실제 SVG 로고와 `.brand-icon`을 사용한다. [SNS·커서 규칙](style-guide.md#sns-아이콘--브랜드-svg)에 따라 이동 링크와 버튼·이미지 뷰어 동작은 기본 손 모양, 이력서 미리보기는 `data-resume-viewer` 링크와 공통 preview-modal CSS/JS와 `css/resume-viewer.css` · `js/resume-viewer.js`로 모달을 열고(`href`는 `../resume-viewer.html` 폴백, Google Fonts에 `close,description,download` 포함), 닫기·다운로드 아이콘 사이에 이름을 중앙 정렬하며, 파일을 저장하는 링크에는 `download`를 사용해 다운로드 커서를 적용한다.

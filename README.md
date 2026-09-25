@@ -45,11 +45,14 @@ Shotloom is the fourth Selected Work card, after NPR Shading & Look Development,
 ```
 index.html               # Landing page
 resume.html              # Single-column, two-page A4 resume source
-assets/resume.pdf        # Download linked from the homepage; regenerate after resume edits
+resume-viewer.html       # Direct-link fallback for the resume modal
+assets/resume.pdf        # Download from the preview; regenerate after resume content edits
 projects/                # 8 published case studies
 shotloom/index.html      # Direct-entry redirect to the Shotloom case study
 css/style.css            # Shared portfolio styles
-js/                      # main.js, auth.js, crypto.js
+css/preview-modal.css    # Common preview shell and icon toolbar
+js/preview-modal.js     # Shared close, focus and scroll behavior
+js/                      # Shared behavior, including the resume modal
 assets/                  # Images, resume PDF, cursors
 site-public.json         # Explicit publication manifest
 scripts/                 # Site validation and release-note generation
@@ -60,6 +63,8 @@ tools/career-notes/      # Local, gitignored interview, evidence, and revision r
 ```
 
 ## Editing content
+
+All on-demand previews use the shared modal: close icon on the left, title centered, and a contextual action icon on the right. Image and resume viewers share this shell; future document or video previews must reuse it. See [preview rules](docs/style-guide.md#모든-미리보기는-모달).
 
 Update both the English element content and its Korean `data-ko` value. Keep role ownership, implementation status, and measurement scope consistent across the homepage, case studies, and resume. Legacy encryption scripts expect `projects/originals/`, which is absent from this checkout; do not run them against incomplete source files.
 

@@ -1,6 +1,6 @@
 {
   "files": [
-    "index.html", "resume.html", "CNAME", ".nojekyll",
+    "index.html", "resume.html", "resume-viewer.html", "CNAME", ".nojekyll",
     "favicon.gif", "favicon.png", "logo.svg", "logo-invert.svg",
     "projects/npr-shader.html", "projects/character-system.html",
     "projects/profiling.html", "projects/pmx-to-vrm.html",
@@ -16,7 +16,7 @@
     "assets/cursor-zoom_out.png", "assets/cursor-zoom_out.svg"
   ],
   "directories": [
-    "css", "js", "assets/icons",
+    "css", "js", "assets/icons", "assets/brands",
     "assets/images/npr-shader", "assets/images/character-system",
     "assets/images/profiling", "assets/images/pmx-to-vrm",
     "assets/images/matcap-painter", "assets/images/mmd-player",

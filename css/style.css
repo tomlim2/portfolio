@@ -97,7 +97,7 @@ pre code {
 
 /* ── UI Icons: Material Symbols Outlined, default weight 300 ── */
 /* Load only used icon_names with wght=300 in the page's Google Fonts URL.
-   All UI icons share this family, including social-link substitutes. */
+   General UI uses this family; SNS links use their brand SVG artwork. */
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: 300;
@@ -124,6 +124,22 @@ pre code {
   font-size: 20px;
   font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
 }
+
+/* Brand SVG masks retain their proportions and align in the same 20px box. */
+.brand-icon {
+  display: inline-block;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  color: rgb(var(--c-button-text));
+  background: currentColor;
+  mask: var(--brand-icon) center / contain no-repeat;
+  transition: opacity 0.15s;
+}
+.brand-icon--github { --brand-icon: url('../assets/brands/github.svg'); }
+.brand-icon--linkedin { --brand-icon: url('../assets/brands/linkedin.svg'); }
+.btn:not(:disabled):hover .brand-icon { opacity: 0.7; }
 
 /* Inline text links stay aligned with their decorative icon. */
 .icon-label {
@@ -215,6 +231,31 @@ pre code {
 
 .btn[hidden] {
   display: none;
+}
+
+/* Independent language choices, separated by a non-interactive slash. */
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: rgb(var(--c-button-text));
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Selection and pressing keep the Ghost surface transparent. */
+.language-switcher > .btn--ghost[aria-pressed] {
+  background: transparent;
+  border-color: transparent;
+}
+
+.language-switcher .btn[aria-pressed="false"] > span {
+  opacity: 0.4;
+}
+
+.language-switcher .btn:not(:disabled):hover > span,
+.language-switcher .btn:focus-visible > span {
+  opacity: 1;
 }
 
 /* ── Typography Classes ── */
@@ -312,17 +353,22 @@ p, h1, h2, h3, td, th, summary, blockquote {
   word-break: keep-all;
 }
 
-a[target="_blank"],
-a[href^="http"]:not([href*="ta.tommlimm.net"]) {
-  cursor: url('../assets/cursor-link.png') 12 12, pointer;
+/* Cursor semantics: navigation, actions, and downloadable resources. */
+a[href] {
+  cursor: pointer;
 }
 
-a[href$="resume.pdf"] {
+button,
+summary,
+[role="button"],
+a[role="button"],
+a[data-cursor="action"] {
+  cursor: pointer;
+}
+
+a[download],
+a[data-cursor="download"] {
   cursor: url('../assets/cursor-download.png') 12 12, pointer;
-}
-
-a[href^="mailto:"] {
-  cursor: url('../assets/cursor-mail.png') 12 12, pointer;
 }
 
 #projects {
@@ -339,7 +385,6 @@ nav .nav-logo {
   line-height: 1;
   text-decoration: none;
   color: inherit;
-  cursor: pointer;
 }
 
 nav .nav-links a {
@@ -353,7 +398,7 @@ nav {
 
 .card-locked .card-placeholder,
 .card-locked .card-thumb {
-  cursor: url('../assets/cursor-lock.png') 12 12, pointer;
+  cursor: pointer;
 }
 
 .card-placeholder:hover,
@@ -483,7 +528,7 @@ blockquote {
 }
 
 .encrypted-placeholder:hover {
-  cursor: url('../assets/cursor-lock.png') 12 12, pointer;
+  cursor: pointer;
 }
 
 .encrypted-payload {

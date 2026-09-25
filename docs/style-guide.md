@@ -39,6 +39,7 @@
 | 시간·메모리·처리량 비교 | [수치 표](../component-library.html#tables) | 환경·단위·측정 범위가 있는 결과만. 수치가 없으면 관찰한 결과를 문장으로 설명한다. |
 | 조작·시간에 따른 변화 | [설명 영상](../component-library.html#media) | 핵심 동작과 볼 시점을 설명한다. 정지 화면으로 충분한 설명에 긴 영상을 강요하지 않는다. |
 | 여러 작업 중 선택 | [홈 카드](../component-library.html#cards) | 작업을 식별하는 이미지와 한 문장 소개. 작은 UI 텍스트는 상세 이미지에서 보여준다. |
+| 아이콘의 짧은 이름·목적 | [툴팁](../component-library.html#tooltips) | 보조 라벨만 제공. 필수 안내·오류·긴 설명은 화면에 직접 표시한다. |
 
 같은 자료도 목적에 따라 배치가 달라진다. 도구의 **완성 화면**은 대표 이미지, **사용 순서**는 조작 영상, **구현 선택의 이유**는 문단, **검증 환경**은 짧은 패널, **측정한 전후 차이**는 표에 둔다. 모든 프로젝트에 이 다섯 가지를 억지로 채우지는 않는다.
 
@@ -162,7 +163,23 @@
 
 본문 링크는 `text-accent hover:underline`, 내비는 `text-body hover:text-heading`을 사용한다. 외부 새 탭 링크에는 `target="_blank" rel="noopener"`를 함께 쓴다. 아이콘 링크에는 `aria-label`을 제공한다. `data-tip`은 hover·키보드 포커스 보조 설명이며 접근 가능한 이름을 대신하지 않는다.
 
-홈 내비는 스크롤 다운 시 숨고 위로 스크롤하면 나타난다. 모바일 메뉴는 `#hamburger-btn` / `#mobile-menu`를 사용하고 링크 클릭 후 닫힌다. 메뉴 버튼의 `.mobile-menu-toggle`은 768px 이상에서 숨기는 배치 규칙이다. 일부 오래된 상세에는 모바일 메뉴가 없으므로 새 페이지는 템플릿의 메뉴를 따른다. 푸터는 저작권과 `#lang-toggle` 하나를 사용한다. ID를 복제하지 않는다.
+홈 내비는 스크롤 다운 시 숨고 위로 스크롤하면 나타난다. 모바일 메뉴는 `#hamburger-btn` / `#mobile-menu`를 사용하고 링크 클릭 후 닫힌다. 메뉴 버튼의 `.mobile-menu-toggle`은 768px 이상에서 숨기는 배치 규칙이다. 일부 오래된 상세에는 모바일 메뉴가 없으므로 새 페이지는 템플릿의 메뉴를 따른다. 푸터는 저작권과 `.language-switcher` 언어 선택 그룹을 사용한다. `Ko`·`En`은 각각 독립된 Text only + Ghost 버튼이며, `/`는 클릭 동작이 없는 장식 문자다.
+
+### 언어 선택 — Ko / En
+
+`.language-switcher`는 `role="group"`과 접근 가능한 이름을 가지며 두 `.btn.btn--ghost`를 나란히 배치한다. 각 버튼은 공통 44px 최소 클릭 영역, 패딩, 글자 크기를 유지한다. `data-lang`이 언어를 지정하고 `js/i18n.js`가 모든 언어 버튼의 `aria-pressed`를 동기화한다. 버튼 DOM을 교체하지 않아 전환 후 포커스가 유지된다.
+
+선택된 글자는 opacity 1, 미선택 글자는 0.4다. 미선택 글자도 hover·키보드 포커스 시 opacity 1이 되고, hover 색상은 공통 Ghost의 accent를 따른다. 언어 선택 그룹에서는 선택·누름 상태에도 배경과 테두리가 투명하다. opacity는 글자에만 적용하여 포커스 외곽선은 흐려지지 않는다.
+
+Tab으로 각 버튼에 접근하고 Enter·Space로 해당 언어를 선택한다. 이미 선택된 언어를 다시 눌러도 다른 언어로 바뀌지 않는다. `/`에는 `aria-hidden="true"`를 지정하며 구분자·그룹 여백에는 클릭 동작을 연결하지 않는다. 페이지 로드 시 항상 한국어로 시작하며 선택을 저장하지 않는다.
+
+```html
+<div class="language-switcher" role="group" aria-label="Language">
+  <button type="button" class="btn btn--ghost" data-lang="ko" lang="ko" aria-label="Ko — 한국어" aria-pressed="true"><span>Ko</span></button>
+  <span aria-hidden="true">/</span>
+  <button type="button" class="btn btn--ghost" data-lang="en" lang="en" aria-label="En — English" aria-pressed="false"><span>En</span></button>
+</div>
+```
 
 ### 버튼 — Kind · Theme · Style
 
@@ -215,6 +232,50 @@
 
 `.btn--disclosure`는 가로 전체 너비·왼쪽 정렬만 담당하는 배치 규칙이다. 메뉴 표시 여부·모달 너비 등 배치는 별도로 지정하되 44px 조작 영역과 공통 상태 스타일을 유지한다. 본문 텍스트 링크·프로젝트 카드와 브라우저 기본 영상 컨트롤은 각각의 네이티브 패턴을 유지한다.
 
+### 툴팁 — 짧은 보조 라벨
+
+[Tooltips 예시·복사 코드](../component-library.html#tooltips)는 실제 공통 CSS의 `[data-tip]::after`를 사용한다. 트리거인 버튼·링크에 `data-tip`을 넣으면 텍스트로 표시되며 HTML을 해석하지 않는다. 별도 툴팁 JavaScript는 없다.
+
+#### 시각 규격 · 현재 구현
+
+| 항목 | 규칙 |
+|---|---|
+| 배치 | 트리거 아래, 가로 중앙 정렬. `top: 100%`, `left: 50%`, `translateX(-50%)`, 아래 간격 6px |
+| 글자 | 11px (`0.6875rem`, 루트 16px 기준). 글꼴·굵기·행간은 트리거 상속. 공통 `.btn`에서는 500 / 20px |
+| 크기 | 상하 3px·좌우 8px 패딩. 한 줄 내용만큼 너비가 늘어남. `.btn`의 20px 행간에서는 높이 26px |
+| 색상 | 글자 `--c-body`, 배경 `--c-surface`. 라이트 `#28282D` / `#F5F5F7`, 다크 `#D2D2D7` / `#202026`. 가장 가까운 테마 상속 |
+| 모양 | 모서리 4px. 테두리·그림자·말풍선 화살표 없음 |
+| 표시 | 트리거 `:hover` 또는 `:focus-visible`이면 opacity 1, 둘 다 아니면 0. 별도 표시 지연·자동 닫힘 시간 없음 |
+| 전환 | opacity 100ms, 기본 ease. reduced-motion에서는 0ms |
+| 조작·레이어 | 절대 위치라 주변 레이아웃을 밀지 않음. `pointer-events: none`, 별도 z-index 없음. 툴팁 자체는 클릭·포커스 대상이 아님 |
+
+#### 사용·문구 규칙
+
+- 아이콘 전용 동작·목적지의 짧은 이름에 사용한다. `Resume`, `GitHub`, `Email`처럼 대상이나 동작을 명확히 쓴다. 「여기를 클릭」처럼 목적을 설명하지 않는 문구는 피한다. 보이는 버튼 이름이 충분하면 같은 말을 툴팁으로 반복하지 않는다.
+- 한 줄의 짧은 명사·동사구로 작성한다. 오류, 비활성 이유, 필수 안내, 긴 설명, 링크·버튼·이미지는 툴팁에 넣지 않는다. 이런 내용은 보이는 본문이나 별도 도움말에 둔다.
+- 트리거는 네이티브 `button` 또는 `a`를 사용하고 아이콘 전용은 공통 44px 조작 영역을 유지한다. 장식 아이콘에는 `aria-hidden="true"`, 트리거에는 목적을 나타내는 `aria-label`을 제공한다. 접근 가능한 이름에 툴팁의 라벨을 포함하고, 새 탭 등 필요한 맥락을 덧붙인다. `data-tip`만으로 접근 가능한 이름을 제공했다고 간주하지 않는다.
+- 같은 요소에 `title`을 함께 넣어 브라우저 기본 툴팁과 중복 표시하지 않는다. `disabled` 버튼은 키보드로 접근할 수 없으므로 설명을 툴팁에 의존하지 않는다.
+- 터치 화면에서는 hover 표시를 전제로 하지 않는다. 탭은 원래 버튼·링크 동작을 실행한다. 툴팁을 읽기 위한 첫 탭을 요구하거나 중요한 정보를 툴팁에만 두지 않는다.
+- `data-tip`과 `aria-label`은 현재 언어 스크립트가 자동 번역하지 않는다. 브랜드 이름 등 공통 라벨을 사용하고, 번역이 필요한 라벨은 두 속성의 언어를 함께 관리한다. 트리거 전체에 `data-ko`를 붙여 아이콘·버튼 구조를 교체하지 않는다.
+
+#### 배치·동작의 한계
+
+현재는 아래쪽 배치만 지원하며, 최대 너비·줄바꿈·화면 경계 감지·자동 위쪽 전환·portal이 없다. 화면 끝이나 `overflow: hidden/auto` 조상 안에서는 잘릴 수 있으므로 짧은 라벨과 충분한 여백을 확보하고 실제 화면에서 확인한다. 높은 z-index만으로 조상의 잘림을 해결할 수는 없다.
+
+표시는 트리거의 hover·키보드 포커스에만 연결된다. Escape 닫기, 툴팁 위로 포인터를 이동했을 때의 유지, 독립된 `role="tooltip"` 요소와 `aria-describedby` 연결은 구현되어 있지 않다. 설명형 툴팁이 필요한 경우 이 CSS 라벨을 그대로 확장하지 말고 해당 동작을 갖춘 컴포넌트를 구현하거나 설명을 화면에 직접 표시한다.
+
+```html
+<!-- 저장소 루트 기준. 상세 페이지는 ../ 경로 사용.
+     공통 preview-modal CSS/JS → resume-viewer CSS/JS 순서로 포함. close,description,download 폰트 필요. -->
+<a href="resume-viewer.html" data-resume-viewer
+   class="btn btn--ghost btn--icon"
+   aria-label="Resume" data-tip="Resume">
+  <span class="material-symbols-outlined icon-sm" aria-hidden="true">description</span>
+</a>
+```
+
+확인 기준: Tab으로 진입하면 라벨과 포커스 외곽선이 함께 보이고, 다음 요소로 이동하면 hover가 없는 라벨은 사라진다. 라이트·다크 색상, 390px·데스크톱에서의 잘림, 원래 링크·버튼 동작을 확인한다. 툴팁이 없어도 동작 목적을 이해할 수 있어야 한다.
+
 ### 아이콘 — Material Symbols, weight 300
 
 일반 UI 아이콘은 [Google Fonts의 Material Symbols](https://fonts.google.com/icons)에서 선택한다. **기본 weight는 300**이다. 패밀리는 **Material Symbols Outlined**, `FILL=0`, `GRAD=0`으로 통일한다. 실제 모양과 복사 코드는 [Icons 예시](../component-library.html#icons)에서 확인한다.
@@ -231,26 +292,102 @@
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0&amp;icon_names=download,menu,open_in_new&amp;display=block">
 
-<a href="../assets/resume.pdf" target="_blank" rel="noopener"
+<a href="../assets/resume.pdf" download="Younsoo-Lim-Resume.pdf"
    class="inline-flex items-center gap-2 text-accent hover:underline">
   <span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span>
-  <span data-ko="이력서 PDF · 새 탭">Resume PDF · New tab</span>
+  <span data-ko="이력서 PDF 다운로드">Download resume PDF</span>
 </a>
 ```
 
 공통 CSS가 `font-weight: 300` 및 `font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24`를 적용한다. `icon-sm`은 크기와 `opsz`를 20으로 변경한다. 일반 문구의 굵기를 바꾸더라도 아이콘 weight는 300을 유지한다. 요청 URL에 지정하지 않은 아이콘은 표시되지 않을 수 있으므로 새 아이콘을 추가할 때 목록도 갱신한다. 한글/영문 폰트나 기존 SVG에 `font-weight: 300`만 지정하는 것으로 대체하지 않는다.
 
-홈·상세·내부 문서·템플릿·이미지 뷰어의 모든 UI 아이콘에 적용한다. GitHub는 `code`, LinkedIn은 `work`로 표시하고 서비스 이름을 `aria-label`과 `data-tip` 또는 보이는 텍스트로 명시한다. 이전/다음 링크는 `arrow_back` / `arrow_forward`, 새 탭 표시는 `open_in_new`를 쓴다. 본문 안의 수치·파이프라인 화살표는 문장 일부다.
+홈·상세·내부 문서·템플릿·이미지 뷰어의 일반 UI 아이콘에 적용한다. **SNS·브랜드 아이콘은 예외**이며 GitHub·LinkedIn의 실제 SVG 로고를 사용한다. `code`·`work` 같은 일반 기호로 서비스를 대신하지 않는다. 서비스 이름은 `aria-label`과 `data-tip` 또는 보이는 텍스트로 명시한다. 이전/다음 링크는 `arrow_back` / `arrow_forward`, 새 탭 표시는 `open_in_new`를 쓴다. 본문 안의 수치·파이프라인 화살표는 문장 일부다.
 
 아이콘만 있는 링크에는 `.btn.btn--ghost.btn--icon`을 사용한다. 44×44px flex 컨테이너 안에 아이콘을 중앙 정렬하므로 텍스트 baseline 차이로 높이가 어긋나지 않는다. 본문에서 텍스트와 함께 쓰는 링크는 `.icon-label`로 중앙 정렬하고 8px 간격을 둔다.
 
-SVG도 같은 Google Outlined / weight 300 / Fill 0 / Grade 0 원본을 사용한다. `assets/icons/`에 공식 20px 원본과 라이선스를 보관하며 [출처·변환 규칙](../assets/icons/README.md)을 따른다. 이력서의 좁은 연락처 행은 이 원본을 13px로 축소해 HTML과 PDF에 함께 반영한다. 커스텀 커서는 같은 원본에 흰 원형 배경을 더한 24px SVG/PNG다. details 화살표는 `chevron_right.svg` CSS mask로 표시한다.
+일반 UI용 SVG도 같은 Google Outlined / weight 300 / Fill 0 / Grade 0 원본을 사용한다. `assets/icons/`에 공식 20px 원본과 라이선스를 보관하며 [출처·변환 규칙](../assets/icons/README.md)을 따른다. 이력서의 좁은 연락처 행은 이 원본을 13px로 축소해 HTML과 PDF에 함께 반영한다. 다운로드 커서는 같은 원본에 흰 원형 배경을 더한 24px SVG/PNG다. details 화살표는 `chevron_right.svg` CSS mask로 표시한다.
 
 이미지 뷰어를 사용하는 페이지의 `icon_names`에는 스크립트에서 표시하는 `close,zoom_in,zoom_out`도 포함한다. 모바일 메뉴가 있으면 `menu,close`를 포함한다. 아이콘을 추가할 때 정적 HTML뿐 아니라 스크립트로 표시하는 상태도 확인한다.
 
+### SNS 아이콘 — 브랜드 SVG
+
+`assets/brands/github.svg`와 `linkedin.svg`의 실제 로고를 사용하며 [출처·관리 규칙](../assets/brands/README.md)을 기록한다. `.brand-icon`은 SVG mask를 20×20px 안에 비율을 유지해 표시하고, `.btn.btn--ghost.btn--icon`의 44×44px 클릭 영역 중앙에 둔다. 일반 아이콘과 baseline을 섞어 정렬하지 않는다.
+
+브랜드 로고는 가장 가까운 테마의 중립적인 버튼 글자색을 유지하며 hover 시 로고 opacity만 0.7로 바뀐다. 배경·테두리는 Ghost 규칙을 따른다. Google 아이콘의 weight 300 규칙은 로고에 적용하지 않는다. 이력서 연락처 행은 같은 SVG 경로를 13px로 사용하고 PDF에도 반영한다.
+
+```html
+<a href="https://github.com/tomlim2" target="_blank" rel="noopener"
+   class="btn btn--ghost btn--icon" aria-label="GitHub" data-tip="GitHub">
+  <span class="brand-icon brand-icon--github" aria-hidden="true"></span>
+</a>
+```
+
+LinkedIn은 `brand-icon--linkedin`을 사용한다. SVG 파일 경로는 공통 CSS에서 관리하므로 페이지 위치에 따라 마크업 경로를 바꿀 필요가 없다.
+
+### 커서 — 링크 · 동작 · 다운로드
+
+[Links & Cursors 예시](../component-library.html#links-cursors)에서 실제 요소 위에 포인터를 올려 확인한다. 버튼처럼 보이는지보다 **클릭 결과**로 커서를 선택한다.
+
+| 의미 | 대상 | 커서 |
+|---|---|---|
+| 이동 | 내부·외부 페이지, 앵커, 프로젝트 카드, SNS, mailto 등 `a[href]` | 브라우저 기본 손 모양 `pointer` |
+| 동작 | 버튼, summary, 메뉴, 언어 전환, 모달 열기·닫기, 이미지 확대·축소 | 브라우저 기본 손 모양 `pointer` |
+| 다운로드 자료 | `a[download]` 또는 `a[data-cursor="download"]` · 이력서 PDF 등 | Google `download` 모양 커서 |
+| 비활성 | `.btn:disabled` | 기존 `not-allowed` |
+
+다운로드 커서는 24×24px, 흰 원형 배경 안에 20×20px 아이콘을 x=2·y=2로 중앙 배치한다. **hotspot은 `12 12`**, 즉 포인터의 실제 클릭 좌표와 이미지 중심이 일치한다. 이미지 로드 실패 시 기본 손 모양으로 돌아간다. 일반 링크·동작은 커스텀 이미지 없이 기본 손 모양을 사용한다. 버튼의 화면상 아이콘도 44px 영역 중앙에 배치하지만, 이 정렬과 마우스 커서의 hotspot은 별개다.
+
+실제 파일 저장을 요청하는 링크에는 `download`를 사용하며 다운로드 커서가 자동 적용된다. 이력서 미리보기를 여는 링크는 일반 손 모양을 유지하고, 미리보기 안의 PDF 다운로드 버튼만 다운로드 커서를 쓴다. `data-cursor="download"`는 실제 저장 동작에 대한 명시적 스타일 표시이며 그 자체로 파일을 저장하지 않는다. 파일명·확장자나 `target="_blank"`만으로 동작을 추측하지 않는다.
+
+일반 동작은 네이티브 `button`을 사용한다. 링크가 JS 동작을 수행하는 예외는 `data-cursor="action"`을 지정할 수 있다. 이미지 뷰어는 활성화 여부에 관계없이 기본 손 모양을 사용하며, 스크립트가 없으면 원본 이미지로 이동하는 링크로 동작한다. 링크·확대·메일·자물쇠·손 흔들기 전용 이미지 커서는 현재 UI에서 사용하지 않는다.
+
+```html
+<a href="projects/shotloom.html">Shotloom</a>
+<button type="button" class="btn">Open menu</button>
+<a href="resume-viewer.html" data-resume-viewer>View resume</a>
+<a href="assets/resume.pdf" download="Younsoo-Lim-Resume.pdf">Download PDF</a>
+```
+
+이 커서 규칙은 hover 가능한 포인터를 위한 보조 표시다. 터치·키보드에서도 이름·포커스·원래 동작으로 기능을 이해할 수 있어야 한다.
+
 출처: [공식 Material Symbols 가이드](https://developers.google.com/fonts/docs/material_symbols). `display=block`과 사용하는 이름만 요청하는 방법도 이 가이드를 따른다.
 
+### 이력서 — 열기와 다운로드 분리
+
+홈의 Resume 링크에 `data-resume-viewer`를 붙이면 현재 페이지의 네이티브 `dialog`로 열린다. `css/preview-modal.css` · `js/preview-modal.js`를 먼저 포함한 뒤 `css/resume-viewer.css` · `js/resume-viewer.js`를 포함하고 Google Fonts `icon_names`에 `close,description,download`를 추가한다. 일반 손 모양 커서를 사용하며, JavaScript 미지원 또는 수정 키 클릭 시 `href="resume-viewer.html"`의 독립 읽기 화면을 사용할 수 있다.
+
+상단은 **왼쪽 닫기 아이콘 · 가운데 이름(임연수 / Younsoo Lim) · 오른쪽 다운로드 아이콘**의 3열이다. 양쪽은 `44px`, 가운데는 `minmax(0, 1fr)`로 이름의 중심을 유지한다. 닫기는 `button`, 다운로드는 `a[download]`이며 둘 다 `.btn.btn--ghost.btn--icon`을 사용한다. Google 아이콘은 weight 300, 접근 가능한 이름과 짧은 툴팁을 제공한다. 툴바 끝의 툴팁은 가장자리 안쪽으로 정렬해 잘림을 방지한다. 다운로드는 `download="Younsoo-Lim-Resume.pdf"`로 원본 PDF를 저장하며 다운로드 커서를 사용한다.
+
+데스크톱 모달은 최대 960px, 바깥 여백 24px, 반경 12px, 배경은 검정 65%다. 600px 이하에서는 전체 화면으로 표시한다. 기존 `resume.html`을 이름 있는 iframe으로 표시하고 문서만 스크롤해 툴바를 계속 유지한다. 모달이 열리면 배경은 조작·스크롤할 수 없고 닫기 버튼에 포커스가 놓인다. Tab/Shift+Tab은 상단 버튼과 문서의 연락처 링크 사이에서 순환한다. 닫기 버튼·바깥 배경 클릭·Esc로 종료하며, iframe 안에서도 Esc를 지원한다. 닫을 때 열었던 링크로 포커스를 돌려주고 원래 페이지의 스크롤 위치를 유지한다. 독립 읽기 화면의 닫기 링크는 홈으로 이동한다.
+
+브라우저의 PDF 플러그인에 의존하지 않으며, 모바일에서는 HTML 이력서가 화면 폭에 맞춰 재배치된다. 화면용 반응형 규칙은 `@media screen`에만 적용해 인쇄 레이아웃을 유지한다. 읽기 화면 UI의 라이트·다크 테마와 관계없이 문서의 흰 바탕과 PDF 원본의 인쇄 색상은 유지한다. 이력서 내용의 원본은 `resume.html`, 다운로드 파일은 `assets/resume.pdf`이며 읽기 화면은 내용을 복제하지 않는다.
+
 ## 7. 이미지·영상·확대 뷰어
+
+### 모든 미리보기는 모달
+
+**이미지·이력서·문서·영상 등 콘텐츠를 따로 열어 살펴보는 미리보기는 모두 현재 페이지의 공통 모달을 사용한다.** 새로운 미리보기 전용 페이지나 새 탭을 기본 동작으로 만들지 않는다. 실제 예시는 [Preview Modals](../component-library.html#preview-modals)에서 확인한다.
+
+- **공통 틀:** `css/preview-modal.css`와 `js/preview-modal.js`의 `PreviewModal.create()`를 사용한다. 유형별 파일에는 콘텐츠·확대·저장·재생만 구현하며, 닫기·배경·포커스 규칙을 복제하지 않는다.
+- **상단:** 왼쪽 닫기 아이콘 / 가운데 콘텐츠 이름 / 오른쪽 해당 콘텐츠의 주 동작 아이콘. 양 끝은 동일한 44px 열이다. 이미지의 주 동작은 원본 크기 ↔ 화면 맞춤, 이력서는 PDF 다운로드다. 동작이 없어도 오른쪽 열을 유지한다.
+- **버튼:** `btn btn--ghost btn--icon`, 44×44px 조작 영역, Google Outlined weight 300. 항상 `aria-label`을 제공하며 짧은 `data-tip`은 보조 라벨이다. 뒤로가기 아이콘이나 Close 텍스트 버튼을 사용하지 않는다.
+- **크기·테마:** 데스크톱 최대 960px, 바깥 여백 24px, 반경 12px. 검정 65% 배경. 600px 이하에서는 전체 화면과 안전 영역 여백을 사용한다. 프레임은 페이지 테마를 따르고 원본 미디어 색상은 바꾸지 않는다.
+- **읽기:** 상단을 유지하고 내용 영역만 스크롤한다. 긴 제목은 한 줄 말줄임으로 표시하되 전체 이름은 DOM과 접근 가능한 이름에 남긴다. 이미지 설명은 아래 캡션에서 제공하며 긴 캡션은 자체 스크롤할 수 있다.
+- **닫기:** 닫기 버튼·Esc·모달 바깥 배경 클릭. 이미지 내부 여백이나 캡션 클릭으로 닫지 않는다. 열 때 닫기 버튼에 포커스를 두고 Tab/Shift+Tab을 모달 내부에서 순환시킨다. 배경 조작·스크롤을 잠그며 닫으면 원래 트리거와 읽던 위치로 돌아온다.
+- **상태:** 다시 열면 이미지 확대와 문서 스크롤은 초기 상태로 시작한다. 닫을 때 미디어 소스를 정리한다. 향후 영상 모달은 재생도 중지해야 한다. 모달을 중첩해 열지 않는다.
+- **경로:** `a[href]`의 원본·독립 읽기 경로는 JavaScript 미지원, 직접 URL 접근, 사용자가 수정 키로 새 탭을 요청한 경우의 폴백이다. 기본 클릭은 모달을 연다. 실제 파일 저장은 모달의 `download` 링크로 분리한다.
+
+현재 구현 유형은 이미지와 이력서다. 본문 안에서 직접 재생하는 영상, 프로젝트 상세 페이지 이동, 외부 서비스 링크는 각각 본문 콘텐츠와 탐색 동작이다. 여기에 별도의 ‘미리보기/크게 보기’를 추가할 때에는 이 공통 모달 안에 유형별 콘텐츠를 구현한다. 외부 서비스 전체를 임의로 iframe에 넣지 않는다. 향후 영상·외부 iframe은 미디어 조작 및 키보드 이벤트를 별도로 검증한다. 현재 iframe 포커스 처리는 같은 출처의 이력서 문서를 대상으로 한다.
+
+```html
+<!-- projects/ 기준. 공통 틀을 유형별 뷰어보다 먼저 로드한다. -->
+<link rel="stylesheet" href="../css/preview-modal.css">
+<link rel="stylesheet" href="../css/image-viewer.css">
+<script src="../js/preview-modal.js"></script>
+<script src="../js/image-viewer.js"></script>
+<!-- head의 Material Symbols icon_names: close,zoom_in,zoom_out -->
+```
+
 
 ### 정적 이미지
 
@@ -269,13 +406,13 @@ SVG도 같은 Google Outlined / weight 300 / Fill 0 / Grade 0 원본을 사용�
 </figure>
 ```
 
-확대 대상 페이지에는 `css/image-viewer.css`와 `js/image-viewer.js`를 포함한다. 클릭하면 네이티브 `dialog`가 열리고 원본 크기/화면 맞춤, 닫기, Escape, 배경 클릭을 지원한다. 닫은 뒤 원래 링크로 포커스를 돌린다. 수정키 클릭과 지원하지 않는 브라우저에서는 일반 이미지 링크로 동작한다. 캡션은 열 때 현재 언어의 내용을 읽는다. **홈 카드·영상·외부 데모는 확대 대상으로 지정하지 않는다.**
+이미지 미리보기는 공통 모달 CSS/JS 뒤에 `css/image-viewer.css`와 `js/image-viewer.js`를 포함한다. 오른쪽 아이콘과 이미지 클릭으로 원본 크기/화면 맞춤을 전환하며 원본 크기에서는 내용 영역을 스크롤한다. 제목은 현재 언어의 `data-preview-title-ko`, `data-preview-title`, 이미지 `alt` 순으로 정한다. 짧은 제목을 별도로 지정해도 상세 설명은 `alt`와 캡션에 유지한다. 캡션은 열 때 현재 언어의 내용을 읽는다. `data-image-viewer`는 정적 이미지·GIF에 사용하며 영상에는 영상 전용 콘텐츠 구현이 필요하다.
 
 ### 영상
 
 새로 옮기는 설명 영상은 `controls playsinline preload="metadata"`를 기본으로 하고 필요하면 포스터를 제공한다. 짧은 장식 루프만 목적을 확인해 `autoplay loop muted playsinline`을 사용한다. 기존 TA 페이지에는 자동재생 루프도 있으므로 본문 영상 전체를 자동재생하는 규칙으로 해석하지 않는다.
 
-볼 동작과 필요한 타임스탬프를 캡션이나 본문으로 적고 영상 원본 링크를 제공한다. 음성에 중요한 설명이 있다면 자막이나 동등한 텍스트 설명을 함께 제공한다.
+볼 동작과 필요한 타임스탬프를 캡션이나 본문으로 적는다. 파일 제공이 필요하면 `download` 링크로 저장하게 한다. 별도 확대·미리보기는 공통 모달에 영상 콘텐츠를 구현하며, 원본 영상으로 이동하는 링크를 미리보기 버튼으로 사용하지 않는다. 음성에 중요한 설명이 있다면 자막이나 동등한 텍스트 설명을 함께 제공한다.
 
 외부 iframe에는 설명적인 `title`, 반응형 비율, 원본을 여는 링크를 둔다. 이미지의 확대 뷰어로 동영상을 감싸지 않는다. 미디어 실패 시에도 제목·설명·대체 링크로 내용을 파악할 수 있게 한다.
 

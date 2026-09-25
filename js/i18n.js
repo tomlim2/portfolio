@@ -1,9 +1,6 @@
-// Language toggle — swaps text between English (default) and Korean (data-ko)
+// Language selection — Korean by default, English on request.
 (function () {
-  var lang = 'ko';
-
   function applyLang(l) {
-    lang = l;
     document.documentElement.setAttribute('lang', l === 'ko' ? 'ko' : 'en');
 
     document.querySelectorAll('[data-ko]').forEach(function (el) {
@@ -29,13 +26,9 @@
       el.style.letterSpacing = l === 'ko' ? '-0.02rem' : '';
     });
 
-    // Update toggle button text
-    document.querySelectorAll('#lang-toggle').forEach(function (btn) {
-      if (l === 'ko') {
-        btn.innerHTML = '<span data-lang="ko">Ko</span> / <span data-lang="en" style="opacity:0.4">En</span>';
-      } else {
-        btn.innerHTML = '<span data-lang="ko" style="opacity:0.4">Ko</span> / <span data-lang="en">En</span>';
-      }
+    // Keep every language control in sync without replacing focused buttons.
+    document.querySelectorAll('button[data-lang]').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', String(btn.dataset.lang === l));
     });
   }
 
@@ -44,15 +37,11 @@
     applyLang('ko');
   });
 
-  // Toggle handler — click Ko or En directly
+  // Native buttons support pointer, Enter, and Space activation independently.
   document.addEventListener('click', function (e) {
-    var target = e.target;
-    if (target.getAttribute('data-lang') === 'ko') {
-      applyLang('ko');
-    } else if (target.getAttribute('data-lang') === 'en') {
-      applyLang('en');
-    } else if (target.id === 'lang-toggle') {
-      applyLang(lang === 'ko' ? 'en' : 'ko');
-    }
+    var button = e.target.closest('button[data-lang]');
+    if (!button || button.disabled) return;
+    var language = button.dataset.lang;
+    if (language === 'ko' || language === 'en') applyLang(language);
   });
 })();

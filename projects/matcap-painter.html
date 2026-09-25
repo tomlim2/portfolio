@@ -34,7 +34,8 @@
   </script>
   <link rel="icon" href="../favicon.gif" type="image/gif">
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/image-viewer.css">
+  <link rel="stylesheet" href="../css/preview-modal.css">
+  <link rel="stylesheet" href="../css/image-viewer.css?v=20260925-preview-modal">
 </head>
 <body class="bg-bg text-body">
 
@@ -136,13 +137,18 @@
   <footer class="py-8 text-muted text-xs">
     <div class="flex justify-between items-center max-w-4xl mx-auto px-6">
       <span>&copy; 2026 Younsoo Lim</span>
-      <span><button type="button" class="btn btn--ghost" id="lang-toggle" aria-label="Toggle language">Ko / <span style="opacity:0.4">En</span></button></span>
+      <div class="language-switcher" role="group" aria-label="Language">
+        <button type="button" class="btn btn--ghost" data-lang="ko" lang="ko" aria-label="Ko — 한국어" aria-pressed="true"><span>Ko</span></button>
+        <span aria-hidden="true">/</span>
+        <button type="button" class="btn btn--ghost" data-lang="en" lang="en" aria-label="En — English" aria-pressed="false"><span>En</span></button>
+      </div>
     </div>
   </footer>
 
   <script src="../js/i18n.js"></script>
   <script src="../js/theme.js"></script>
   <script src="../js/main.js"></script>
-  <script src="../js/image-viewer.js"></script>
+  <script src="../js/preview-modal.js"></script>
+  <script src="../js/image-viewer.js?v=20260925-preview-modal"></script>
 </body>
 </html>
