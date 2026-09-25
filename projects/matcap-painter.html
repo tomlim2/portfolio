@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matcap Painter — Younsoo Lim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Rashi+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: 'rgb(var(--c-bg) / <alpha-value>)',
+            surface: 'rgb(var(--c-surface) / <alpha-value>)',
+            border: 'rgb(var(--c-border) / <alpha-value>)',
+            muted: 'rgb(var(--c-muted) / <alpha-value>)',
+            accent: 'rgb(var(--c-accent) / <alpha-value>)',
+            heading: 'rgb(var(--c-heading) / <alpha-value>)',
+            body: 'rgb(var(--c-body) / <alpha-value>)',
+          },
+          fontSize: {
+            sm: '0.9375rem',
+          },
+          fontFamily: {
+            sans: ['Noto Sans KR', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="icon" href="../favicon.gif" type="image/gif">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/image-viewer.css">
+</head>
+<body class="bg-bg text-body">
+
+  <nav class="fixed top-0 w-full z-50 bg-bg/80 backdrop-blur-md">
+    <div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="nav-logo">Younsoo Lim</a>
+      <div class="nav-links hidden md:flex gap-8 text-sm text-body ml-auto">
+        <a href="../index.html#projects" class="hover:text-heading transition">Projects</a>
+        <a href="../index.html#about" class="hover:text-heading transition">About</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="hamburger-btn" class="md:hidden text-body hover:text-heading transition" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden border-t border-border bg-bg/95 backdrop-blur-md">
+      <div class="flex flex-col px-6 py-4 gap-4 text-sm text-body">
+        <a href="../index.html#projects" class="hover:text-heading transition">Projects</a>
+        <a href="../index.html#about" class="hover:text-heading transition">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-6 pt-16 pb-24">
+
+
+    <div class="mb-8">
+      <video src="../assets/images/matcap-painter/shader-mode-demo.mp4" autoplay loop muted playsinline class="w-full"></video>
+      <p class="text-xs text-muted mt-2 text-center" data-ko="Shader 모드 — Color Ramp 조절 → 실시간 3D 프리뷰">Shader Mode — Adjust Color Ramp → Real-time 3D preview</p>
+    </div>
+
+    <h1 class="page-title">Matcap Painter</h1>
+
+    <p class="text-body mb-6 page-subtitle" data-ko="Matcap 텍스처 실시간 제작 + 3D 프리뷰">Real-time Matcap texture creation + 3D preview</p>
+
+    <p class="text-xs text-muted mb-12">Side Project · Three.js WebGPU · JavaScript · Canvas 2D · <a href="https://tomlim2.github.io/matcap-painter/" target="_blank" rel="noopener" class="text-accent hover:underline">tomlim2.github.io/matcap-painter</a></p>
+
+    <!-- Motivation -->
+    <section class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="동기">Motivation</h2>
+      <p class="text-muted text-sm leading-relaxed" data-ko="인하우스 &lt;a href=&quot;npr-shader.html&quot; class=&quot;text-accent hover:underline&quot;&gt;NPR Shading &amp;amp; Look Development&lt;/a&gt;에 사용할 Matcap 텍스처를 제작할 때, 포토샵 편집과 엔진 임포트를 반복해야 했습니다. 금속 광택이나 헤어 하이라이트를 조정하면서 3D 결과를 바로 확인할 수 있도록 실시간 제작 도구를 만들었습니다.">Creating Matcap textures for the in-house <a href="npr-shader.html" class="text-accent hover:underline">NPR Shading &amp; Look Development</a> required repeated editing in Photoshop and importing into the engine. I built a real-time authoring tool to preview the 3D result while adjusting effects such as metallic reflections and hair highlights.</p>
+    </section>
+
+    <!-- Solution -->
+    <section class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="해결">Solution</h2>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h3 class="font-medium mb-3" data-ko="Shader 모드 — Toon Ramp 기반으로 만들기">Shader Mode — Create from scratch</h3>
+          <p class="text-muted text-sm leading-relaxed" data-ko="Blender Color Ramp 스타일 UI로 Toon Ramp, Specular 하이라이트, Outline을 실시간 제어합니다. 밴드 수와 경계를 드래그하면 3D 프리뷰에 즉시 반영됩니다.">A Blender Color Ramp-style UI for real-time control of Toon Ramp, Specular highlights, and Outline. Drag band count and boundaries to see instant updates in the 3D preview.</p>
+        </div>
+        <div>
+          <h3 class="font-medium mb-3" data-ko="Paint 모드 — 기존 텍스처 편집">Paint Mode — Edit existing textures</h3>
+          <p class="text-muted text-sm leading-relaxed" data-ko="오픈소스 라이브러리(nidorx/matcaps)에서 가져온 229개 프리셋 기반, 8개 포토샵 스타일 레이어 형식으로 편집합니다. HSV, Contrast, Lift를 조절하면서 결과를 실시간으로 확인할 수 있습니다.">Non-destructive editing with 8 Photoshop-style layers, based on 229 curated presets from an open-source library (nidorx/matcaps). Adjust HSV, Contrast, and Lift while previewing results in real time.</p>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <video src="../assets/images/matcap-painter/paint-mode-demo.mp4" autoplay loop muted playsinline class="w-full"></video>
+        <p class="text-xs text-muted mt-2 text-center" data-ko="Paint 모드 — 프리셋 라이브러리 + 레이어 편집">Paint Mode — Preset library + layer editing</p>
+      </div>
+
+      <p class="text-muted text-sm leading-relaxed" data-ko="편집 중인 Matcap 텍스처를 Sphere·Torus·GLB 모델에 실시간으로 적용합니다. 엔진에 다시 임포트하기 전에 3D 프리뷰에서 질감과 하이라이트의 변화를 확인할 수 있습니다.">The Matcap texture updates in real time on a sphere, torus, or GLB model, letting artists check changes in texture and highlights in the 3D preview before importing into the engine again.</p>
+    </section>
+
+    <p class="text-muted text-sm leading-relaxed mb-12" data-ko="벨트의 금속 파트와 기본 목각인형 몸통의 플라스틱 질감을 표현하는 데 직접 사용했습니다. 캐릭터 팀에도 공유해 사용했으며, 편집값을 바꾸면서 3D 결과를 바로 확인하는 흐름에 집중했습니다.">I used the tool for the metal parts of a belt and the plastic appearance of a base wooden mannequin’s torso, and shared it with the character team for use in their work. The focus was seeing the 3D result immediately as editing values changed.</p>
+
+    <!-- Result -->
+    <section class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="결과">Result</h2>
+      <div class="overflow-x-auto">
+        <table class="tbl">
+          <thead><tr><th data-ko="항목">Category</th><th data-ko="결과">Result</th></tr></thead>
+          <tbody>
+            <tr><td class="lbl" data-ko="워크플로우">Workflow</td><td class="val" data-ko="텍스처 편집과 3D 프리뷰를 한 도구에서 확인">Texture editing and 3D preview in one tool</td></tr>
+            <tr><td class="lbl" data-ko="Shader 모드">Shader Mode</td><td class="val" data-ko="실시간 Toon Ramp / Specular / Outline 생성">Real-time Toon Ramp / Specular / Outline generation</td></tr>
+            <tr><td class="lbl" data-ko="Paint 모드">Paint Mode</td><td class="val" data-ko="229개 프리셋 + 8레이어 비파괴 편집">229 presets + 8-layer non-destructive editing</td></tr>
+            <tr><td class="lbl" data-ko="개발 기간">Dev Time</td><td class="val" data-ko="4일">4 days</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <a href="../assets/images/matcap-painter/matcap-thumbnails.jpg" data-image-viewer class="block w-full min-w-0" aria-label="View full-size image: Collection of matcap textures created with Matcap Painter">
+      <img src="../assets/images/matcap-painter/matcap-thumbnails.jpg" alt="Collection of matcap textures created with Matcap Painter" class="w-full mb-2">
+    </a>
+    <p class="text-xs text-muted text-center mt-2 mb-12" data-ko="nidorx/matcaps에서 가져온 229개 프리셋">229 presets from nidorx/matcaps</p>
+
+    <!-- Prev/Next -->
+    <div class="flex justify-between items-center mt-16 pt-8 border-t border-border">
+      <a href="megamelange.html" class="text-muted hover:text-heading transition text-sm">&larr; Live UE Scene Bridge</a>
+      <a href="character-system.html" class="text-muted hover:text-heading transition text-sm">Character System &rarr;</a>
+    </div>
+
+  </main>
+
+  <footer class="py-8 text-muted text-xs">
+    <div class="flex justify-between items-center max-w-4xl mx-auto px-6">
+      <span>&copy; 2026 Younsoo Lim</span>
+      <span><button id="lang-toggle" aria-label="Toggle language">Ko / <span style="opacity:0.4">En</span></button></span>
+    </div>
+  </footer>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/image-viewer.js"></script>
+</body>
+</html>

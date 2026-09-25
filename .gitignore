@@ -1,0 +1,9 @@
+.DS_Store
+tools/
+wireframe.html
+projects/originals/
+projects/_dev_*
+
+# Generated publication bundle
+_site/
+__pycache__/

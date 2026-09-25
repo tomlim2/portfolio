@@ -1,188 +1,285 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Tom's designer portfolio</title>
-  <meta charset="utf-8" />
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="Tom's designer portfolio">
-  <meta name="description"
-    content="Technical Artist specializing in real-time character systems and NPR rendering pipelines. 2.5+ years of Unreal Engine experience in game/virtual production. Previously UX Engineer at Varo Bank, Graphic Designer at California College of the Arts. Currently based in Seoul, South Korea.">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://www.tommlimm.net/">
-  <meta property="og:title" content="Tom's designer portfolio">
-  <meta property="og:description"
-    content="Technical Artist specializing in real-time character systems and NPR rendering pipelines. 3+ years of Unreal Engine experience in game/virtual production. Previously UX Engineer at Varo Bank, Graphic Designer at California College of the Arts. Currently based in Seoul, South Korea.">
-  <meta property="og:image" content="https://user-images.githubusercontent.com/22067260/148548806-98c111d8-790a-4a13-8095-84844514320b.jpg">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="http://www.tommlimm.net/">
-  <meta property="twitter:title" content="Tom's designer portfolio">
-  <meta property="twitter:description"
-    content="Technical Artist specializing in real-time character systems and NPR rendering pipelines. 2.5+ years of Unreal Engine experience in game/virtual production. Previously UX Engineer at Varo Bank, Graphic Designer at California College of the Arts. Currently based in Seoul, South Korea.">
-  <meta property="twitter:image" content="https://user-images.githubusercontent.com/22067260/148548806-98c111d8-790a-4a13-8095-84844514320b.jpg">
-
-  <link rel="icon" href="favicon.gif" type="image/gif" sizes="30x30">
-  <link rel="stylesheet" href="assets/css/loadFont.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="assets/css/main_ver12.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="assets/css/main_ver12_front.css" type="text/css" media="screen" />
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Younsoo Lim | Technical Artist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Rashi+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: 'rgb(var(--c-bg) / <alpha-value>)',
+            surface: 'rgb(var(--c-surface) / <alpha-value>)',
+            border: 'rgb(var(--c-border) / <alpha-value>)',
+            muted: 'rgb(var(--c-muted) / <alpha-value>)',
+            accent: 'rgb(var(--c-accent) / <alpha-value>)',
+            heading: 'rgb(var(--c-heading) / <alpha-value>)',
+            body: 'rgb(var(--c-body) / <alpha-value>)',
+          },
+          fontSize: {
+            sm: '0.9375rem',
+          },
+          fontFamily: {
+            sans: ['Noto Sans KR', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <meta name="description" content="Younsoo Lim — Technical Artist. Technical research, real-time rendering, character animation pipelines, and 3D creation tools.">
+  <link rel="icon" href="favicon.gif" type="image/gif">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+<body class="bg-bg text-body">
+  <a href="#projects" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-heading focus:text-bg focus:px-4 focus:py-2 focus:rounded focus:z-[60]">Skip to content</a>
 
-<body>
-  <div class="bg"></div>
-  <header id="header" class="nav">
-    <a href="index.html">
-      <div id="logo" class="logo"></div>
-    </a>
-    <a id="menu-works" class="works" href="index.html"></a>
-    <a id="menu-about" class="about"></a>
-    <section class='about-section'>
-      <div class="grid grid-2-column">
-        <div class="grid-item grid-img">
-          <img src="assets/imgs/profile.jpg" />
-        </div>
-        <div class="grid-item grid-item-text">
-          <div class="contact"></div>
-        </div>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-bg/80 backdrop-blur-md">
+    <div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" onclick="window.scrollTo({top:0});return false" id="nav-name" class="nav-logo">Younsoo Lim</a>
+      <div class="nav-links hidden md:flex gap-8 text-sm text-body ml-auto" id="desktop-nav">
+        <a href="#projects" class="nav-link hover:text-heading transition">Projects</a>
+        <a href="#about" class="nav-link hover:text-heading transition">About</a>
       </div>
-    </section>
-  </header>
-  <main>
-    <!-- demoreel -->
-    <section id="heroContainer" class='hero-video'>
-      <div class="side-info side-left">
-        Demo Reel ver 1.1
-      </div>
-      <div class="side-info side-right">
-        2020
-      </div>
-      <iframe id='video-full-screen' src="https://player.vimeo.com/video/323372233" frameborder="0" allowFullScreen
-        mozallowfullscreen webkitAllowFullScreen></iframe>
-    </section>
-    <!-- demoreel end -->
-    <section id="itemContainer">
-      <!-- coming soon -->
-      <div class="grid grid-front-column">
-        <div class="grid-item grid-img">
-          <a href="children/tbd/index.html">
-            <img class="item-thumbnail-img" src="children/tbd/img_thumb.jpg" alt="">
-          </a>
-          <div class="item-info-wrapper">
-            <div class="item-info">
-              <div class="info-title">
-                Office of Civic Innovation
-              </div>
-              <div class="info-detail">
-                <h2>re-Branding</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item grid-img">
-          <a href="children/concept2017/index.html">
-            <img class="item-thumbnail-img" src="children/concept2017/img_thumb.jpg" alt="">
-          </a>
-          <div class="item-info-wrapper">
-            <div class="item-info">
-              <div class="info-title">
-                Curiosity
-              </div>
-              <div class="info-detail">
-                <h2>Key visual</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item grid-img">
-          <a href="children/gd3/index.html">
-            <img class="item-thumbnail-img" src="children/gd3/img_thumb.jpg" alt="">
-          </a>
-          <div class="item-info-wrapper">
-            <div class="item-info">
-              <div class="info-title">
-                Olivia
-              </div>
-              <div class="info-detail">
-                <h2>Branding</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item grid-img">
-          <a href="children/test2019/index.html">
-            <img class="item-thumbnail-img" src="children/test2019/img_thumb.jpg" alt="">
-          </a>
-          <div class="item-info-wrapper">
-            <div class="item-info">
-              <div class="info-title">
-                Personal Projects
-              </div>
-              <div class="info-detail">
-                <h2>3D motion graphic</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item grid-img">
-          <a href="children/vr2019/index.html">
-            <video class="item-thumbnail-img" poster="children/vr2019/img_thumb.png"
-              src="children/vr2019/video_thumb.mp4" autoplay loop muted></video>
-          </a>
-          <div class="item-info-wrapper">
-            <div class="item-info">
-              <div class="info-title">
-                Summer VR Project
-              </div>
-              <div class="info-detail">
-                <h2>VR</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-item grid-img">
-          <a href="children/codes/index.html">
-            <img class="item-thumbnail-img" src="children/codes/img_thumb.gif" alt="portfolio">
-          </a>
-          <div class="item-info-wrapper">
-            <div class="item-info">
-              <div class="info-title">
-                Junkyard <span id="empha">: processing</span>
-              </div>
-              <div class="info-detail">
-                <h2>Websites & Creative codings</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <div class="footer grid grid-3-column">
-      <div class="">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tomandlim@gmail.com"
-          target="_blank">tomandlim@gmail.com</a>
-      </div>
-      <div class="">
-        Seoul, South Korea
-        <br>
-        <a href="https://www.linkedin.com/in/tommlimm/">Linkedin</a> | <a
-          href="https://www.instagram.com/tommlimm/">Instagram</a>
-      </div>
-      <div class="">
-        Copyright, Tom Lim. All rights reserved.
-        <br>development by Tom Lim
+      <div class="flex items-center gap-3">
+        <button id="hamburger-btn" class="md:hidden text-muted hover:text-heading transition" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
       </div>
     </div>
-  </footer>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/myscript_ver12.js"></script>
-</body>
+    <div id="mobile-menu" class="md:hidden hidden border-t border-border bg-bg/95 backdrop-blur-md">
+      <div class="flex flex-col px-6 py-4 gap-4 text-sm text-body">
+        <a href="#projects" class="nav-link hover:text-heading transition">Projects</a>
+        <a href="#about" class="nav-link hover:text-heading transition">About</a>
+      </div>
+    </div>
+  </nav>
 
+  <main>
+
+  <!-- Hero -->
+  <section class="flex flex-col justify-end px-6 pt-32 pb-12 max-w-[1400px] mx-auto">
+    <div class="mb-3">
+      <h1 class="text-body hero-tagline" data-ko="테크니컬 아티스트">Technical Artist</h1>
+      <p class="hero-summary text-body" data-ko="시각적 표현을 위한 기술을 탐색·검증하고, 창작자가 활용하는 도구와 제작 파이프라인으로 구현합니다.">I explore and validate technologies for visual expression, then turn them into tools and production pipelines for creators.</p>
+      <p class="text-muted text-sm leading-relaxed mt-4" data-ko="실시간 그래픽스 · 캐릭터 애니메이션 · 제작 도구">Real-time Graphics · Character Animation · Production Tools</p>
+    </div>
+
+    <div class="flex" style="margin-top:1.25rem;gap:0.95rem">
+            <a href="assets/resume.pdf" target="_blank" rel="noopener" class="text-body hover:text-heading transition" aria-label="Resume" data-tip="Resume">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 -960 960 960"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/></svg>
+            </a>
+            <a href="https://github.com/tomlim2" target="_blank" rel="noopener" class="text-body hover:text-heading transition" aria-label="GitHub" data-tip="GitHub">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/tommlimm/" target="_blank" rel="noopener" class="text-body hover:text-heading transition" aria-label="LinkedIn" data-tip="LinkedIn">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="mailto:tomandlim@gmail.com" class="text-body hover:text-heading transition" aria-label="Email" data-tip="Email">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </a>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="max-w-[1400px] mx-auto px-6 py-16">
+    <h2 class="text-muted section-label uppercase mb-6" data-ko="주요 프로젝트">Selected Work</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Card 2: NPR Shading &amp; Look Development -->
+      <a href="projects/npr-shader.html" class="card-overlay group">
+        <div class="card-overlay-inner">
+          <img src="assets/images/character-system/hero.png" alt="NPR Shading &amp; Look Development" class="card-overlay-img">
+          <div class="card-overlay-text">
+            <h3 class="card-title">NPR Shading &amp; Look Development</h3>
+            <p class="card-subtitle" data-ko="Cinev Studio · 애니메이션풍 캐릭터 룩과 조명 대응">Cinev Studio · Anime-style character looks and lighting</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 1: Character System -->
+      <a href="projects/character-system.html" class="card-overlay group">
+        <div class="card-overlay-inner">
+          <img src="assets/images/npr-shader/hero-cel-shading-outline.png" alt="Character System" class="card-overlay-img" style="object-position: center 90%">
+          <div class="card-overlay-text">
+            <h3 class="card-title">Character System</h3>
+            <p class="card-subtitle" data-ko="Cinev Studio · 아티스트의 등록·변형·결과 확인을 연결">Cinev Studio · Character registration, variations, and previews</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3: UE5 Profiling & Optimization -->
+      <a href="projects/profiling.html" class="card-overlay group">
+        <div class="card-overlay-inner">
+          <img src="assets/images/profiling/desert-oasis.png" alt="UE5 Profiling" class="card-overlay-img">
+          <div class="card-overlay-text">
+            <h3 class="card-title">UE5 Profiling</h3>
+            <p class="card-subtitle" data-ko="Cinev Studio · 에디터 GPU 최적화와 제작팀 프로파일링">Cinev Studio · Editor GPU optimization and artist profiling</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Shotloom -->
+      <a href="projects/shotloom.html" class="card-overlay group">
+        <div class="card-overlay-inner">
+          <img src="assets/images/shotloom/thumbnail-editor-v2.png" alt="AI-retouched Shotloom thumbnail showing three characters in the 3D editor with camera and motion tracks" width="1668" height="943" class="card-overlay-img" decoding="async">
+          <span class="absolute top-3 right-3 px-2 py-1 bg-black/70 text-white text-xs rounded" data-ko="AI 보정 썸네일">AI-retouched thumbnail</span>
+          <div class="card-overlay-text">
+            <h3 class="card-title">Shotloom</h3>
+            <p class="card-subtitle" data-ko="웹 3D 에디터 · 리타게터·서비스 연동·편집 UX">Web 3D editor · Retargeting, service integration &amp; editing UX</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <h2 class="text-muted section-label uppercase mt-16 mb-6" data-ko="제작 도구와 기술 실험">Tools & Experiments</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Card 4: PMX to VRM Pipeline -->
+      <a href="projects/pmx-to-vrm.html" class="card-overlay group">
+        <div class="card-overlay-inner">
+          <img src="assets/images/pmx-to-vrm/hero-converted-characters.png" alt="PMX to VRM Pipeline" class="card-overlay-img">
+          <div class="card-overlay-text">
+            <h3 class="card-title">PMX to VRM Pipeline</h3>
+            <p class="card-subtitle" data-ko="PMX→VRM 변환 파이프라인 · 사내 기술 검증">PMX-to-VRM conversion pipeline · Internal validation</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 6: Matcap Painter -->
+      <a href="projects/matcap-painter.html" class="card-overlay group">
+        <div class="card-overlay-inner">
+          <img src="assets/images/matcap-painter/matcap-thumbnails.jpg" alt="Matcap Painter" class="card-overlay-img">
+          <div class="card-overlay-text">
+            <h3 class="card-title">Matcap Painter</h3>
+            <p class="card-subtitle" data-ko="NPR Matcap 실시간 제작 툴">NPR Matcap real-time production tool</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 5: MMD Player -->
+      <a href="projects/mmd-player.html" class="card-overlay group">
+        <div class="card-overlay-inner">
+          <img src="assets/images/mmd-player/thumb.png" alt="MMD Player" class="card-overlay-img">
+          <div class="card-overlay-text">
+            <h3 class="card-title">MMD Player</h3>
+            <p class="card-subtitle" data-ko="PMX 원본 검증용 개인 도구 · WebGPU 표현 실험">Personal PMX validation tool · WebGPU experiments</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 7: Live UE Scene Bridge -->
+      <a href="projects/megamelange.html" class="card-overlay group">
+        <div class="card-overlay-inner">
+          <img src="assets/images/megamelange/thumb.png" alt="Live UE Scene Bridge" class="card-overlay-img">
+          <div class="card-overlay-text">
+            <h3 class="card-title">Live UE Scene Bridge</h3>
+            <p class="card-subtitle" data-ko="자연어 씬 제어와 AI 생성 연동 · 사내 R&amp;D PoC">Natural language scene control + AI generation · R&D PoC</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="max-w-[1400px] mx-auto px-6 py-24 border-t border-border">
+    <h2 class="text-2xl font-semibold mb-6 about-role" data-ko="소개">About</h2>
+    <p class="text-muted text-sm leading-relaxed mb-6 max-w-3xl" data-ko="다양한 출처에서 새 기술을 찾고, 직접 사용한 결과를 바탕으로 제작에 유용한지 판단합니다. 구현 사례로 동료와 적용 방향을 논의하고, 선택한 기술을 실제 도구와 사용자 기능으로 옮깁니다. Cinev Studio에서는 NPR 룩과 캐릭터 제작 파이프라인을, Shotloom에서는 리타게터와 AI 영상 제작용 3D 에디터의 편집 경험을 설계·구현했습니다.">I discover technology across different sources and test whether it serves the production process. I use working examples to discuss direction with colleagues, then turn selected approaches into tools and user-facing features. At Cinev Studio I developed NPR looks and character production pipelines; at Shotloom I designed and implemented retargeting and editing workflows for AI video production.</p>
+    <p class="text-muted text-sm leading-relaxed mb-12 max-w-3xl" data-ko="디자인·UX·엔진·웹 개발 경험을 바탕으로 시각적 품질과 사용 흐름, 구현 제약을 함께 봅니다. 작업의 목적과 책임 경계, 검증 기록을 남겨 동료가 후속 개발을 이어갈 수 있게 하는 것도 중요하게 생각합니다.">My background spans design, UX, engines, and web development. I consider visual quality, user workflows, and implementation constraints together, and document purpose, ownership, and validation so colleagues can continue the work.</p>
+    <div class="grid md:grid-cols-2 gap-16">
+      <div>
+        <h3 class="text-muted uppercase tracking-[0.15em] mb-5 section-label" data-ko="경력">Career</h3>
+        <div class="space-y-5 mb-10">
+          <div>
+            <p class="text-body about-role" data-ko="테크니컬 아티스트 · 클라이언트 개발">Technical Artist · Client Development</p>
+            <p class="text-muted about-detail">Cinamon · 2023.02 - 2026.08</p>
+            <p class="text-muted about-detail mt-1" data-ko="Cinev Studio: NPR·캐릭터 파이프라인 / Shotloom: 리타게터·에디터 UX">Cinev Studio: NPR &amp; character pipelines / Shotloom: retargeter &amp; editor UX</p>
+          </div>
+          <div>
+            <p class="text-body about-role" data-ko="프론트엔드 개발자">Frontend Developer</p>
+            <p class="text-muted about-detail">FLFI · 2022.02 - 2023.01</p>
+            <p class="text-muted about-detail mt-1" data-ko="Three.js 기반 3D 페이지·리깅·애니메이션과 웹 기능 개발">Three.js 3D pages, rigging, animation, and web features</p>
+          </div>
+          <div>
+            <p class="text-body about-role" data-ko="UX 엔지니어">UX Engineer</p>
+            <p class="text-muted about-detail">Varo Money · 2019.10 - 2020.07</p>
+            <p class="text-muted about-detail mt-1" data-ko="디자인·엔지니어링팀과 Lottie 도입, 앱 온보딩·모션 제작">Lottie adoption with design and engineering, app onboarding, and motion design</p>
+          </div>
+          <div>
+            <p class="text-body about-role" data-ko="VR/AR 조교">VR/AR Teaching Assistant</p>
+            <p class="text-muted about-detail">California College of the Arts · 2018.06 - 2019.12</p>
+          </div>
+          <div>
+            <p class="text-body about-role" data-ko="테크니컬 디자이너 · 튜터 (프리랜스)">Technical Designer &amp; Tutor · Freelance</p>
+            <p class="text-muted about-detail" data-ko="2014.02 - 현재 · 회사 재직 중 병행">2014.02 - Present · Alongside employed roles</p>
+            <p class="text-muted about-detail mt-1" data-ko="3D·모션·인터랙션 제작 기술 멘토링과 디자인 프로젝트">Technical mentoring in 3D, motion, and interaction, alongside design projects</p>
+          </div>
+        </div>
+
+        <div class="border-t border-border pt-8">
+          <h3 class="text-muted uppercase tracking-[0.15em] mb-5 section-label" data-ko="학력">Education</h3>
+          <div class="space-y-5">
+            <div>
+              <p class="text-body about-role" data-ko="그래픽 디자인 (High Distinction)">Graphic Design (High Distinction)</p>
+              <p class="text-muted about-detail">California College of the Arts · 2016–2019</p>
+            </div>
+            <div>
+              <p class="text-body about-role" data-ko="컴퓨터 디자인">Computer Design</p>
+              <p class="text-muted about-detail">Woosong University · 2008–2014</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-muted uppercase tracking-[0.15em] mb-5 section-label" data-ko="기술">Skills</h3>
+        <div class="space-y-5">
+          <div>
+            <p class="text-body mb-1 skill-label" data-ko="엔진">Engine</p>
+            <p class="text-muted about-detail">Unreal Engine 5 · Blueprint · Bevy (Rust)</p>
+          </div>
+          <div>
+            <p class="text-body mb-1 skill-label" data-ko="렌더링">Rendering</p>
+            <p class="text-muted about-detail">NPR · SDF Face Shadow · Matcap · HLSL · Post Process</p>
+          </div>
+          <div>
+            <p class="text-body mb-1 skill-label" data-ko="프로그래밍">Programming</p>
+            <p class="text-muted about-detail">C++ (UE Plugin) · Python · Rust · TypeScript / JavaScript</p>
+          </div>
+          <div>
+            <p class="text-body mb-1 skill-label" data-ko="에디터 / 웹">Editor / Web</p>
+            <p class="text-muted about-detail">React · TypeScript · Three.js · WebGPU · WebAssembly</p>
+          </div>
+          <div>
+            <p class="text-body mb-1 skill-label" data-ko="캐릭터 / 애니메이션">Character / Animation</p>
+            <p class="text-muted about-detail">Motion Retargeting · Blender · VRM / glTF / PMX</p>
+          </div>
+          <div>
+            <p class="text-body mb-1 skill-label" data-ko="파이프라인">Pipeline</p>
+            <p class="text-muted about-detail">Python · Git / GitLab / GitHub · Asset Processing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="py-8 text-muted text-xs">
+    <div class="flex justify-between items-center max-w-[1400px] mx-auto px-6">
+      <span>&copy; 2026 Younsoo Lim</span>
+      <span><button id="lang-toggle" aria-label="Toggle language">Ko / <span style="opacity:0.4">En</span></button></span>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+</body>
 </html>

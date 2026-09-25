@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live UE Scene Bridge — Younsoo Lim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Rashi+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: 'rgb(var(--c-bg) / <alpha-value>)',
+            surface: 'rgb(var(--c-surface) / <alpha-value>)',
+            border: 'rgb(var(--c-border) / <alpha-value>)',
+            muted: 'rgb(var(--c-muted) / <alpha-value>)',
+            accent: 'rgb(var(--c-accent) / <alpha-value>)',
+            heading: 'rgb(var(--c-heading) / <alpha-value>)',
+            body: 'rgb(var(--c-body) / <alpha-value>)',
+          },
+          fontSize: {
+            sm: '0.9375rem',
+          },
+          fontFamily: {
+            sans: ['Noto Sans KR', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="icon" href="../favicon.gif" type="image/gif">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/image-viewer.css">
+</head>
+<body class="bg-bg text-body">
+
+  <nav class="fixed top-0 w-full z-50 bg-bg/80 backdrop-blur-md">
+    <div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="../index.html" class="nav-logo">Younsoo Lim</a>
+      <div class="nav-links hidden md:flex gap-8 text-sm text-body ml-auto">
+        <a href="../index.html#projects" class="hover:text-heading transition">Projects</a>
+        <a href="../index.html#about" class="hover:text-heading transition">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-6 pt-16 pb-24">
+
+
+
+
+
+    <div class="mb-8">
+      <a href="../assets/images/megamelange/hero.png" data-image-viewer class="block w-full min-w-0" aria-label="View full-size image: Live UE Scene Bridge workflow — UE Editor + Web UI + AI generation results">
+        <img src="../assets/images/megamelange/hero.png" alt="Live UE Scene Bridge workflow — UE Editor + Web UI + AI generation results" class="w-full h-auto">
+      </a>
+    </div>
+
+    <h1 class="page-title" data-ko="실시간 UE 씬 브릿지">Live UE Scene Bridge</h1>
+
+    <p class="text-body mb-6 page-subtitle" data-ko="자연어 씬 제어·생성 서비스 연동과 처리 상태 피드백">Natural-language scene control, generative service integration, and processing feedback</p>
+
+    <p class="text-xs text-muted mb-12" data-ko="사내 R&amp;D PoC · 내부 시연 · C++ · FastAPI · Next.js">Internal R&D PoC · Demo stage · C++ · FastAPI · Next.js</p>
+
+    <!-- Problem -->
+    <section class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="문제">Problem</h2>
+      <p class="text-muted text-sm leading-relaxed" data-ko="Cinev Studio의 캐릭터·카메라 작업에 비해 라이트 생성, 에셋 위치, 날씨·시간대 등 환경 연출을 제어하는 기능은 부족했습니다. 이를 자연어로 조작하고, 현재 장면을 이미지·영상 생성 서비스로 연결하는 후속 기능을 PoC로 구현했습니다.">Cinev Studio had character and camera workflows, but controls for lighting, asset placement, weather, and time of day were still limited. I built a PoC for controlling these through natural language and passing the scene into image and video generation services.</p>
+    </section>
+
+    <!-- Solution -->
+    <section class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="해결">Solution</h2>
+      <p class="text-muted text-sm leading-relaxed mb-6" data-ko="기존 플러그인의 Python–C++ JSON 통신 브릿지 위에 자연어 씬 제어와 외부 생성 서비스를 연결했습니다. Cesium으로 위치를, UDS로 시간대·날씨를 설정하고, UE 화면 캡처를 이미지·영상 생성으로 이어가는 흐름을 구성했습니다. 특히 C++·Python·TypeScript 사이의 처리 상태를 정의하고 사용자에게 진행 상황을 전달하는 데 집중했습니다.">I connected natural-language scene control and external generative services using the plugin’s existing Python–C++ JSON bridge. Cesium sets the location and UDS controls time and weather; an Unreal viewport capture then feeds into image and video generation. My focus was defining processing states across C++, Python, and TypeScript and communicating progress to users.</p>
+
+      <!-- NL examples -->
+      <div class="mb-6">
+        <h3 class="font-medium mb-3" data-ko="사용 예시">Usage Examples</h3>
+        <div class="space-y-2 text-sm">
+          <p class="text-green-400 italic">"Show me downtown Tokyo"</p>
+          <p class="text-green-400 italic">"Go to San Francisco"</p>
+          <p class="text-green-400 italic">"Set the time to 6 PM"</p>
+          <p class="text-green-400 italic">"Give me warm tones"</p>
+          <p class="text-green-400 italic">"Set up a cold noon scene"</p>
+        </div>
+      </div>
+
+      <!-- Architecture -->
+      <h3 class="font-medium mb-3" data-ko="3계층 아키텍처">3-Layer Architecture</h3>
+      <pre class="text-xs mb-4"><code>Web UI / CLI → HTTP:34115 → FastAPI + NLP (Claude/Gemini)
+                                    ↓
+              ┌──────────────┬──────────────┬──────────────┐
+              │ UE C++ Plugin│ Nano Banana  │ Veo-3        │
+              │ TCP:55557    │ Image Gen    │ Video Gen    │
+              └──────────────┴──────────────┴──────────────┘</code></pre>
+      <div class="space-y-2 text-sm text-muted mb-6">
+        <p data-ko="① Web UI (Next.js) / CLI — 사용자가 자연어를 입력하는 프론트엔드">① Web UI (Next.js) / CLI — frontend where users input natural language</p>
+        <p data-ko="② FastAPI — 자연어를 JSON 명령으로 변환. 유저가 보유한 API 키에 따라 Claude 또는 Gemini를 선택">② FastAPI — converts natural language to JSON commands. Users choose Claude or Gemini based on their own API key</p>
+        <p data-ko="③ UE C++ Plugin — TCP 소켓(JSON)으로 명령을 수신해 에디터에서 실시간 실행. Nano Banana는 UE HighResShot을 i2i로 스타일 변환, Veo-3는 변환된 이미지에서 바로 영상 생성">③ UE C++ Plugin — receives JSON commands via TCP socket and executes in editor. Nano Banana transforms UE HighResShot via i2i, Veo-3 generates video directly from the result</p>
+      </div>
+
+      <h3 class="font-medium mb-3" data-ko="코어 — Cesium + UDS 통합">Core — Cesium + UDS Integration</h3>
+      <p class="text-muted text-sm leading-relaxed mb-4" data-ko="Cesium 지형과 Ultra Dynamic Sky를 결합해 위치·시간대·날씨·무드를 설정하고, Nano Banana로 장면을 원하는 컨셉 이미지로 변환합니다. 이 과정에서 사용자에게 각 처리 단계를 어떻게 보여줄지와 서비스 사이에서 주고받을 상태 정의에 집중했습니다.">Cesium and Ultra Dynamic Sky set the location, time, weather, and mood; Nano Banana turns the scene into a concept image. I focused on defining the status passed between services and showing users which step was currently running.</p>
+
+      <!-- i2i result -->
+      <div class="mb-6 overflow-hidden">
+        <a href="../assets/images/megamelange/i2i-result.png" data-image-viewer class="block w-full min-w-0" aria-label="View full-size image: AI style transformation result — post-apocalyptic">
+          <img src="../assets/images/megamelange/i2i-result.png" alt="AI style transformation result — post-apocalyptic" class="w-full h-auto">
+        </a>
+        <p class="text-xs text-muted text-center mt-2" data-ko="스타일 변환 결과 — '포스트 아포칼립스 무드로 해줘'">Style transformation result — "Give me a post-apocalyptic mood"</p>
+      </div>
+
+      <!-- i2i pipeline full -->
+      <div class="mb-8 overflow-hidden">
+        <a href="../assets/images/megamelange/i2i-pipeline.png" data-image-viewer class="block w-full min-w-0" aria-label="View full-size image: Full i2i pipeline — style selection and transformation in Web UI">
+          <img src="../assets/images/megamelange/i2i-pipeline.png" alt="Full i2i pipeline — style selection and transformation in Web UI" class="w-full h-auto">
+        </a>
+        <p class="text-xs text-muted text-center mt-2" data-ko="Web UI의 i2i 파이프라인">i2i pipeline in Web UI</p>
+      </div>
+
+      <h3 class="font-medium mb-3" data-ko="Roblox 연동 — 비즈니스 데모">Roblox Integration — Business Demo</h3>
+      <p class="text-muted text-sm leading-relaxed mb-4" data-ko="Roblox API로 FBX를 가져와 UE에 임포트하고, 생성된 배경 위에 캐릭터를 배치한 뒤 Nano Banana·Veo-3로 이미지·영상을 제작했습니다. CEO와 기획 팀에게 활용 가능성을 보여주기 위한 내부 데모였습니다.">I imported FBX assets through the Roblox API into UE, placed characters on generated backgrounds, and produced images and videos with Nano Banana and Veo-3. This internal demo showed the CEO and planning team how the workflow could be used.</p>
+
+      <!-- Roblox demo -->
+      <div class="mb-6 overflow-hidden">
+        <a href="../assets/images/megamelange/roblox-demo.png" data-image-viewer class="block w-full min-w-0" aria-label="View full-size image: Roblox character import placed on background + AI transformation">
+          <img src="../assets/images/megamelange/roblox-demo.png" alt="Roblox character import placed on background + AI transformation" class="w-full h-auto">
+        </a>
+        <p class="text-xs text-muted text-center mt-2" data-ko="생성된 배경 위에 배치된 Roblox 캐릭터">Roblox character placed on generated background</p>
+      </div>
+    </section>
+
+    <section id="status-feedback" class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="처리 상태 피드백">Processing Status Feedback</h2>
+      <p class="text-muted text-sm leading-relaxed mb-4" data-ko="예를 들어 현재 Unreal 화면을 다른 시대의 분위기로 바꾸는 요청은 캡처, 전달, 생성 요청, 응답 대기를 거칩니다. C++의 상태를 Python과 TypeScript UI까지 전달할 값을 정의해, 사용자가 지금 무엇을 기다리는지 알 수 있도록 설계했습니다.">A request to give the current Unreal scene the atmosphere of another era passes through capture, transfer, generation, and waiting for a response. I defined status information across C++, Python, and the TypeScript UI so users could understand what they were waiting for.</p><div class="overflow-x-auto mb-6"><table class="tbl"><thead><tr><th data-ko="단계">Stage</th><th data-ko="처리 흐름">Workflow</th></tr></thead><tbody><tr><td class="lbl" data-ko="화면 캡처">Capture</td><td class="val" data-ko="C++에서 현재 Unreal 화면 촬영">C++ captures the Unreal viewport</td></tr><tr><td class="lbl" data-ko="이미지 전달">Transfer</td><td class="val" data-ko="캡처 결과를 Python으로 전달">Pass the capture to Python</td></tr><tr><td class="lbl" data-ko="생성 요청·대기">Generate / Wait</td><td class="val" data-ko="이미지 생성 API에 입력하고 응답 대기">Submit to the image generation API and wait</td></tr><tr><td class="lbl" data-ko="결과 피드백">Result</td><td class="val" data-ko="생성 결과를 사용자 화면에 표시">Present the generated result in the UI</td></tr></tbody></table></div>
+    </section>
+
+    <section id="prompt-design" class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="LLM 입력·호출 구조 개선">Refining LLM Inputs and Calls</h2>
+      <p class="text-muted text-sm leading-relaxed mb-4" data-ko="구현 후에는 LLM 입력과 호출 구조를 정리했습니다. 프런트의 LLM 처리를 Python으로 모아 중복 호출을 줄이고, 프롬프트의 파라미터 검증·판단 분기·예시·주입 컨텍스트를 간소화했습니다. 이미지 변환 프롬프트는 길이와 명확성을 비교하면서 구도 유지·변환 강도처럼 결과 품질에 필요한 지시를 검토했습니다.">After the workflow was in place, I refined LLM inputs and call structure. I centralized LLM processing in Python to reduce duplicate calls and simplified parameter-validation instructions, decision branches, examples, and injected context. For image transformation, I compared prompt length with clarity while considering instructions needed to preserve composition and control transformation strength.</p><p class="text-muted text-sm leading-relaxed mb-4" data-ko="CJK 에셋명 번역에서는 배치 처리, 공통 이름의 중복 제거, 간결한 입출력 형식도 적용했습니다.">For CJK asset-name translation, I also applied batching, deduplication of shared names, and concise input/output formatting.</p>
+    </section>
+
+    <section id="adoption" class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="후속 적용을 결정한 기준">Deciding what to adopt next</h2>
+      <p class="text-muted text-sm leading-relaxed mb-4" data-ko="라이트·에셋 위치 제어는 당시 기획에 빠져 있던 부분을 보완할 후속 기능으로 계획됐습니다. 캐릭터·환경 인터랙션도 후속 과제였습니다. 별도로 시도한 눈·물웅덩이 인터랙션은 반복할 때마다 결과가 달라, 남은 일정 안에 일관성을 확보하기 어렵다고 판단하고 적용을 미뤘습니다.">Lighting and asset-placement controls were planned as follow-up features to fill gaps in the product. Character–environment interaction was also a later task. In a separate snow and puddle interaction experiment, results varied between runs; I deferred adoption because consistent behavior could not be secured within the remaining schedule.</p>
+    </section>
+
+    <!-- Result -->
+    <section class="mb-16">
+      <h2 class="text-xl font-bold mb-4" data-ko="결과">Result</h2>
+      <div class="overflow-x-auto">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th data-ko="항목">Category</th>
+              <th data-ko="결과">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ><td class="lbl" data-ko="아웃도어 씬 셋업">Outdoor Scene Setup</td><td class="val" data-ko="자연어 한 줄로 위치·시간·날씨·무드 셋업">One-step composition of location + time + weather + mood via natural language</td></tr>
+            <tr ><td class="lbl">i2i Pipeline</td><td class="val" data-ko="Nano Banana로 씬→컨셉 이미지 변환">Scene to concept/mood transformation via Nano Banana</td></tr>
+            <tr ><td class="lbl" data-ko="서비스 통합">Service Integration</td><td class="val" data-ko="4개 서비스 (UE, Nano Banana, Veo-3, Roblox)">4 services (UE, Nano Banana, Veo-3, Roblox)</td></tr>
+            <tr ><td class="lbl" data-ko="대상">Audience</td><td class="val" data-ko="CEO·기획·팀 리드 대상 데모 (POC)">Demo for CEO, planners, team leads — POC</td></tr>
+            <tr><td class="lbl" data-ko="결과">Outcome</td><td class="val" data-ko="CEO·기획·팀장 대상 내부 시연 완료. 비즈니스 우선순위로 후속 개발 보류; 프로덕션 사용 전 PoC 단계.">Completed internal demos for the CEO, planners, and team leads. Follow-up development was deferred due to business priorities; the work remained a PoC without production use.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Prototype screenshot -->
+    <div class="mb-12 overflow-hidden">
+      <a href="../assets/images/megamelange/prototype.png" data-image-viewer class="block w-full min-w-0" aria-label="View full-size image: Early prototype — MCP Frontend + UE viewport">
+        <img src="../assets/images/megamelange/prototype.png" alt="Early prototype — MCP Frontend + UE viewport" class="w-full h-auto">
+      </a>
+    </div>
+    <p class="text-xs text-muted mb-12 text-center" data-ko="초기 프로토타입 — 자연어 입력으로 실시간 UE 뷰포트 제어">Early prototype — real-time UE viewport control via natural language input</p>
+
+    <!-- Prev/Next -->
+    <div class="flex justify-between items-center mt-16 pt-8 border-t border-border">
+      <a href="pmx-to-vrm.html" class="text-muted hover:text-heading transition text-sm">&larr; PMX to VRM Pipeline</a>
+      <a href="matcap-painter.html" class="text-muted hover:text-heading transition text-sm">Matcap Painter &rarr;</a>
+    </div>
+
+  
+  
+  
+  </main>
+
+  <footer class="py-8 text-muted text-xs">
+    <div class="flex justify-between items-center max-w-4xl mx-auto px-6">
+      <span>&copy; 2026 Younsoo Lim</span>
+      <span><button id="lang-toggle" aria-label="Toggle language">Ko / <span style="opacity:0.4">En</span></button></span>
+    </div>
+  </footer>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/image-viewer.js"></script>
+</body>
+</html>

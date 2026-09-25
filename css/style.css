@@ -1,0 +1,414 @@
+/* ── Design System ── */
+
+:root {
+  /* Background — pure white for max contrast */
+  --c-bg: 255 255 255;
+  /* Surface — visible distinction from bg */
+  --c-surface: 245 245 247;
+  /* Border — clear but not heavy */
+  --c-border: 225 225 230;
+  /* Muted — secondary text (WCAG AA on white: 4.6:1) */
+  --c-muted: 110 110 115;
+  /* Body — primary readable text (WCAG AAA: 14.5:1) */
+  --c-body: 40 40 45;
+  /* Heading — near-black for maximum weight (WCAG AAA: 19:1) */
+  --c-heading: 85 85 90;
+  /* Accent — single brand color */
+  --c-accent: 80 95 230;
+}
+
+[data-theme="dark"] {
+  --c-bg: 22 22 26;
+  --c-surface: 32 32 38;
+  --c-border: 50 50 58;
+  --c-muted: 150 150 155;
+  --c-body: 210 210 215;
+  --c-heading: 175 175 180;
+  --c-accent: 100 120 240;
+}
+
+/*
+  Typography Scale (7 steps):
+  --t-display: 2.0rem    hero, page titles
+  --t-h2:      1.25rem   section headings
+  --t-h3:      1.05rem   card/panel headings, nav
+  --t-body:    0.9375rem body text (15px)
+  --t-small:   0.8125rem labels, meta, captions (13px)
+  --t-xs:      0.75rem   fine print, timestamps (12px)
+  --t-micro:   0.6875rem tooltip, decorative (11px)
+*/
+
+/* ── Code Blocks (always dark) ── */
+
+pre {
+  background-color: #1a1a2e;
+  color: #b8d4a8;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+code {
+  background: none;
+  color: rgb(var(--c-heading));
+  font-weight: 600;
+  font-size: 0.875em;
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/* ── Typography Classes ── */
+
+.hero-tagline {
+  font-family: 'Noto Rashi Hebrew', serif;
+  font-size: 2.0rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+.hero-summary {
+  max-width: 50rem;
+  margin-top: 1rem;
+  font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+  line-height: 1.75;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.page-title {
+  font-family: 'Noto Rashi Hebrew', serif;
+  font-size: 2.0rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.page-subtitle {
+  font-size: 0.9375rem;
+}
+
+.card-title {
+  font-family: 'Noto Rashi Hebrew', serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.card-subtitle {
+  font-size: 0.8125rem;
+}
+
+.about-role {
+  font-family: 'Noto Rashi Hebrew', serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.about-detail {
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.skill-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* ── Card Panels ── */
+
+.bg-surface > h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: rgb(var(--c-heading));
+  padding-bottom: 0.625rem;
+  margin-bottom: 0.625rem;
+  border-bottom: 1px solid rgb(var(--c-border));
+}
+
+.bg-surface p,
+.bg-surface div {
+  font-size: 0.875rem;
+  color: rgb(var(--c-muted));
+  line-height: 1.7;
+}
+
+.bg-surface .text-xs {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* ── Base ── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+p, h1, h2, h3, td, th, summary, blockquote {
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+a[target="_blank"],
+a[href^="http"]:not([href*="ta.tommlimm.net"]) {
+  cursor: url('../assets/cursor-link.png') 12 12, pointer;
+}
+
+a[href$="resume.pdf"] {
+  cursor: url('../assets/cursor-download.png') 12 12, pointer;
+}
+
+a[href^="mailto:"] {
+  cursor: url('../assets/cursor-mail.png') 12 12, pointer;
+}
+
+#projects {
+  padding-top: 3rem;
+}
+
+/* ── Language Toggle ── */
+
+#lang-toggle {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+#lang-toggle:hover {
+  color: rgb(var(--c-heading));
+}
+
+#theme-toggle {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+#theme-toggle:hover {
+  color: rgb(var(--c-heading));
+}
+
+/* ── Nav ── */
+
+nav .nav-logo {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+nav .nav-links a {
+  font-family: 'Noto Rashi Hebrew', serif;
+  font-size: 0.875rem;
+}
+
+nav {
+  transition: transform 0.3s ease;
+}
+
+.card-locked .card-placeholder,
+.card-locked .card-thumb {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fff'/%3E%3Csvg x='2' y='2' width='20' height='20' viewBox='0 -960 960 960' fill='%23222'%3E%3Cpath d='M252.31-100q-29.92 0-51.12-21.19Q180-142.39 180-172.31v-375.38q0-29.92 21.19-51.12Q222.39-620 252.31-620H300v-80q0-74.92 52.54-127.46Q405.08-880 480-880q74.92 0 127.46 52.54Q660-774.92 660-700v80h47.69q29.92 0 51.12 21.19Q780-577.61 780-547.69v375.38q0 29.92-21.19 51.12Q737.61-100 707.69-100H252.31Zm0-60h455.38q5.39 0 8.85-3.46t3.46-8.85v-375.38q0-5.39-3.46-8.85t-8.85-3.46H252.31q-5.39 0-8.85 3.46t-3.46 8.85v375.38q0 5.39 3.46 8.85t8.85 3.46Zm277.27-150.42Q550-330.85 550-360t-20.42-49.58Q509.15-430 480-430t-49.58 20.42Q410-389.15 410-360t20.42 49.58Q450.85-290 480-290t49.58-20.42ZM360-620h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z'/%3E%3C/svg%3E%3C/svg%3E") 12 12, pointer;
+}
+
+.card-placeholder:hover,
+.card-thumb:hover {
+  transform: scale(1.03);
+  transition: transform 0.4s ease;
+}
+
+.card-thumb,
+.card-placeholder {
+  transition: transform 0.4s ease;
+}
+
+.card-thumb-zoomed {
+  transform: scale(1.1);
+}
+
+.card-thumb-zoomed:hover {
+  transform: scale(1.13);
+}
+
+/* ── Card Overlay ── */
+
+.card-overlay {
+  display: block;
+  text-decoration: none;
+}
+
+.card-overlay-inner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.card-overlay-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card-overlay:hover .card-overlay-img {
+  transform: scale(1.04);
+}
+
+.card-overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem 1.25rem 1.25rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 60%, transparent 100%);
+}
+
+.card-overlay-text .card-title {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+}
+
+.card-overlay-text .card-subtitle {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+}
+
+.tag {
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+}
+
+details summary {
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::before {
+  content: '▶';
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.6875rem;
+  transition: transform 0.2s;
+  color: rgb(var(--c-muted));
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+blockquote {
+  font-style: italic;
+}
+
+.encrypted-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  border: 1px dashed rgb(var(--c-border));
+  border-radius: 0;
+  background-color: rgb(var(--c-surface));
+  cursor: pointer;
+  margin: 1rem 0;
+}
+
+.encrypted-placeholder svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: rgb(var(--c-muted));
+}
+
+.encrypted-placeholder:hover {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fff'/%3E%3Csvg x='2' y='2' width='20' height='20' viewBox='0 -960 960 960' fill='%23222'%3E%3Cpath d='M252.31-100q-29.92 0-51.12-21.19Q180-142.39 180-172.31v-375.38q0-29.92 21.19-51.12Q222.39-620 252.31-620H300v-80q0-74.92 52.54-127.46Q405.08-880 480-880q74.92 0 127.46 52.54Q660-774.92 660-700v80h47.69q29.92 0 51.12 21.19Q780-577.61 780-547.69v375.38q0 29.92-21.19 51.12Q737.61-100 707.69-100H252.31Zm0-60h455.38q5.39 0 8.85-3.46t3.46-8.85v-375.38q0-5.39-3.46-8.85t-8.85-3.46H252.31q-5.39 0-8.85 3.46t-3.46 8.85v375.38q0 5.39 3.46 8.85t8.85 3.46Zm277.27-150.42Q550-330.85 550-360t-20.42-49.58Q509.15-430 480-430t-49.58 20.42Q410-389.15 410-360t20.42 49.58Q450.85-290 480-290t49.58-20.42ZM360-620h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z'/%3E%3C/svg%3E%3C/svg%3E") 12 12, pointer;
+}
+
+.encrypted-payload {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+[data-tip] {
+  position: relative;
+}
+
+[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  padding: 3px 8px;
+  font-size: 0.6875rem;
+  color: rgb(var(--c-body));
+  background: rgb(var(--c-surface));
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+[data-tip]:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}
+
+/* ── Metrics Table (Apple/Stripe style) ── */
+.tbl { width: 100%; font-size: 0.875rem; border-collapse: collapse; }
+.tbl th { padding: 0.75rem 0; font-size: 0.75rem; font-weight: 500; color: rgb(var(--c-muted)); text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid rgb(var(--c-border)); text-align: left; }
+.tbl td { padding: 1rem 0; border-bottom: 1px solid rgb(var(--c-border) / 0.15); }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tbody tr { transition: background 0.15s; }
+.tbl tbody tr:hover { background: rgb(var(--c-surface) / 0.5); }
+.tbl .lbl { color: rgb(var(--c-heading)); font-weight: 500; padding-right: 1.5rem; }
+.tbl .val { color: rgb(var(--c-muted)); font-variant-numeric: tabular-nums; }
+.tbl .val-r { color: rgb(var(--c-muted)); font-variant-numeric: tabular-nums; text-align: right; }
+.gain { display: inline-block; padding: 2px 10px; border-radius: 4px; background: rgb(var(--c-accent) / 0.1); color: rgb(var(--c-accent)); font-weight: 500; font-variant-numeric: tabular-nums; }
