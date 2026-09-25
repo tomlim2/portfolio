@@ -35,8 +35,8 @@
   </script>
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="css/style.css?v=20260925-neutral-actions">
-  <link rel="stylesheet" href="css/preview-modal.css">
-  <link rel="stylesheet" href="css/resume-viewer.css?v=20260925-preview-modal">
+  <link rel="stylesheet" href="css/preview-modal.css?v=20260925-toolbar-right">
+  <link rel="stylesheet" href="css/resume-viewer.css?v=20260925-toolbar-right">
   <link rel="stylesheet" href="css/image-viewer.css?v=20260925-preview-modal">
   <link rel="stylesheet" href="docs/component-library.css?v=20260925-neutral-actions">
 </head>
@@ -73,7 +73,7 @@
             <tr><th scope="row">품질·구현 차이</th><td><a href="#media">비교 이미지</a></td><td>같은 시점·구도·조건인지 밝히고 각 이미지에 캡션 제공.</td></tr>
             <tr><th scope="row">측정 결과</th><td><a href="#tables">수치 표</a></td><td>단위·환경·측정 범위 필수. 근거가 없으면 관찰한 결과를 문장으로.</td></tr>
             <tr><th scope="row">시간에 따른 변화</th><td><a href="#media">조작 가능한 영상</a></td><td>핵심 동작을 짧게 보여주고 설명·원본 링크 제공.</td></tr>
-            <tr><th scope="row">콘텐츠 미리보기·확대</th><td><a href="#preview-modals">공통 미리보기 모달</a></td><td>왼쪽 닫기 · 가운데 이름 · 오른쪽 주 동작. 모든 별도 미리보기에 사용.</td></tr>
+            <tr><th scope="row">콘텐츠 미리보기·확대</th><td><a href="#preview-modals">공통 미리보기 모달</a></td><td>왼쪽 콘텐츠 이름 · 오른쪽 액션 · 맨 오른쪽 닫기. 모든 별도 미리보기에 사용.</td></tr>
             <tr><th scope="row">클릭 동작</th><td><a href="#buttons">버튼</a></td><td>Kind · Theme · Style 조합. 아이콘 전용은 목적을 나타내는 이름 필수.</td></tr>
             <tr><th scope="row">아이콘의 짧은 이름</th><td><a href="#tooltips">툴팁</a></td><td>보조 라벨만 제공. 필수 안내·오류·긴 설명은 화면에 직접 표시.</td></tr>
             <tr><th scope="row">프로젝트 목록</th><td><a href="#cards">이미지 카드</a></td><td>결과물 + 한 문장 소개. 카드 전체는 상세 페이지로 연결.</td></tr>
@@ -573,7 +573,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
       </div>
 
       <p class="cl-label mt-8">Cursor rules — link / action / download</p>
-      <p class="cl-intro">이동과 동작은 기본 손 모양, 이력서 같은 자료는 다운로드 모양입니다. 각 예시 위에 포인터를 올려 확인하세요.</p>
+      <p class="cl-intro">이동과 동작은 기본 손 모양, 일반 파일 저장은 다운로드 모양입니다. 이력서 미리보기 상단 다운로드는 기본 손 모양을 사용합니다. 각 예시 위에 포인터를 올려 확인하세요.</p>
       <div class="cl-cursor-grid">
         <div class="cl-cursor-example">
           <h3>Link</h3>
@@ -596,7 +596,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
       </div>
       <p id="cursor-demo-status" class="cl-note" role="status" aria-live="polite">Try action은 이 메시지만 변경합니다. Download PDF는 이력서 파일을 저장합니다.</p>
       <p class="cl-note">다운로드 커서: 24×24px 흰 원형 배경, 중앙 20px 아이콘, <strong>hotspot 12 12</strong>. 마우스의 실제 클릭 좌표가 이미지 중심에 놓입니다. 일반 링크와 동작은 커스텀 이미지 없이 기본 손 모양을 사용합니다.</p>
-      <p class="cl-note">Resume 열기는 기본 손 모양으로 현재 페이지에서 모달을 엽니다. 상단은 왼쪽 닫기 아이콘 · 가운데 PDF 파일명(Younsoo-Lim-Resume.pdf) · 오른쪽 다운로드 아이콘이며, PDF 다운로드 버튼은 download 속성으로 파일을 저장하고 다운로드 커서를 사용합니다. 동작을 하는 예외적인 링크는 data-cursor="action"을 사용합니다. 이미지 뷰어는 활성화 여부에 관계없이 기본 손 모양입니다. JavaScript가 없으면 원본으로 이동하는 링크로 동작합니다. 비활성 버튼은 not-allowed를 유지합니다. 기존 링크·확대·메일·자물쇠·손 흔들기 전용 이미지 커서는 사용하지 않습니다.</p>
+      <p class="cl-note">Resume 열기는 기본 손 모양으로 현재 페이지에서 모달을 엽니다. 상단은 왼쪽 PDF 파일명(Younsoo-Lim-Resume.pdf) · 오른쪽 다운로드 / 닫기 순서이며, 닫기는 항상 맨 오른쪽입니다. 이력서 상단 다운로드 버튼은 download 속성으로 파일을 저장하며 기본 손 모양 커서를 사용합니다. 동작을 하는 예외적인 링크는 data-cursor="action"을 사용합니다. 이미지 뷰어는 활성화 여부에 관계없이 기본 손 모양입니다. JavaScript가 없으면 원본으로 이동하는 링크로 동작합니다. 비활성 버튼은 not-allowed를 유지합니다. 기존 링크·확대·메일·자물쇠·손 흔들기 전용 이미지 커서는 사용하지 않습니다.</p>
       <details class="cl-source">
         <summary class="btn btn--ghost btn--disclosure">SNS SVG·커서 · HTML 코드</summary>
         <div class="cl-source-body">
@@ -667,7 +667,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
       </div>
       <p class="cl-note">Resume은 이력서 모달을 열고, GitHub는 새 탭으로 엽니다. 이력서는 모달 오른쪽 위 다운로드 아이콘으로 저장합니다. 툴팁 표시만 확인할 때는 hover 또는 Tab을 사용하세요.</p>
 
-      <p class="cl-note">이력서 모달: 600px 이하에서는 전체 화면, 데스크톱에서는 최대 960px · 바깥 여백 24px. 닫기와 다운로드는 44px Ghost 아이콘 버튼, 이름은 정확히 중앙에 둡니다. 문서만 스크롤되며 상단은 유지됩니다. 닫기·배경 클릭·Esc로 종료하고 Resume 트리거로 포커스를 돌려줍니다.</p>
+      <p class="cl-note">이력서 모달: 600px 이하에서는 전체 화면, 데스크톱에서는 최대 960px · 바깥 여백 24px. 파일명은 왼쪽 정렬하며 오른쪽에는 44px Ghost 다운로드·닫기 버튼을 순서대로 둡니다. 닫기는 항상 맨 오른쪽입니다. 문서만 스크롤되며 상단은 유지됩니다. 닫기·배경 클릭·Esc로 종료하고 Resume 트리거로 포커스를 돌려줍니다.</p>
 
       <p class="cl-label">Visual specification · current implementation</p>
       <div class="overflow-x-auto">
@@ -982,8 +982,8 @@ console.log(`Converted ${result.count} models`);</code></pre>
           <caption class="sr-only">미리보기 모달의 공통 규칙</caption>
           <thead><tr><th scope="col">항목</th><th scope="col">규칙</th></tr></thead>
           <tbody>
-            <tr><th scope="row">상단</th><td>왼쪽 닫기 아이콘 / 가운데 콘텐츠 이름 / 오른쪽 주 동작 아이콘. 좌우 44px로 중앙 정렬.</td></tr>
-            <tr><th scope="row">종류별 동작</th><td>이미지: 원본 크기 ↔ 화면 맞춤. 이력서: PDF 다운로드. 44×44px Ghost · Google Outlined weight 300.</td></tr>
+            <tr><th scope="row">상단</th><td>왼쪽 콘텐츠 이름 / 오른쪽 액션 묶음. 콘텐츠 액션 다음에 닫기를 두어 닫기는 항상 맨 오른쪽. 각 버튼 44px, 버튼 사이 4px.</td></tr>
+            <tr><th scope="row">종류별 동작</th><td>이미지: 원본 크기 ↔ 화면 맞춤. 이력서: PDF 다운로드(기본 손 모양 커서). 44×44px Ghost · Google Outlined weight 300.</td></tr>
             <tr><th scope="row">화면</th><td>최대 960px · 바깥 여백 24px · 반경 12px · 검정 65% 배경. 600px 이하는 전체 화면.</td></tr>
             <tr><th scope="row">테마·읽기</th><td>페이지 테마 상속 · 상단 유지 · 내용 영역 스크롤. 긴 이름은 말줄임, 설명은 캡션에 유지.</td></tr>
             <tr><th scope="row">닫기</th><td>닫기 · Esc · 모달 바깥 배경 클릭. 내부 여백·캡션 클릭은 닫지 않음.</td></tr>
@@ -1045,7 +1045,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
         </a>
         <figcaption class="text-xs text-muted mt-2 text-center" data-ko="예시 · 실제 에디터 화면을 바탕으로 AI 보정한 Shotloom 썸네일. 클릭하면 확대됩니다.">Example · AI-retouched Shotloom thumbnail based on an editor screenshot. Click to enlarge.</figcaption>
       </figure>
-      <p class="text-sm text-muted mb-8">공통 미리보기 모달입니다. 왼쪽 닫기 · 가운데 이름 · 오른쪽 원본 크기/화면 맞춤. 이미지 클릭으로도 확대를 전환합니다. Esc·바깥 배경 클릭으로 닫으면 원래 이미지로 포커스가 돌아옵니다. 캡션은 현재 언어를 따릅니다.</p>
+      <p class="text-sm text-muted mb-8">공통 미리보기 모달입니다. 왼쪽 이름 · 오른쪽 원본 크기/화면 맞춤 · 맨 오른쪽 닫기. 이미지 클릭으로도 확대를 전환합니다. Esc·바깥 배경 클릭으로 닫으면 원래 이미지로 포커스가 돌아옵니다. 캡션은 현재 언어를 따릅니다.</p>
       <details class="cl-source">
         <summary class="btn btn--ghost btn--disclosure">상세 이미지 · HTML 코드</summary>
         <div class="cl-source-body">
@@ -1183,7 +1183,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
 
   <script src="js/i18n.js?v=20260925-language-auto"></script>
   <script src="js/theme.js"></script>
-  <script src="js/preview-modal.js"></script>
+  <script src="js/preview-modal.js?v=20260925-toolbar-right"></script>
   <script src="js/image-viewer.js?v=20260925-preview-modal"></script>
   <script src="js/resume-viewer.js?v=20260925-filename"></script>
   <script src="docs/component-library.js"></script>

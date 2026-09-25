@@ -11,10 +11,11 @@
     viewer.setAttribute('aria-labelledby', titleId);
     // Templates are local code; titles and labels are assigned as text below.
     viewer.innerHTML = '<header class="preview-modal-toolbar">' +
+      '<h2 class="preview-modal-title" id="' + titleId + '"></h2>' +
+      '<div class="preview-modal-action">' + (options.actionHTML || '') +
       '<button type="button" class="btn btn--ghost btn--icon preview-modal-close" autofocus>' +
       '<span class="material-symbols-outlined icon-sm" aria-hidden="true">close</span></button>' +
-      '<h2 class="preview-modal-title" id="' + titleId + '"></h2>' +
-      '<div class="preview-modal-action">' + (options.actionHTML || '') + '</div></header>' +
+      '</div></header>' +
       '<div class="preview-modal-body">' + options.bodyHTML + '</div>';
     document.body.appendChild(viewer);
     var close = viewer.querySelector('.preview-modal-close');

@@ -30,7 +30,7 @@ html.preview-modal-open { overflow: hidden; }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
   padding: 8px 12px;
@@ -46,13 +46,17 @@ html.preview-modal-open { overflow: hidden; }
   font-size: 16px;
   line-height: 1.4;
   font-weight: 600;
-  text-align: center;
+  text-align: left;
 }
 
-.preview-modal-action { display: flex; }
+.preview-modal-action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
 .preview-modal-body { min-height: 0; min-width: 0; overflow: hidden; }
 /* Keep short labels inside the panel edges and above its content. */
-.preview-modal-close::after { left: 0; transform: none; }
 .preview-modal-action [data-tip]::after { left: auto; right: 0; transform: none; }
 
 @media (max-width: 600px) {
