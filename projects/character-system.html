@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Rashi+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0&amp;icon_names=arrow_back,arrow_forward,close,zoom_in,zoom_out&amp;display=block" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -205,8 +206,8 @@
 
     <!-- Prev/Next -->
     <div class="flex justify-between items-center mt-16 pt-8 border-t border-border">
-      <a href="matcap-painter.html" class="text-muted hover:text-heading transition text-sm">&larr; Matcap Painter</a>
-      <a href="npr-shader.html" class="text-muted hover:text-heading transition text-sm">NPR Shading &amp; Look Development &rarr;</a>
+      <a href="matcap-painter.html" class="icon-label text-muted hover:text-heading transition text-sm"><span class="material-symbols-outlined icon-sm" aria-hidden="true">arrow_back</span> <span>Matcap Painter</span></a>
+      <a href="npr-shader.html" class="icon-label text-muted hover:text-heading transition text-sm"><span>NPR Shading &amp; Look Development</span> <span class="material-symbols-outlined icon-sm" aria-hidden="true">arrow_forward</span></a>
     </div>
 
   
@@ -217,7 +218,7 @@
   <footer class="py-8 text-muted text-xs">
     <div class="flex justify-between items-center max-w-4xl mx-auto px-6">
       <span>&copy; 2026 Younsoo Lim</span>
-      <span><button id="lang-toggle" aria-label="Toggle language">Ko / <span style="opacity:0.4">En</span></button></span>
+      <span><button type="button" class="btn btn--ghost" id="lang-toggle" aria-label="Toggle language">Ko / <span style="opacity:0.4">En</span></button></span>
     </div>
   </footer>
 

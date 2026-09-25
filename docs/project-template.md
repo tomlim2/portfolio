@@ -66,7 +66,9 @@ mkdir -p assets/images/project-slug
 5. 이미지 뷰어는 템플릿의 CSS/JS를 유지한다. 내부 문서의 `cl-*` 클래스나 `docs/component-library.*`는 새 프로젝트에 복사하지 않는다.
 6. 이미지 링크·영상·코드가 있는 컨테이너 전체를 번역 대상으로 지정하지 않았는지 확인한다.
 
-일반 UI 아이콘은 [Material Symbols Outlined / weight 300](style-guide.md#아이콘--material-symbols-weight-300)을 사용한다. 템플릿의 메뉴 아이콘은 이 기준으로 로드된다. 다른 아이콘을 추가할 때 head의 `icon_names=menu` 목록에도 이름을 알파벳순으로 추가한다. 20px 아이콘도 쓰면 로드 URL의 `opsz`를 `20..24`로 바꾸고 `icon-sm`을 사용한다. [Icons 예시와 코드](../component-library.html#icons)를 참고한다.
+일반 UI 아이콘은 [Material Symbols Outlined / weight 300](style-guide.md#아이콘--material-symbols-weight-300)을 사용한다. 템플릿은 메뉴·닫기·이전/다음·확대 뷰어 아이콘을 이 기준으로 로드한다. 다른 아이콘을 추가할 때 head의 `icon_names` 목록에도 이름을 알파벳순으로 추가한다. 버튼·텍스트 옆의 20px 아이콘은 `icon-sm`, 아이콘만 있는 링크는 `btn btn--ghost btn--icon`을 사용한다. [Icons 예시와 코드](../component-library.html#icons)를 참고한다.
+
+동작 버튼은 [Buttons 기준](../component-library.html#buttons)을 따른다. `.btn`은 Text only + Outline, `.btn--filled`는 배경을 유지하고 테두리를 없앤 스타일, `.btn--ghost`는 투명 스타일, `.btn--icon`은 아이콘 전용이다. 템플릿은 시스템 테마를 따르며 특정 영역의 테마를 고정하려면 `data-theme="light"` 또는 `data-theme="dark"`를 지정한다.
 
 ## 4. 미디어와 기술 자료
 

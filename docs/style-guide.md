@@ -46,7 +46,7 @@
 
 색상은 `css/style.css`의 RGB 채널 변수와 각 HTML의 Tailwind 설정으로 연결된다. 예: `text-muted` → `rgb(var(--c-muted))`. 일반 UI에는 의미에 맞는 클래스를 사용한다.
 
-| 변수 / Tailwind 이름 | 기본 라이트 | 보조 다크 | 용도 |
+| 변수 / Tailwind 이름 | 라이트 | 다크 | 용도 |
 |---|---|---|---|
 | `--c-bg` / `bg` | `#FFFFFF` | `#16161A` | 페이지 바탕 |
 | `--c-surface` / `surface` | `#F5F5F7` | `#202026` | 정보 패널 |
@@ -58,7 +58,7 @@
 
 `heading`은 라이트 모드에서 `body`보다 밝다. 이름만 보고 가장 진한 색이라고 가정하지 않는다. 대비 적합성은 배경·투명도·글자 크기의 조합으로 별도 검증하며, 토큰 이름 자체가 접근성 보증은 아니다.
 
-**현재 구현:** 페이지 진입 시 라이트 모드다. 다크 변수와 `js/theme.js`는 남아 있지만 공개 홈·상세 푸터에는 테마 전환 버튼이 없다. 컴포넌트 문서의 다크 버튼은 내부 점검용이다. 사용자 선택을 저장하거나 시스템 테마에 따라 자동 전환하지 않는다.
+**현재 구현:** 기본은 시스템의 `prefers-color-scheme`을 따른다. `js/theme.js`가 실제 테마를 html의 `data-theme="light|dark"`에 반영하고 시스템 변경도 추적한다. 컴포넌트 문서의 System / Light / Dark 컨트롤에서 방문 중 테마를 지정할 수 있다. 선택은 저장하지 않으므로 새로고침하면 System으로 돌아온다. 공개 홈·상세 푸터에는 테마 전환 버튼이 없으며 시스템 설정을 따른다. JavaScript 실행 전·비활성 시에도 CSS 미디어 쿼리가 시스템 테마를 적용한다. 명시적인 `data-theme="light"` 또는 `data-theme="dark"`는 버튼 하나나 그룹에 지정할 수 있고, 상위 테마보다 우선한다.
 
 예외 색상은 코드 블록(`#1A1A2E` / `#B8D4A8`), 썸네일 위 흰 글자·검은 그라데이션, 이미지 확대 뷰어의 어두운 바탕이다.
 
@@ -160,9 +160,60 @@
 
 ### 링크·내비·푸터
 
-본문 링크는 `text-accent hover:underline`, 내비는 `text-body hover:text-heading`을 사용한다. 외부 새 탭 링크에는 `target="_blank" rel="noopener"`를 함께 쓴다. 아이콘 링크에는 `aria-label`을 제공한다. `data-tip`은 hover 보조 설명이며 접근 가능한 이름을 대신하지 않는다.
+본문 링크는 `text-accent hover:underline`, 내비는 `text-body hover:text-heading`을 사용한다. 외부 새 탭 링크에는 `target="_blank" rel="noopener"`를 함께 쓴다. 아이콘 링크에는 `aria-label`을 제공한다. `data-tip`은 hover·키보드 포커스 보조 설명이며 접근 가능한 이름을 대신하지 않는다.
 
-홈 내비는 스크롤 다운 시 숨고 위로 스크롤하면 나타난다. 모바일 메뉴는 `#hamburger-btn` / `#mobile-menu`를 사용하고 링크 클릭 후 닫힌다. 일부 오래된 상세에는 모바일 메뉴가 없으므로 새 페이지는 템플릿의 메뉴를 따른다. 푸터는 저작권과 `#lang-toggle` 하나를 사용한다. ID를 복제하지 않는다.
+홈 내비는 스크롤 다운 시 숨고 위로 스크롤하면 나타난다. 모바일 메뉴는 `#hamburger-btn` / `#mobile-menu`를 사용하고 링크 클릭 후 닫힌다. 메뉴 버튼의 `.mobile-menu-toggle`은 768px 이상에서 숨기는 배치 규칙이다. 일부 오래된 상세에는 모바일 메뉴가 없으므로 새 페이지는 템플릿의 메뉴를 따른다. 푸터는 저작권과 `#lang-toggle` 하나를 사용한다. ID를 복제하지 않는다.
+
+### 버튼 — Kind · Theme · Style
+
+[Buttons 비교표와 복사 코드](../component-library.html#buttons)는 공통 `.btn`을 사용한다. **Text only + Outline**이 기본이며 테마는 페이지의 시스템 설정을 상속한다.
+
+| 축 | 값 | 구현 |
+|---|---|---|
+| Kind | Text only (기본) | `.btn` + 텍스트 |
+| Kind | Icon with text | `.btn` + Google 아이콘 span + 텍스트 span |
+| Kind | Icon only | `.btn.btn--icon` + 아이콘, 목적을 나타내는 `aria-label` 필수 |
+| Theme | Light / Dark | 페이지 상속. 명시적 선택은 버튼·부모의 `data-theme="light|dark"` |
+| Style | Outline (기본) | `.btn`: 기본 버튼 배경·텍스트 + 1px 테두리 |
+| Style | Filled | `.btn.btn--filled`: 기본 버튼 배경·텍스트, 보이는 테두리 없음 |
+| Style | Ghost | `.btn.btn--ghost`: 투명 배경·테두리 + 기본 텍스트 |
+
+모든 종류에서 최소 높이 44px, 반경 6px, 글자 14px / 줄높이 20px / weight 500을 사용한다. 아이콘 전용 버튼은 44×44px, 나머지는 10px 16px 패딩과 8px 내부 간격을 사용한다. 아이콘은 `icon-sm`으로 20px / weight 300을 유지한다. 긴 레이블은 줄바꿈하여 버튼 높이를 늘릴 수 있다. 아이콘과 번역할 텍스트는 별도 span으로 둔다.
+
+| 버튼 색상 토큰 | Light | Dark | 용도 |
+|---|---|---|---|
+| `--c-button-bg` | `#F5F5F7` | `#202026` | Outline·Filled 기본 배경 (surface와 동일) |
+| `--c-button-text` | `#28282D` | `#D2D2D7` | 모든 스타일의 글자 (body와 동일) |
+| `--c-button-border` | `#8C8C91` | `#787880` | Outline 경계 |
+| `--c-button-hover` | `#EBEBEF` | `#2C2C34` | Outline·Filled의 hover 배경 |
+| `--c-button-active` | `#E1E1E6` | `#373741` | 누르는 동안·선택된 토글 배경 |
+
+`:hover`에서 Outline·Filled는 배경을 강조하고, Ghost는 배경·테두리를 바꾸지 않고 텍스트와 아이콘 색상만 `accent`로 바꾼다. 아이콘은 글자색을 상속하므로 세 가지 Kind 모두 같은 규칙을 따른다. `:active`는 더 진한 배경과 테두리로 구분하되 Filled는 눌림·선택 상태에서도 테두리를 투명하게 유지한다. `:focus-visible`은 모든 스타일에서 2px accent 외곽선과 3px 간격을 제공한다. 상태는 크기·정렬을 바꾸지 않는다. 토글은 실제 상태를 `aria-pressed`로 제공한다. 비활성은 네이티브 `disabled`를 사용하며 opacity 0.4와 not-allowed 커서를 적용하고 hover·클릭·키보드 활성화를 막는다. `aria-disabled`만 붙이는 것으로 대체하지 않는다.
+
+```html
+<button type="button" class="btn">Button</button>
+<button type="button" class="btn btn--filled">Button</button>
+<button type="button" class="btn btn--ghost">
+  <span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span>
+  <span data-ko="다운로드">Download</span>
+</button>
+<button type="button" class="btn btn--icon" aria-label="메뉴 열기">
+  <span class="material-symbols-outlined icon-sm" aria-hidden="true">menu</span>
+</button>
+```
+
+실제 동작은 `button`, 다른 위치로 이동하는 링크는 `a`, 펼치기는 네이티브 `details` / `summary`를 사용한다. 라이브러리의 비교 버튼은 선택한 조합을 상태 메시지로 알려주는 데모다. 모든 직접 구현한 버튼은 `.btn`을 사용하며 개별 버튼의 색상·패딩·글자 크기를 따로 지정하지 않는다. 뷰어는 어두운 배경과 일치하도록 `data-theme="dark"` 범위를 명시한다.
+
+| 사용 위치 | 공통 클래스 |
+|---|---|
+| 모바일 메뉴·목차, 이력서·소셜 아이콘 링크 | `btn btn--ghost btn--icon` |
+| 푸터 Ko/En·언어 예시·테마 선택 | `btn btn--ghost` |
+| 코드 복사·이미지 원본 크기 | `btn` (Outline) |
+| 뷰어·이전 모달 닫기 | `btn btn--ghost` |
+| 이전 비밀번호 폼·확인 모달 | `btn btn--filled` |
+| 문서의 펼치기 summary | `btn btn--ghost btn--disclosure` |
+
+`.btn--disclosure`는 가로 전체 너비·왼쪽 정렬만 담당하는 배치 규칙이다. 메뉴 표시 여부·모달 너비 등 배치는 별도로 지정하되 44px 조작 영역과 공통 상태 스타일을 유지한다. 본문 텍스트 링크·프로젝트 카드와 브라우저 기본 영상 컨트롤은 각각의 네이티브 패턴을 유지한다.
 
 ### 아이콘 — Material Symbols, weight 300
 
@@ -170,8 +221,8 @@
 
 | 상황 | 클래스 | 크기 / Optical size | Weight |
 |---|---|---|---|
-| 독립 아이콘·메뉴 | `material-symbols-outlined` | 24px / 24 | 300 |
-| 텍스트 옆·보조 아이콘 | `material-symbols-outlined icon-sm` | 20px / 20 | 300 |
+| 독립 아이콘 예시 | `material-symbols-outlined` | 24px / 24 | 300 |
+| 버튼·텍스트 옆 아이콘 | `material-symbols-outlined icon-sm` | 20px / 20 | 300 |
 
 색상은 주변 글자색을 상속한다. 아이콘만 있는 버튼·링크의 조작 영역은 아이콘 크기와 별개로 44px 이상 확보하고, 목적을 나타내는 `aria-label`을 제공한다. 장식 아이콘에는 `aria-hidden="true"`를 붙인다. 아이콘 이름은 번역하지 않으며 아이콘 span을 `data-ko` 텍스트 요소 밖에 둔다.
 
@@ -189,7 +240,13 @@
 
 공통 CSS가 `font-weight: 300` 및 `font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24`를 적용한다. `icon-sm`은 크기와 `opsz`를 20으로 변경한다. 일반 문구의 굵기를 바꾸더라도 아이콘 weight는 300을 유지한다. 요청 URL에 지정하지 않은 아이콘은 표시되지 않을 수 있으므로 새 아이콘을 추가할 때 목록도 갱신한다. 한글/영문 폰트나 기존 SVG에 `font-weight: 300`만 지정하는 것으로 대체하지 않는다.
 
-SVG로 사용하는 경우도 Google Fonts에서 Outlined / weight 300 / Fill 0 / Grade 0 / 해당 Optical size를 선택해 내려받는다. **GitHub·LinkedIn 등 브랜드 로고는 별도 원형 SVG**를 사용하며 Material Symbols의 weight 규칙을 적용하지 않는다. 기존 공개 페이지의 이전 SVG는 일괄 교체된 상태가 아니다. 새 페이지 템플릿과 새로 추가·교체하는 일반 UI 아이콘부터 이 기준을 적용한다.
+홈·상세·내부 문서·템플릿·이미지 뷰어의 모든 UI 아이콘에 적용한다. GitHub는 `code`, LinkedIn은 `work`로 표시하고 서비스 이름을 `aria-label`과 `data-tip` 또는 보이는 텍스트로 명시한다. 이전/다음 링크는 `arrow_back` / `arrow_forward`, 새 탭 표시는 `open_in_new`를 쓴다. 본문 안의 수치·파이프라인 화살표는 문장 일부다.
+
+아이콘만 있는 링크에는 `.btn.btn--ghost.btn--icon`을 사용한다. 44×44px flex 컨테이너 안에 아이콘을 중앙 정렬하므로 텍스트 baseline 차이로 높이가 어긋나지 않는다. 본문에서 텍스트와 함께 쓰는 링크는 `.icon-label`로 중앙 정렬하고 8px 간격을 둔다.
+
+SVG도 같은 Google Outlined / weight 300 / Fill 0 / Grade 0 원본을 사용한다. `assets/icons/`에 공식 20px 원본과 라이선스를 보관하며 [출처·변환 규칙](../assets/icons/README.md)을 따른다. 이력서의 좁은 연락처 행은 이 원본을 13px로 축소해 HTML과 PDF에 함께 반영한다. 커스텀 커서는 같은 원본에 흰 원형 배경을 더한 24px SVG/PNG다. details 화살표는 `chevron_right.svg` CSS mask로 표시한다.
+
+이미지 뷰어를 사용하는 페이지의 `icon_names`에는 스크립트에서 표시하는 `close,zoom_in,zoom_out`도 포함한다. 모바일 메뉴가 있으면 `menu,close`를 포함한다. 아이콘을 추가할 때 정적 HTML뿐 아니라 스크립트로 표시하는 상태도 확인한다.
 
 출처: [공식 Material Symbols 가이드](https://developers.google.com/fonts/docs/material_symbols). `display=block`과 사용하는 이름만 요청하는 방법도 이 가이드를 따른다.
 
@@ -228,7 +285,7 @@ SVG로 사용하는 경우도 Google Fonts에서 Outlined / weight 300 / Fill 0 
 - 클릭 동작은 `button`, 이동은 `a`로 구현한다. 키보드 포커스 표시를 제거하지 않는다.
 - 현재 CSS는 reduced-motion에서 smooth scroll과 CSS 전환/애니메이션을 줄인다. JS 효과·자동재생 영상까지 일괄 정지하는 것은 아니다.
 - 이미지 뷰어에는 키보드 조작과 포커스 복귀가 구현되어 있다. 사이트 전체 접근성 검증을 완료했다는 의미는 아니다.
-- 모바일 메뉴의 `aria-expanded` 동기화, 툴팁의 키보드 노출, 전체 색상 조합의 대비 검증은 추가 개선 항목이다. 이번 문서화에서는 공개 동작을 바꾸지 않았다.
+- 모바일 메뉴는 `aria-expanded`를 동기화하고 툴팁은 키보드 포커스에도 표시한다. 버튼은 공통 `:focus-visible`과 네이티브 `disabled`를 사용한다. 전체 색상 조합의 대비는 실제 배경과 함께 점검한다.
 - 색상 토큰과 Tailwind 설정은 공통 CSS와 페이지별 설정에 걸쳐 있다. 타이포·간격을 모두 자동 동기화하는 디자인 토큰 빌드는 없다.
 
 ## 9. 작업 후 확인
@@ -250,7 +307,7 @@ SVG로 사용하는 경우도 Google Fonts에서 Outlined / weight 300 / Fill 0 
 - 새 섹션은 고유 ID를 부여하고 오른쪽 목차에 문서 순서대로 추가한다. 코드 안의 예시 ID·URL은 실행되는 페이지 요소와 구분한다.
 - 390px·768px·데스크톱에서 목차 이동, 코드 펼치기·복사, 표·코드 내부 스크롤을 확인한다. 클립보드가 제한되면 코드를 선택하고 수동 복사를 안내하는지 확인한다.
 - 한·영 및 라이트·다크 전환 후 팔레트와 글꼴 설명이 현재 예시와 일치하는지 확인한다. 접힌 다크 팔레트는 항상 다크 값이어야 한다.
-- 아이콘 링크에는 접근 가능한 이름, 장식 SVG에는 `aria-hidden="true"`를 둔다. 코드·목차를 포함해 키보드 포커스가 보여야 한다.
+- 아이콘 링크에는 접근 가능한 이름, 장식 아이콘에는 `aria-hidden="true"`를 둔다. 코드·목차를 포함해 키보드 포커스가 보여야 한다.
 - 공개 빌드 검사는 내부 문서를 대상으로 하지 않는다. 내부 파일의 경로·앵커·중복 ID를 별도로 확인하고, `_site/`에 문서 전용 파일이 포함되지 않았는지도 확인한다.
 
 ```sh

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Rashi+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0&amp;icon_names=arrow_back,arrow_forward,close,content_copy,description,download,expand_more,mail,menu,open_in_new,zoom_in,zoom_out&amp;display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0&amp;icon_names=arrow_back,arrow_forward,arrow_upward,call,chevron_right,close,code,content_copy,description,download,expand_more,language,location_on,lock,lock_open,mail,menu,open_in_new,waving_hand,work,zoom_in,zoom_out&amp;display=block" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -71,6 +71,7 @@
             <tr><th scope="row">품질·구현 차이</th><td><a href="#media">비교 이미지</a></td><td>같은 시점·구도·조건인지 밝히고 각 이미지에 캡션 제공.</td></tr>
             <tr><th scope="row">측정 결과</th><td><a href="#tables">수치 표</a></td><td>단위·환경·측정 범위 필수. 근거가 없으면 관찰한 결과를 문장으로.</td></tr>
             <tr><th scope="row">시간에 따른 변화</th><td><a href="#media">조작 가능한 영상</a></td><td>핵심 동작을 짧게 보여주고 설명·원본 링크 제공.</td></tr>
+            <tr><th scope="row">클릭 동작</th><td><a href="#buttons">버튼</a></td><td>Kind · Theme · Style 조합. 아이콘 전용은 목적을 나타내는 이름 필수.</td></tr>
             <tr><th scope="row">프로젝트 목록</th><td><a href="#cards">이미지 카드</a></td><td>결과물 + 한 문장 소개. 카드 전체는 상세 페이지로 연결.</td></tr>
           </tbody>
         </table>
@@ -101,7 +102,7 @@
         </div>
       <p class="cl-note"><code>heading</code>은 <code>body</code>보다 밝습니다. 색만으로 성과·상태를 구분하지 말고 텍스트도 함께 제공합니다.</p>
       <details class="cl-details">
-        <summary>보조 다크 팔레트 · 내부 점검용</summary>
+        <summary class="btn btn--ghost btn--disclosure">보조 다크 팔레트 · 내부 점검용</summary>
         <p class="cl-note">공개 페이지는 라이트로 시작하며 테마 버튼이 없습니다. 아래 팔레트는 공통 CSS의 다크 변수입니다. 전체 화면 점검은 <a href="#language-controls">테마 미리보기</a>에서 합니다.</p>
         <div class="overflow-x-auto cl-palette" data-theme="dark">
           <table class="cl-reference-table">
@@ -129,8 +130,8 @@
       <h2>Typography</h2>
       <p class="cl-intro">언어를 바꾸면 실제 예시와 아래 CSS 정보가 함께 바뀝니다. 글꼴명은 브라우저에 지정된 첫 번째 글꼴이며, 다운로드 실패 시에는 대체 글꼴로 표시될 수 있습니다.</p>
       <div class="cl-controls" role="group" aria-label="타이포그래피 예시 언어">
-        <button type="button" data-lang="ko" data-preview-language aria-pressed="true">한국어 예시</button>
-        <button type="button" data-lang="en" data-preview-language aria-pressed="false">English sample</button>
+        <button type="button" class="btn btn--ghost" data-lang="ko" data-preview-language aria-pressed="true">한국어 예시</button>
+        <button type="button" class="btn btn--ghost" data-lang="en" data-preview-language aria-pressed="false">English sample</button>
       </div>
       <div class="cl-type-row">
         <div class="cl-type-name"><strong>홈 직무</strong><code>.hero-tagline</code></div>
@@ -198,18 +199,28 @@
         <figure><span class="material-symbols-outlined" aria-hidden="true">open_in_new</span><figcaption>open_in_new</figcaption></figure>
         <figure><span class="material-symbols-outlined" aria-hidden="true">zoom_in</span><figcaption>zoom_in</figcaption></figure>
         <figure><span class="material-symbols-outlined" aria-hidden="true">zoom_out</span><figcaption>zoom_out</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">code</span><figcaption>code</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">work</span><figcaption>work</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">lock</span><figcaption>lock</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">lock_open</span><figcaption>lock_open</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span><figcaption>chevron_right</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span><figcaption>arrow_upward</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">call</span><figcaption>call</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">location_on</span><figcaption>location_on</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">language</span><figcaption>language</figcaption></figure>
+        <figure><span class="material-symbols-outlined" aria-hidden="true">waving_hand</span><figcaption>waving_hand</figcaption></figure>
       </div>
       <div class="cl-icon-sizes">
         <div><span id="icon-size-20" class="material-symbols-outlined icon-sm" aria-hidden="true">download</span><span>20px · 텍스트 옆</span><p class="cl-type-spec" data-type-for="icon-size-20">CSS 값 읽는 중</p></div>
         <div><span id="icon-size-24" class="material-symbols-outlined" aria-hidden="true">download</span><span>24px · 독립 아이콘</span><p class="cl-type-spec" data-type-for="icon-size-24">CSS 값 읽는 중</p></div>
       </div>
       <p class="cl-note">아이콘만 있는 링크·버튼에는 <code>aria-label</code>, 장식 아이콘에는 <code>aria-hidden="true"</code>를 둡니다. 조작 영역은 아이콘 크기와 별도로 44px 이상 확보합니다. 아이콘 span은 번역할 텍스트 요소 밖에 둡니다.</p>
-      <p class="cl-note">GitHub·LinkedIn 같은 브랜드 로고는 원형 SVG를 사용합니다. 기존 공개 페이지에는 이전 SVG가 남아 있으며, 이 기준은 새로 추가하거나 교체하는 일반 UI 아이콘에 적용합니다. SVG로 가져올 때도 Google Fonts에서 weight 300을 선택해 내려받습니다.</p>
+      <p class="cl-note">모든 UI 아이콘을 이 기준으로 통일합니다. GitHub는 code, LinkedIn은 work와 서비스 이름을 사용합니다. 이력서·커서·펼치기 표시의 SVG도 같은 Google weight 300 원본입니다. 아이콘 링크에는 btn btn--ghost btn--icon을 적용해 44×44px 영역의 중앙에 정렬합니다.</p>
       <details class="cl-source">
-        <summary>기본 아이콘 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">기본 아이콘 · HTML 코드</summary>
         <div class="cl-source-body">
-          <p class="cl-note">템플릿에는 menu만 로드되어 있습니다. 새 아이콘을 쓰면 head의 icon_names 목록에도 이름을 추가하세요. Google Fonts의 기본 요청은 weight 300을 보장하지 않으므로 URL과 공통 CSS에서 모두 명시합니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-icons" aria-label="기본 아이콘 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <p class="cl-note">템플릿에는 메뉴·닫기·이전/다음·이미지 뷰어 아이콘이 로드되어 있습니다. 새 아이콘을 쓰면 head의 icon_names 목록에도 이름을 추가하세요. Google Fonts의 기본 요청은 weight 300을 보장하지 않으므로 URL과 공통 CSS에서 모두 명시합니다.</p>
+          <button type="button" class="btn cl-copy" data-copy="code-icons" aria-label="기본 아이콘 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="기본 아이콘 HTML 코드"><code id="code-icons">&lt;!-- head: needed symbols only, alphabetically sorted; wght is explicitly 300. --&gt;
 &lt;link rel="stylesheet"
@@ -225,13 +236,126 @@
 
 &lt;!-- Icon-only navigation: give the link an accessible name. --&gt;
 &lt;a href="../assets/resume.pdf" target="_blank" rel="noopener"
-   class="inline-flex items-center justify-center w-11 h-11"
+   class="btn btn--ghost btn--icon"
    aria-label="이력서 PDF 새 탭으로 열기"&gt;
-  &lt;span class="material-symbols-outlined" aria-hidden="true"&gt;open_in_new&lt;/span&gt;
+  &lt;span class="material-symbols-outlined icon-sm" aria-hidden="true"&gt;open_in_new&lt;/span&gt;
 &lt;/a&gt;</code></pre>
         </div>
       </details>
       <p class="cl-note"><a href="https://developers.google.com/fonts/docs/material_symbols" target="_blank" rel="noopener">공식 Material Symbols 가이드</a> · 사용하는 아이콘 이름만 요청해 폰트를 줄입니다.</p>
+    </section>
+
+    <div class="cl-divider"></div>
+
+    <!-- ==================== BUTTONS ==================== -->
+    <section id="buttons" class="cl-section" tabindex="-1">
+      <h2>Buttons</h2>
+      <p class="cl-intro">Kind · Theme · Style을 독립적으로 조합합니다. 기본은 <strong>Text only + Outline</strong>, 테마는 시스템 설정을 따릅니다.</p>
+      <div class="overflow-x-auto">
+        <table class="cl-reference-table">
+          <caption class="sr-only">버튼의 종류, 테마와 스타일</caption>
+          <thead><tr><th scope="col">Property</th><th scope="col">Values</th><th scope="col">Default</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Kind</th><td>Text only · Icon with text · Icon only</td><td>Text only</td></tr>
+            <tr><th scope="row">Theme</th><td>Light · Dark</td><td>System → Light / Dark</td></tr>
+            <tr><th scope="row">Style</th><td>Outline · Filled · Ghost</td><td>Outline</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cl-note">Outline은 기본 버튼 배경색·텍스트색과 1px 테두리를 사용합니다. Filled는 같은 기본 배경색·텍스트색에서 테두리만 없앤 스타일입니다. Ghost는 투명 배경·투명 테두리에 같은 텍스트색을 사용하며, 호버 시 텍스트·아이콘 색상만 강조합니다. 테마를 전환해도 아래 Light / Dark 비교 영역은 각 테마를 유지합니다.</p>
+      <div class="cl-controls" role="group" aria-label="Color theme">
+        <button type="button" class="btn btn--ghost" data-theme-choice="system" aria-pressed="true">System</button>
+        <button type="button" class="btn btn--ghost" data-theme-choice="light" aria-pressed="false">Light</button>
+        <button type="button" class="btn btn--ghost" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      </div>
+      <div class="cl-button-themes">
+        <div class="cl-button-theme" data-theme="light">
+          <h3>Light</h3>
+          <div class="cl-button-row cl-button-kinds" aria-hidden="true"><span></span><span>Text only</span><span>Icon with text</span><span>Icon only</span></div>
+          <div class="cl-button-row">
+            <span>Outline</span>
+            <div><button type="button" class="btn" data-button-demo="Light / Outline / Text only">Button</button></div>
+            <div><button type="button" class="btn" data-button-demo="Light / Outline / Icon with text"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span><span>Download</span></button></div>
+            <div><button type="button" class="btn btn--icon" aria-label="Download example, light outline" data-button-demo="Light / Outline / Icon only"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span></button></div>
+          </div>
+          <div class="cl-button-row">
+            <span>Filled</span>
+            <div><button type="button" class="btn btn--filled" data-button-demo="Light / Filled / Text only">Button</button></div>
+            <div><button type="button" class="btn btn--filled" data-button-demo="Light / Filled / Icon with text"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span><span>Download</span></button></div>
+            <div><button type="button" class="btn btn--filled btn--icon" aria-label="Download example, light filled" data-button-demo="Light / Filled / Icon only"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span></button></div>
+          </div>
+          <div class="cl-button-row">
+            <span>Ghost</span>
+            <div><button type="button" class="btn btn--ghost" data-button-demo="Light / Ghost / Text only">Button</button></div>
+            <div><button type="button" class="btn btn--ghost" data-button-demo="Light / Ghost / Icon with text"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span><span>Download</span></button></div>
+            <div><button type="button" class="btn btn--ghost btn--icon" aria-label="Download example, light ghost" data-button-demo="Light / Ghost / Icon only"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span></button></div>
+          </div>
+          <div class="cl-button-states"><span>Disabled</span><button type="button" class="btn" disabled>Button</button><button type="button" class="btn btn--filled" disabled>Button</button><button type="button" class="btn btn--ghost" disabled>Button</button></div>
+        </div>
+        <div class="cl-button-theme" data-theme="dark">
+          <h3>Dark</h3>
+          <div class="cl-button-row cl-button-kinds" aria-hidden="true"><span></span><span>Text only</span><span>Icon with text</span><span>Icon only</span></div>
+          <div class="cl-button-row">
+            <span>Outline</span>
+            <div><button type="button" class="btn" data-button-demo="Dark / Outline / Text only">Button</button></div>
+            <div><button type="button" class="btn" data-button-demo="Dark / Outline / Icon with text"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span><span>Download</span></button></div>
+            <div><button type="button" class="btn btn--icon" aria-label="Download example, dark outline" data-button-demo="Dark / Outline / Icon only"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span></button></div>
+          </div>
+          <div class="cl-button-row">
+            <span>Filled</span>
+            <div><button type="button" class="btn btn--filled" data-button-demo="Dark / Filled / Text only">Button</button></div>
+            <div><button type="button" class="btn btn--filled" data-button-demo="Dark / Filled / Icon with text"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span><span>Download</span></button></div>
+            <div><button type="button" class="btn btn--filled btn--icon" aria-label="Download example, dark filled" data-button-demo="Dark / Filled / Icon only"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span></button></div>
+          </div>
+          <div class="cl-button-row">
+            <span>Ghost</span>
+            <div><button type="button" class="btn btn--ghost" data-button-demo="Dark / Ghost / Text only">Button</button></div>
+            <div><button type="button" class="btn btn--ghost" data-button-demo="Dark / Ghost / Icon with text"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span><span>Download</span></button></div>
+            <div><button type="button" class="btn btn--ghost btn--icon" aria-label="Download example, dark ghost" data-button-demo="Dark / Ghost / Icon only"><span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span></button></div>
+          </div>
+          <div class="cl-button-states"><span>Disabled</span><button type="button" class="btn" disabled>Button</button><button type="button" class="btn btn--filled" disabled>Button</button><button type="button" class="btn btn--ghost" disabled>Button</button></div>
+        </div>
+      </div>
+      <p id="button-demo-status" class="cl-button-status" role="status" aria-live="polite">예시 버튼을 누르면 선택한 조합이 표시됩니다.</p>
+      <p class="cl-note">Hover: Outline·Filled는 배경, Ghost는 텍스트·아이콘 색상만 강조 · Pressed: 누르는 동안 더 진한 배경, Filled는 테두리 없음 · Focus: Tab 키로 확인하는 외곽선 · Disabled: 클릭·키보드 활성화 불가. 위 버튼은 동작 예시이며 파일을 다운로드하지 않습니다.</p>
+      <p class="cl-note">최소 높이 44px · 아이콘 전용 44×44px · 글자 14px / 20px · 내부 간격 8px · 모서리 6px · 아이콘 20px / weight 300. 긴 텍스트는 줄바꿈하고 버튼 높이가 늘어납니다.</p>
+      <details class="cl-source">
+        <summary class="btn btn--ghost btn--disclosure">버튼 종류·테마·스타일 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note">공통 css/style.css와 Google 아이콘 폰트를 로드하세요. download는 head의 icon_names에도 포함합니다. 실제 동작 핸들러와 텍스트를 연결하고 이동에는 a 요소를 사용하세요.</p>
+          <button type="button" class="btn cl-copy" data-copy="code-buttons" aria-label="버튼 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="버튼 HTML 코드"><code id="code-buttons">&lt;!-- Default: text only + outline. Theme inherits from the page/system. --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn&quot;&gt;Button&lt;/button&gt;
+
+&lt;!-- Icon with text: keep translated text separate from the icon. --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn&quot;&gt;
+  &lt;span class=&quot;material-symbols-outlined icon-sm&quot; aria-hidden=&quot;true&quot;&gt;download&lt;/span&gt;
+  &lt;span data-ko=&quot;다운로드&quot;&gt;Download&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Icon only: 44 × 44 target and a meaningful accessible name. --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn--icon&quot; aria-label=&quot;Download&quot;&gt;
+  &lt;span class=&quot;material-symbols-outlined icon-sm&quot; aria-hidden=&quot;true&quot;&gt;download&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Filled: default background and text, no visible border. Works with any kind. --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn--filled&quot;&gt;Button&lt;/button&gt;
+
+&lt;!-- Add btn--ghost to any kind. --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn--ghost&quot;&gt;Button&lt;/button&gt;
+
+&lt;!-- Explicit theme overrides: may wrap a group or sit on one button. --&gt;
+&lt;div data-theme=&quot;dark&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn&quot;&gt;Dark outline&lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;btn btn--ghost&quot;&gt;Dark ghost&lt;/button&gt;
+&lt;/div&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn&quot; data-theme=&quot;light&quot;&gt;Light outline&lt;/button&gt;
+
+&lt;!-- Use native disabled, not just reduced opacity or aria-disabled. --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn&quot; disabled&gt;Unavailable&lt;/button&gt;</code></pre>
+        </div>
+      </details>
     </section>
 
     <div class="cl-divider"></div>
@@ -265,10 +389,10 @@
       </div>
       <p class="text-sm text-muted">Overlay titles override the base class to 1.1rem / 600, subtitles to 0.875rem. Hover scales the image to 1.04 over 0.5s. Titles remain visible on touch screens. Cards navigate; they do not open the image viewer.</p>
       <details class="cl-source">
-        <summary>프로젝트 카드 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">프로젝트 카드 · HTML 코드</summary>
         <div class="cl-source-body">
           <p class="cl-note">홈 목록용 · <code>index.html</code> 기준 경로입니다. 상세 캡처는 아래 이미지 패턴을 사용합니다. 첫 화면의 핵심 이미지는 lazy 적용 여부를 별도로 판단합니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-card" aria-label="프로젝트 카드 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <button type="button" class="btn cl-copy" data-copy="code-card" aria-label="프로젝트 카드 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="프로젝트 카드 HTML 코드"><code id="code-card">&lt;!-- index.html 기준. [REPLACE]와 경로를 교체합니다. --&gt;
 &lt;a href="projects/project-slug.html" class="card-overlay group"&gt;
@@ -295,10 +419,10 @@
       <p class="cl-label">기본 · 일반 문단</p>
       <p class="text-sm text-muted leading-relaxed mb-6" data-ko="같은 입력을 반복 확인하는 시간을 줄이기 위해 검증 단계를 도구로 묶었습니다. 아래 자료는 입력과 결과를 확인하는 과정을 보여줍니다.">I combined validation steps into a tool to reduce repeated checks. The examples below show how inputs and results are inspected.</p>
       <details class="cl-source">
-        <summary>일반 본문 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">일반 본문 · HTML 코드</summary>
         <div class="cl-source-body">
           <p class="cl-note">상세 페이지의 기본 섹션입니다. 제목 단계는 문서 계층에 맞춰 사용합니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-body" aria-label="일반 본문 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <button type="button" class="btn cl-copy" data-copy="code-body" aria-label="일반 본문 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="일반 본문 HTML 코드"><code id="code-body">&lt;section class="mb-16"&gt;
   &lt;h2 class="text-xl font-bold mb-4" data-ko="접근과 판단"&gt;Approach and decisions&lt;/h2&gt;
@@ -324,10 +448,10 @@
 const result = await convertPMX(input);
 console.log(`Converted ${result.count} models`);</code></pre>
       <details class="cl-source">
-        <summary>정보 패널 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">정보 패널 · HTML 코드</summary>
         <div class="cl-source-body">
           <p class="cl-note">환경·제약·작업 범위 등 짧은 요약에 사용합니다. 이 패널 안의 본문은 공통 CSS에 따라 14px / 행간 1.7입니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-panel" aria-label="정보 패널 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <button type="button" class="btn cl-copy" data-copy="code-panel" aria-label="정보 패널 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="정보 패널 HTML 코드"><code id="code-panel">&lt;aside class="bg-surface rounded-lg p-6 mb-8"&gt;
   &lt;h3 data-ko="검증 환경"&gt;Validation environment&lt;/h3&gt;
@@ -374,10 +498,10 @@ console.log(`Converted ${result.count} models`);</code></pre>
       </div>
 
       <details class="cl-source">
-        <summary>수치 표 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">수치 표 · HTML 코드</summary>
         <div class="cl-source-body">
           <p class="cl-note">상세 페이지용 · 단위와 측정 조건을 채우고, 수치 셀은 같은 자리수 기준으로 정리합니다. 예시 값을 그대로 성과로 사용하지 않습니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-table" aria-label="수치 표 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <button type="button" class="btn cl-copy" data-copy="code-table" aria-label="수치 표 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="수치 표 HTML 코드"><code id="code-table">&lt;div class="overflow-x-auto"&gt;
   &lt;table class="tbl"&gt;
@@ -416,23 +540,23 @@ console.log(`Converted ${result.count} models`);</code></pre>
         </div>
         <div>
           <p class="text-xs mb-1" style="color:rgb(var(--c-muted))">prev/next — text-muted / hover:text-heading</p>
-          <a href="projects/npr-shader.html" class="text-muted hover:text-heading transition text-sm">&larr; NPR Shading &amp; Look Development</a>
+          <a href="projects/npr-shader.html" class="icon-label text-muted hover:text-heading transition text-sm"><span class="material-symbols-outlined icon-sm" aria-hidden="true">arrow_back</span> <span>NPR Shading &amp; Look Development</span></a>
         </div>
         <div>
-          <p class="text-xs mb-1" style="color:rgb(var(--c-muted))">social icon — text-body / hover:text-heading / w-5 h-5</p>
+          <p class="text-xs mb-1" style="color:rgb(var(--c-muted))">social link — btn btn--ghost btn--icon / 44px target / 20px symbol</p>
           <div class="flex gap-4">
-            <a href="https://github.com/tomlim2" target="_blank" rel="noopener" aria-label="GitHub — 새 탭" class="text-body hover:text-heading transition">
-              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <a data-tip="GitHub — 새 탭" href="https://github.com/tomlim2" target="_blank" rel="noopener" aria-label="GitHub — 새 탭" class="btn btn--ghost btn--icon">
+              <span class="material-symbols-outlined icon-sm" aria-hidden="true">code</span>
             </a>
-            <a href="https://www.linkedin.com/in/tommlimm/" target="_blank" rel="noopener" aria-label="LinkedIn — 새 탭" class="text-body hover:text-heading transition">
-              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <a data-tip="LinkedIn — 새 탭" href="https://www.linkedin.com/in/tommlimm/" target="_blank" rel="noopener" aria-label="LinkedIn — 새 탭" class="btn btn--ghost btn--icon">
+              <span class="material-symbols-outlined icon-sm" aria-hidden="true">work</span>
             </a>
           </div>
         </div>
       </div>
 
       <details class="cl-details">
-        <summary>보조 패턴 · 커스텀 커서</summary>
+        <summary class="btn btn--ghost btn--disclosure">보조 패턴 · 커스텀 커서</summary>
       <p class="cl-label">Custom Cursors — 24x24 white circle PNG, hotspot 12 12</p>
       <div class="flex flex-wrap gap-8">
         <div class="text-center">
@@ -466,13 +590,16 @@ console.log(`Converted ${result.count} models`);</code></pre>
       </div>
       </details>
       <details class="cl-source">
-        <summary>외부 링크 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">외부 링크 · HTML 코드</summary>
         <div class="cl-source-body">
           <p class="cl-note">아이콘만 있는 링크에도 목적지를 설명하는 aria-label이 필요합니다. 툴팁은 이름을 대신하지 않습니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-link" aria-label="외부 링크 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <button type="button" class="btn cl-copy" data-copy="code-link" aria-label="외부 링크 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="외부 링크 HTML 코드"><code id="code-link">&lt;a href="https://github.com/tomlim2" target="_blank" rel="noopener"
-   class="text-accent hover:underline" aria-label="GitHub — 새 탭"&gt;GitHub ↗&lt;/a&gt;</code></pre>
+   class="icon-label text-accent hover:underline" aria-label="GitHub — 새 탭"&gt;
+  &lt;span&gt;GitHub&lt;/span&gt;
+  &lt;span class="material-symbols-outlined icon-sm" aria-hidden="true"&gt;open_in_new&lt;/span&gt;
+&lt;/a&gt;</code></pre>
         </div>
       </details>
     </section>
@@ -486,14 +613,14 @@ console.log(`Converted ${result.count} models`);</code></pre>
       <p class="cl-label">Tooltip — data-tip / CSS ::after / opacity transition 0.1s</p>
       <div class="cl-specimen mb-8">
         <div class="flex gap-6">
-          <a href="assets/resume.pdf" target="_blank" rel="noopener" aria-label="Resume — 새 탭" class="text-body hover:text-heading transition" data-tip="Resume">
+          <a href="assets/resume.pdf" target="_blank" rel="noopener" aria-label="Resume — 새 탭" class="btn btn--ghost btn--icon" data-tip="Resume">
             <span class="material-symbols-outlined icon-sm" aria-hidden="true">description</span>
           </a>
-          <a href="https://github.com/tomlim2" target="_blank" rel="noopener" aria-label="GitHub — 새 탭" class="text-body hover:text-heading transition" data-tip="GitHub">
-            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://github.com/tomlim2" target="_blank" rel="noopener" aria-label="GitHub — 새 탭" class="btn btn--ghost btn--icon" data-tip="GitHub">
+            <span class="material-symbols-outlined icon-sm" aria-hidden="true">code</span>
           </a>
         </div>
-        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Hover icons above to see tooltips</p>
+        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Hover or keyboard-focus icons above to see tooltips</p>
       </div>
 
       <p class="cl-label">Image Caption — text-xs / text-muted / text-center / mt-2</p>
@@ -512,18 +639,18 @@ console.log(`Converted ${result.count} models`);</code></pre>
       </div>
 
       <details class="cl-details">
-        <summary>이전 패턴 · 비밀번호 모달 (신규 사용 안 함)</summary>
+        <summary class="btn btn--ghost btn--disclosure">이전 패턴 · 비밀번호 모달 (신규 사용 안 함)</summary>
       <p class="cl-label">Legacy Password Modal — retained reference, not a new-page pattern</p>
       <p class="text-sm text-muted mb-4">Current case studies are public HTML. Do not use this specimen as a content-protection workflow; see CLAUDE.md for the legacy status.</p>
       <div class="cl-specimen">
         <div class="w-full max-w-sm mx-auto">
           <div class="flex items-center justify-center w-12 h-12 rounded-full bg-bg border border-border mb-4 mx-auto">
-            <svg aria-hidden="true" class="w-5 h-5 text-muted" fill="currentColor" viewBox="0 -960 960 960"><path d="M252.31-100q-29.92 0-51.12-21.19Q180-142.39 180-172.31v-375.38q0-29.92 21.19-51.12Q222.39-620 252.31-620H300v-80q0-74.92 52.54-127.46Q405.08-880 480-880q74.92 0 127.46 52.54Q660-774.92 660-700v80h47.69q29.92 0 51.12 21.19Q780-577.61 780-547.69v375.38q0 29.92-21.19 51.12Q737.61-100 707.69-100H252.31Z"/></svg>
+            <span class="material-symbols-outlined icon-sm text-muted" aria-hidden="true">lock</span>
           </div>
           <p class="text-center text-muted text-sm mb-4">NDA project.<br>Enter password to view.</p>
           <div class="flex gap-2">
             <input aria-label="Legacy password specimen" type="password" placeholder="Password" disabled class="min-w-0 flex-1 bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-heading placeholder-muted">
-            <button disabled class="shrink-0 px-5 py-2.5 bg-heading text-bg text-sm font-medium rounded-lg">Unlock</button>
+            <button type="button" disabled class="btn btn--filled shrink-0">Unlock</button>
           </div>
           <p class="text-red-400 text-xs mt-3 text-center">Incorrect password</p>
         </div>
@@ -552,8 +679,8 @@ console.log(`Converted ${result.count} models`);</code></pre>
       <p class="cl-label">Prev / Next — flex justify-between / border-t / pt-8</p>
       <div class="cl-specimen">
         <div class="flex justify-between items-center pt-4 border-t border-border">
-          <a href="projects/npr-shader.html" class="text-muted hover:text-heading transition text-sm">&larr; NPR Shading &amp; Look Development</a>
-          <a href="projects/pmx-to-vrm.html" class="text-muted hover:text-heading transition text-sm">PMX to VRM Pipeline &rarr;</a>
+          <a href="projects/npr-shader.html" class="icon-label text-muted hover:text-heading transition text-sm"><span class="material-symbols-outlined icon-sm" aria-hidden="true">arrow_back</span> <span>NPR Shading &amp; Look Development</span></a>
+          <a href="projects/pmx-to-vrm.html" class="icon-label text-muted hover:text-heading transition text-sm"><span>PMX to VRM Pipeline</span> <span class="material-symbols-outlined icon-sm" aria-hidden="true">arrow_forward</span></a>
         </div>
       </div>
     </section>
@@ -567,17 +694,21 @@ console.log(`Converted ${result.count} models`);</code></pre>
       <p class="cl-label">Language Toggle — Ko / En button (click each label directly)</p>
       <div class="cl-specimen mb-8">
         <div class="text-muted text-xs">
-          <button id="lang-toggle" type="button" aria-label="Toggle language">Ko / En</button>
+          <button id="lang-toggle" class="btn btn--ghost" type="button" aria-label="Toggle language">Ko / En</button>
         </div>
-        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Working control: switches translated samples and title fonts. Page load always starts in Korean; the choice is not persisted. Active label opacity is 1, inactive 0.4.</p>
+        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Working control: switches translated samples and title fonts. Uses the shared text-only Ghost button. Page load always starts in Korean; the choice is not persisted. Active label opacity is 1, inactive 0.4.</p>
       </div>
 
-      <p class="cl-label">Internal Theme Preview — Lt / Dk (not exposed on public pages)</p>
+      <p class="cl-label">Theme — System / Light / Dark</p>
       <div class="cl-specimen">
         <div class="text-muted text-xs">
-          <button id="theme-toggle" type="button" aria-label="Preview color theme">Lt / Dk</button>
+          <div class="cl-controls" role="group" aria-label="Color theme">
+        <button type="button" class="btn btn--ghost" data-theme-choice="system" aria-pressed="true">System</button>
+        <button type="button" class="btn btn--ghost" data-theme-choice="light" aria-pressed="false">Light</button>
+        <button type="button" class="btn btn--ghost" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      </div>
         </div>
-        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Working internal preview. theme.js sets data-theme="dark" on html; reload returns to light. The primary color table and type specifications update from the current CSS; the collapsed dark palette always shows the scoped dark tokens.</p>
+        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">System follows your device’s color scheme and updates when it changes. Light / Dark override it for this visit; reload returns to System. The palette and specifications follow the page theme; explicitly themed samples keep their own colors.</p>
       </div>
     </section>
 
@@ -714,7 +845,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
         <div class="py-6 text-muted text-xs">
           <div class="flex justify-between items-center">
             <span>&copy; 2026 Younsoo Lim</span>
-            <span aria-label="Static language control specimen"><span>Ko</span> / <span style="opacity:0.4">En</span></span>
+            <span class="btn btn--ghost" aria-label="Static language control specimen"><span>Ko</span> / <span style="opacity:0.4">En</span></span>
           </div>
         </div>
       </div>
@@ -734,10 +865,10 @@ console.log(`Converted ${result.count} models`);</code></pre>
       </figure>
       <p class="text-sm text-muted mb-8">Working viewer: actual-size / fit, Escape or close button, backdrop close, and return to the trigger. Captions follow the current language. Home cards, videos, and demo links do not use this viewer.</p>
       <details class="cl-source">
-        <summary>상세 이미지 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">상세 이미지 · HTML 코드</summary>
         <div class="cl-source-body">
           <p class="cl-note"><code>projects/</code> 안의 HTML 기준입니다. 실제 width/height를 추가하세요. 대표 이미지는 lazy를 제거하고, 템플릿의 뷰어 CSS/JS를 유지합니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-image" aria-label="상세 이미지 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <button type="button" class="btn cl-copy" data-copy="code-image" aria-label="상세 이미지 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="상세 이미지 HTML 코드"><code id="code-image">&lt;!-- projects/project-slug.html 기준 경로. 이미지 뷰어 CSS/JS가 필요합니다. --&gt;
 &lt;figure class="mb-10"&gt;
@@ -753,10 +884,10 @@ console.log(`Converted ${result.count} models`);</code></pre>
         </div>
       </details>
       <details class="cl-source">
-        <summary>비교 이미지 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">비교 이미지 · HTML 코드</summary>
         <div class="cl-source-body">
           <p class="cl-note">projects/ 기준 · 실제 width/height를 추가합니다. 작은 글자가 읽히지 않으면 md:grid-cols-2를 제거해 세로로 유지합니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-comparison" aria-label="비교 이미지 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <button type="button" class="btn cl-copy" data-copy="code-comparison" aria-label="비교 이미지 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="비교 이미지 HTML 코드"><code id="code-comparison">&lt;!-- projects/ 기준. 두 이미지가 같은 조건인지 먼저 확인합니다. --&gt;
 &lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10"&gt;
@@ -785,10 +916,10 @@ console.log(`Converted ${result.count} models`);</code></pre>
       <video controls playsinline preload="metadata" class="w-full h-auto max-w-xl mx-auto" aria-label="Matcap Painter component example" src="assets/images/matcap-painter/shader-mode-demo.mp4"></video>
       <p class="text-xs text-muted mt-2 text-center">Example footage from Matcap Painter. Existing pages also contain decorative autoplay loops.</p>
       <details class="cl-source">
-        <summary>설명 영상 · HTML 코드</summary>
+        <summary class="btn btn--ghost btn--disclosure">설명 영상 · HTML 코드</summary>
         <div class="cl-source-body">
           <p class="cl-note"><code>projects/</code> 기준 · 조작 과정을 보여줄 때 사용합니다. 소리로 전달하는 내용에는 자막 또는 동등한 텍스트 설명도 제공합니다.</p>
-          <button type="button" class="cl-copy" data-copy="code-video" aria-label="설명 영상 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
+          <button type="button" class="btn cl-copy" data-copy="code-video" aria-label="설명 영상 HTML 복사" hidden><span class="material-symbols-outlined icon-sm" aria-hidden="true">content_copy</span> 코드 복사</button>
           <span class="cl-copy-status" role="status" aria-live="polite"></span>
           <pre tabindex="0" aria-label="설명 영상 HTML 코드"><code id="code-video">&lt;figure class="mb-10"&gt;
   &lt;video controls playsinline preload="metadata" class="w-full h-auto"
@@ -836,7 +967,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
   <aside class="cl-toc" aria-label="Component Library table of contents">
     <p class="cl-toc-title">On this page</p>
     <details id="cl-toc-disclosure" open>
-      <summary aria-label="섹션 이동 메뉴 열기" aria-controls="cl-toc-nav"><span class="material-symbols-outlined" aria-hidden="true">menu</span></summary>
+      <summary class="btn btn--ghost btn--icon" aria-label="섹션 이동 메뉴 열기" aria-controls="cl-toc-nav"><span class="material-symbols-outlined icon-sm" aria-hidden="true">menu</span></summary>
       <nav id="cl-toc-nav" aria-label="Component Library sections">
         <ol class="cl-toc-list">
           <li><a href="#overview" aria-current="location">Overview</a></li>
@@ -844,6 +975,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
           <li><a href="#colors">Colors</a></li>
           <li><a href="#typography">Typography</a></li>
           <li><a href="#icons">Icons</a></li>
+          <li><a href="#buttons">Buttons</a></li>
           <li><a href="#cards">Cards</a></li>
           <li><a href="#panels">Panels</a></li>
           <li><a href="#tables">Tables</a></li>
@@ -858,7 +990,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
           <li><a href="#media">Media &amp; Image Viewer</a></li>
           <li><a href="#responsive">Responsive &amp; Spacing</a></li>
         </ol>
-        <a href="#overview" class="cl-toc-top">↑ 맨 위로</a>
+        <a href="#overview" class="icon-label cl-toc-top"><span class="material-symbols-outlined icon-sm" aria-hidden="true">arrow_upward</span> <span>맨 위로</span></a>
       </nav>
     </details>
   </aside>

@@ -6,9 +6,10 @@
 
   var viewer = document.createElement('dialog');
   viewer.className = 'image-viewer';
+  viewer.dataset.theme = 'dark';
   viewer.innerHTML = '<div class="image-viewer-toolbar">' +
-    '<button type="button" class="image-viewer-zoom" aria-pressed="false"></button>' +
-    '<button type="button" class="image-viewer-close" autofocus></button></div>' +
+    '<button type="button" class="btn image-viewer-zoom" aria-pressed="false"><span class="material-symbols-outlined icon-sm" aria-hidden="true">zoom_in</span><span class="image-viewer-label"></span></button>' +
+    '<button type="button" class="btn btn--ghost image-viewer-close" autofocus><span class="material-symbols-outlined icon-sm" aria-hidden="true">close</span><span class="image-viewer-label"></span></button></div>' +
     '<div class="image-viewer-stage"><img class="image-viewer-image" alt=""></div>' +
     '<p class="image-viewer-caption"></p>';
   document.body.appendChild(viewer);
@@ -24,7 +25,8 @@
   function setZoom(enlarged) {
     viewer.classList.toggle('is-zoomed', enlarged);
     zoom.setAttribute('aria-pressed', String(enlarged));
-    zoom.textContent = enlarged ? (korean ? '화면에 맞춤' : 'Fit to screen') :
+    zoom.querySelector('.material-symbols-outlined').textContent = enlarged ? 'zoom_out' : 'zoom_in';
+    zoom.querySelector('.image-viewer-label').textContent = enlarged ? (korean ? '화면에 맞춤' : 'Fit to screen') :
       (korean ? '원본 크기' : 'Actual size');
     stage.scrollTop = 0;
     stage.scrollLeft = 0;
@@ -41,7 +43,7 @@
       trigger = link;
       korean = document.documentElement.lang === 'ko';
       viewer.setAttribute('aria-label', korean ? '이미지 크게 보기' : 'Enlarged image');
-      close.textContent = korean ? '닫기 ×' : 'Close ×';
+      close.querySelector('.image-viewer-label').textContent = korean ? '닫기' : 'Close';
       var figure = link.closest('figure');
       var description = figure && figure.querySelector('figcaption');
       // Older case studies use a small paragraph next to the image as a caption.

@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Rashi+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0&amp;icon_names=arrow_back,arrow_forward,close,menu,open_in_new,zoom_in,zoom_out&amp;display=block" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -46,10 +47,8 @@
         <a href="../index.html#about" class="hover:text-heading transition">About</a>
       </div>
       <div class="flex items-center gap-3">
-        <button id="hamburger-btn" class="md:hidden text-body hover:text-heading transition" aria-label="Toggle menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
+        <button type="button" id="hamburger-btn" class="btn btn--ghost btn--icon mobile-menu-toggle" aria-label="Toggle menu">
+        <span class="material-symbols-outlined icon-sm" aria-hidden="true">menu</span>
       </button>
       </div>
     </div>
@@ -242,12 +241,12 @@
       <p class="text-muted text-sm leading-relaxed mb-6" data-ko="직접 개발한 하네스 Knitten에 Shotloom 전용 워크플로를 연결해 제 작업에 적용했습니다. 기존 프로젝트 지침을 단계별로 참조하고, 스펙·구현·리뷰·검증 기록을 GitHub의 변경 맥락과 연결했습니다. 팀에는 이 기록과 코드를 공유했습니다.">I applied Knitten, the harness I developed, to my own work with a Shotloom-specific workflow. It references existing project instructions at each stage and connects specs, implementation, reviews, and validation records to the changes on GitHub. I shared those records and code with the team.</p>
       <h3 class="font-medium mb-3" data-ko="협업 사례: IK 제어 레이어">Collaboration example: the IK control layer</h3>
       <p class="text-muted text-sm leading-relaxed mb-4" data-ko="IK 제어 레이어에서는 제가 코어를 개발하고, 동료가 사용자 조작 UI를 이어서 구현했습니다. 구현 목적·입출력·책임 경계·검증 기록을 함께 남겨 후속 개발에 활용할 수 있도록 했습니다.">For the IK control layer, I implemented the core and a colleague continued with the user-facing manipulation UI. I documented purpose, inputs and outputs, ownership boundaries, and validation so that subsequent development could build on the work.</p>
-      <p class="text-sm"><a href="https://github.com/tomlim2/knitten" target="_blank" rel="noopener" class="text-accent hover:underline">Knitten on GitHub ↗</a></p>
+      <p class="text-sm"><a href="https://github.com/tomlim2/knitten" target="_blank" rel="noopener" class="icon-label text-accent hover:underline"><span>Knitten on GitHub</span> <span class="material-symbols-outlined icon-sm" aria-hidden="true">open_in_new</span></a></p>
     </section>
 
     <div class="flex justify-between items-center mt-16 pt-8 border-t border-border">
-      <a href="../index.html#projects" class="text-muted hover:text-heading transition text-sm" data-ko="← 프로젝트 목록">← All projects</a>
-      <a href="npr-shader.html" class="text-muted hover:text-heading transition text-sm">NPR Shading &amp; Look Development →</a>
+      <a href="../index.html#projects" class="icon-label text-muted hover:text-heading transition text-sm"><span class="material-symbols-outlined icon-sm" aria-hidden="true">arrow_back</span> <span data-ko="프로젝트 목록">All projects</span></a>
+      <a href="npr-shader.html" class="icon-label text-muted hover:text-heading transition text-sm"><span>NPR Shading &amp; Look Development</span> <span class="material-symbols-outlined icon-sm" aria-hidden="true">arrow_forward</span></a>
     </div>
 
   </main>
@@ -255,7 +254,7 @@
   <footer class="py-8 text-muted text-xs">
     <div class="flex justify-between items-center max-w-4xl mx-auto px-6">
       <span>&copy; 2026 Younsoo Lim</span>
-      <span><button id="lang-toggle" aria-label="Toggle language">Ko / <span style="opacity:0.4">En</span></button></span>
+      <span><button type="button" class="btn btn--ghost" id="lang-toggle" aria-label="Toggle language">Ko / <span style="opacity:0.4">En</span></button></span>
     </div>
   </footer>
 

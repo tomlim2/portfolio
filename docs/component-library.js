@@ -99,7 +99,8 @@
       }
     });
     document.querySelectorAll('[data-current-theme]').forEach(function (label) {
-      label.textContent = document.documentElement.dataset.theme === 'dark' ? '다크 · 내부 점검' : '라이트';
+      var theme = document.documentElement.dataset.theme === 'dark' ? '다크' : '라이트';
+      label.textContent = theme + (document.documentElement.dataset.themePreference === 'system' ? ' · 시스템 설정' : ' · 직접 선택');
     });
     document.querySelectorAll('[data-type-for]').forEach(function (label) {
       var sample = document.getElementById(label.dataset.typeFor);
@@ -121,13 +122,19 @@
   }
 
   new MutationObserver(scheduleSpecs).observe(document.documentElement, {
-    attributes: true, attributeFilter: ['lang', 'data-theme']
+    attributes: true, attributeFilter: ['lang', 'data-theme', 'data-theme-preference']
   });
   window.addEventListener('resize', scheduleSpecs);
   window.addEventListener('load', scheduleSpecs);
   document.addEventListener('DOMContentLoaded', scheduleSpecs);
   if (document.fonts) document.fonts.ready.then(scheduleSpecs);
   scheduleSpecs();
+
+  document.querySelectorAll('[data-button-demo]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      document.getElementById('button-demo-status').textContent = button.dataset.buttonDemo + ' · clicked';
+    });
+  });
 
   document.querySelectorAll('[data-copy]').forEach(function (button) {
     button.hidden = false;

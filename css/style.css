@@ -1,7 +1,9 @@
 /* ── Design System ── */
 /* Usage: docs/style-guide.md. Visual examples: component-library.html. */
 
-:root {
+:root,
+[data-theme="light"] {
+  color-scheme: light;
   /* Background — pure white for max contrast */
   --c-bg: 255 255 255;
   /* Surface — visible distinction from bg */
@@ -16,9 +18,15 @@
   --c-heading: 85 85 90;
   /* Accent — single brand color */
   --c-accent: 80 95 230;
+  --c-button-bg: 245 245 247;
+  --c-button-text: 40 40 45;
+  --c-button-border: 140 140 145;
+  --c-button-hover: 235 235 239;
+  --c-button-active: 225 225 230;
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
   --c-bg: 22 22 26;
   --c-surface: 32 32 38;
   --c-border: 50 50 58;
@@ -26,6 +34,30 @@
   --c-body: 210 210 215;
   --c-heading: 175 175 180;
   --c-accent: 100 120 240;
+  --c-button-bg: 32 32 38;
+  --c-button-text: 210 210 215;
+  --c-button-border: 120 120 128;
+  --c-button-hover: 44 44 52;
+  --c-button-active: 55 55 65;
+}
+
+/* Match the system before JS runs, and when JavaScript is unavailable. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --c-bg: 22 22 26;
+    --c-surface: 32 32 38;
+    --c-border: 50 50 58;
+    --c-muted: 150 150 155;
+    --c-body: 210 210 215;
+    --c-heading: 175 175 180;
+    --c-accent: 100 120 240;
+    --c-button-bg: 32 32 38;
+    --c-button-text: 210 210 215;
+    --c-button-border: 120 120 128;
+    --c-button-hover: 44 44 52;
+    --c-button-active: 55 55 65;
+  }
 }
 
 /*
@@ -65,7 +97,7 @@ pre code {
 
 /* ── UI Icons: Material Symbols Outlined, default weight 300 ── */
 /* Load only used icon_names with wght=300 in the page's Google Fonts URL.
-   Brand logos retain their original SVG artwork. See docs/style-guide.md. */
+   All UI icons share this family, including social-link substitutes. */
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: 300;
@@ -76,6 +108,7 @@ pre code {
   letter-spacing: normal;
   text-transform: none;
   display: inline-block;
+  flex-shrink: 0;
   width: 1em;
   height: 1em;
   white-space: nowrap;
@@ -90,6 +123,98 @@ pre code {
 .material-symbols-outlined.icon-sm {
   font-size: 20px;
   font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+}
+
+/* Inline text links stay aligned with their decorative icon. */
+.icon-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── Buttons: text / icon + text / icon only; outline / filled / ghost ── */
+/* Defaults: text only, outline, nearest theme. See #buttons in the library. */
+.btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 16px;
+  border: 1px solid rgb(var(--c-button-border));
+  border-radius: 6px;
+  background: rgb(var(--c-button-bg));
+  color: rgb(var(--c-button-text));
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.btn--ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.btn--icon {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+
+.btn--disclosure {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Layout visibility is separate from the button's visual variant. */
+@media (min-width: 768px) {
+  .mobile-menu-toggle { display: none; }
+}
+
+.btn:where(:not(.btn--ghost)):not(:disabled):hover {
+  background: rgb(var(--c-button-hover));
+}
+
+.btn--ghost:not(:disabled):hover {
+  color: rgb(var(--c-accent));
+}
+
+.btn:not(:disabled):active,
+.btn[aria-pressed="true"] {
+  background: rgb(var(--c-button-active));
+  border-color: rgb(var(--c-button-text));
+}
+
+/* Keep the border space for matching dimensions, including pressed states. */
+.btn--filled,
+.btn--filled:not(:disabled):active,
+.btn--filled[aria-pressed="true"] {
+  border-color: transparent;
+}
+
+.btn:focus-visible {
+  outline: 2px solid rgb(var(--c-accent));
+  outline-offset: 3px;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn[hidden] {
+  display: none;
 }
 
 /* ── Typography Classes ── */
@@ -204,38 +329,6 @@ a[href^="mailto:"] {
   padding-top: 3rem;
 }
 
-/* ── Language Toggle ── */
-
-#lang-toggle {
-  font-size: inherit;
-  font-weight: inherit;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  padding: 0;
-  border: none;
-  background: none;
-  color: inherit;
-}
-
-#lang-toggle:hover {
-  color: rgb(var(--c-heading));
-}
-
-#theme-toggle {
-  font-size: inherit;
-  font-weight: inherit;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  padding: 0;
-  border: none;
-  background: none;
-  color: inherit;
-}
-
-#theme-toggle:hover {
-  color: rgb(var(--c-heading));
-}
-
 /* ── Nav ── */
 
 nav .nav-logo {
@@ -260,7 +353,7 @@ nav {
 
 .card-locked .card-placeholder,
 .card-locked .card-thumb {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fff'/%3E%3Csvg x='2' y='2' width='20' height='20' viewBox='0 -960 960 960' fill='%23222'%3E%3Cpath d='M252.31-100q-29.92 0-51.12-21.19Q180-142.39 180-172.31v-375.38q0-29.92 21.19-51.12Q222.39-620 252.31-620H300v-80q0-74.92 52.54-127.46Q405.08-880 480-880q74.92 0 127.46 52.54Q660-774.92 660-700v80h47.69q29.92 0 51.12 21.19Q780-577.61 780-547.69v375.38q0 29.92-21.19 51.12Q737.61-100 707.69-100H252.31Zm0-60h455.38q5.39 0 8.85-3.46t3.46-8.85v-375.38q0-5.39-3.46-8.85t-8.85-3.46H252.31q-5.39 0-8.85 3.46t-3.46 8.85v375.38q0 5.39 3.46 8.85t8.85 3.46Zm277.27-150.42Q550-330.85 550-360t-20.42-49.58Q509.15-430 480-430t-49.58 20.42Q410-389.15 410-360t20.42 49.58Q450.85-290 480-290t49.58-20.42ZM360-620h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z'/%3E%3C/svg%3E%3C/svg%3E") 12 12, pointer;
+  cursor: url('../assets/cursor-lock.png') 12 12, pointer;
 }
 
 .card-placeholder:hover,
@@ -343,8 +436,13 @@ details summary::-webkit-details-marker {
   display: none;
 }
 
-details summary::before {
-  content: '▶';
+details > summary::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background: currentColor;
+  mask: url('../assets/icons/chevron_right.svg') center / contain no-repeat;
   display: inline-block;
   margin-right: 0.5rem;
   font-size: 0.6875rem;
@@ -352,8 +450,14 @@ details summary::before {
   color: rgb(var(--c-muted));
 }
 
-details[open] summary::before {
+details[open] > summary::before {
   transform: rotate(90deg);
+}
+
+summary.btn::before {
+  flex: 0 0 20px;
+  margin-right: 0;
+  color: inherit;
 }
 
 blockquote {
@@ -372,14 +476,14 @@ blockquote {
   margin: 1rem 0;
 }
 
-.encrypted-placeholder svg {
+.encrypted-placeholder .material-symbols-outlined {
   width: 1.25rem;
   height: 1.25rem;
-  fill: rgb(var(--c-muted));
+  color: rgb(var(--c-muted));
 }
 
 .encrypted-placeholder:hover {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fff'/%3E%3Csvg x='2' y='2' width='20' height='20' viewBox='0 -960 960 960' fill='%23222'%3E%3Cpath d='M252.31-100q-29.92 0-51.12-21.19Q180-142.39 180-172.31v-375.38q0-29.92 21.19-51.12Q222.39-620 252.31-620H300v-80q0-74.92 52.54-127.46Q405.08-880 480-880q74.92 0 127.46 52.54Q660-774.92 660-700v80h47.69q29.92 0 51.12 21.19Q780-577.61 780-547.69v375.38q0 29.92-21.19 51.12Q737.61-100 707.69-100H252.31Zm0-60h455.38q5.39 0 8.85-3.46t3.46-8.85v-375.38q0-5.39-3.46-8.85t-8.85-3.46H252.31q-5.39 0-8.85 3.46t-3.46 8.85v375.38q0 5.39 3.46 8.85t8.85 3.46Zm277.27-150.42Q550-330.85 550-360t-20.42-49.58Q509.15-430 480-430t-49.58 20.42Q410-389.15 410-360t20.42 49.58Q450.85-290 480-290t49.58-20.42ZM360-620h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z'/%3E%3C/svg%3E%3C/svg%3E") 12 12, pointer;
+  cursor: url('../assets/cursor-lock.png') 12 12, pointer;
 }
 
 .encrypted-payload {
@@ -412,7 +516,8 @@ table {
   transition: opacity 0.1s;
 }
 
-[data-tip]:hover::after {
+[data-tip]:hover::after,
+[data-tip]:focus-visible::after {
   opacity: 1;
 }
 
