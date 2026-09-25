@@ -35,53 +35,7 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/image-viewer.css">
-  <style>
-    .cl-swatch {
-      width: 80px; height: 80px; border-radius: 12px;
-      display: flex; align-items: flex-end; justify-content: center;
-      padding-bottom: 0;
-      border: 1px solid rgb(var(--c-border));
-    }
-    .cl-label {
-      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgb(var(--c-muted)); margin-bottom: 1rem; font-weight: 600;
-    }
-    .cl-section { margin-bottom: 5rem; }
-    .cl-section > h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 2.5rem; }
-    .cl-divider { border-top: 1px solid rgb(var(--c-border)); margin: 4rem 0; }
-    .cl-specimen { padding: 1.5rem; border: 1px solid rgb(var(--c-border)); border-radius: 12px; background: rgb(var(--c-surface)); }
-    .cl-code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.75rem; color: rgb(var(--c-muted)); }
-    .cl-layout { max-width: 1440px; margin: 0 auto; padding: 48px 24px 0; display: grid; grid-template-columns: minmax(0, 1fr) 216px; gap: 64px; align-items: start; }
-    .cl-main { min-width: 0; padding-bottom: 128px; }
-    .cl-main > header, .cl-section { scroll-margin-top: 32px; }
-    .cl-toc { position: sticky; top: 32px; max-height: calc(100vh - 64px); max-height: calc(100dvh - 64px); overflow-y: auto; scrollbar-width: thin; }
-    .cl-toc-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(var(--c-muted)); margin: 0 0 16px 14px; }
-    .cl-toc summary { display: none; }
-    .cl-toc summary::before { display: none; }
-    .cl-toc-list { list-style: none; margin: 0; padding: 0; }
-    .cl-toc-list a { display: block; padding: 7px 12px; border-left: 2px solid rgb(var(--c-border)); font-size: 13px; line-height: 1.5; color: rgb(var(--c-muted)); transition: color 0.15s, background-color 0.15s, border-color 0.15s; }
-    .cl-toc-list a:hover { color: rgb(var(--c-body)); background: rgb(var(--c-surface)); }
-    .cl-toc-list a[aria-current="location"] { color: rgb(var(--c-accent)); background: rgb(var(--c-accent) / 0.07); border-color: rgb(var(--c-accent)); font-weight: 600; }
-    .cl-toc a:focus-visible, .cl-toc summary:focus-visible { outline: 2px solid rgb(var(--c-accent)); outline-offset: 3px; border-radius: 2px; }
-    .cl-toc-top { display: inline-block; margin: 20px 0 0 14px; padding: 4px 0; font-size: 12px; color: rgb(var(--c-muted)); }
-    .cl-toc-top:hover { color: rgb(var(--c-accent)); }
-    @media (min-width: 768px) and (max-width: 1199px) {
-      .cl-layout { grid-template-columns: minmax(0, 1fr) 184px; gap: 32px; }
-    }
-    @media (max-width: 767px) {
-      .cl-layout { display: flex; flex-direction: column; gap: 32px; padding-top: 16px; }
-      .cl-main { width: 100%; }
-      .cl-main > header, .cl-section { scroll-margin-top: 96px; }
-      .cl-toc { order: -1; width: 100%; top: 12px; z-index: 40; max-height: none; overflow: visible; border: 1px solid rgb(var(--c-border)); border-radius: 12px; background: rgb(var(--c-bg) / 0.96); backdrop-filter: blur(12px); }
-      .cl-toc-title { display: none; }
-      .cl-toc summary { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px 16px; font-size: 13px; font-weight: 600; cursor: pointer; }
-      .cl-toc summary::after { content: '+'; margin-left: auto; font-size: 18px; font-weight: 400; }
-      .cl-toc details[open] summary::after { content: '−'; }
-      .cl-toc-current { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 400; color: rgb(var(--c-muted)); }
-      .cl-toc nav { max-height: min(65vh, 560px); max-height: min(65dvh, 560px); overflow-y: auto; padding: 0 16px 16px; }
-      .cl-toc-list a { min-height: 44px; display: flex; align-items: center; }
-    }
-  </style>
+  <link rel="stylesheet" href="docs/component-library.css">
 </head>
 <body class="bg-bg text-body">
 
@@ -92,130 +46,79 @@
     <header id="overview" tabindex="-1">
     <p class="cl-label" style="margin-bottom:0.5rem">INTERNAL</p>
     <h1 class="page-title" style="margin-bottom:0.75rem;">Component Library</h1>
-    <p class="text-muted text-sm mb-2">Current portfolio components · Updated 2026-09-25</p>
-    <p class="text-muted text-sm mb-4">Examples use the shared site CSS. Internal specimen frames are documentation UI, not project card styles. Legacy and optional patterns are labeled below.</p>
+    <p class="text-muted text-sm mb-2">현재 구현 기준 · 2026-09-25</p>
+    <p class="text-muted text-sm mb-4">기존 포폴을 옮길 때 사용할 패턴과 기준입니다. 먼저 사용 상황을 고르고, 실제 예시를 확인한 뒤 코드를 복사하세요. 문서의 예시 프레임은 내부 UI입니다.</p>
     <div class="flex flex-wrap gap-4 text-sm">
-      <a href="docs/style-guide.md" class="text-accent hover:underline">Style guide</a>
-      <a href="docs/project-template.md" class="text-accent hover:underline">Authoring guide</a>
-      <a href="projects/_template.html" class="text-accent hover:underline">Project template</a>
-      <a href="#language-controls" class="text-accent hover:underline">Language / theme preview</a>
+      <a href="docs/style-guide.md" class="text-accent hover:underline">스타일 규칙</a>
+      <a href="docs/project-template.md" class="text-accent hover:underline">프로젝트 작성 가이드</a>
+      <a href="projects/_template.html" class="text-accent hover:underline">상세 템플릿</a>
+      <a href="#language-controls" class="text-accent hover:underline">언어·테마 점검</a>
     </div>
     </header>
+
+    <div class="cl-divider"></div>
+    <section id="choosing-patterns" class="cl-section" tabindex="-1">
+      <h2>Choose a Pattern</h2>
+      <p class="cl-intro">한 섹션에서 전달할 내용을 먼저 정합니다. 긴 설명은 문단으로 읽히게 하고, 비교·수치·조작이 필요한 지점에 해당 패턴을 추가합니다.</p>
+      <div class="overflow-x-auto">
+        <table class="cl-reference-table">
+          <caption class="sr-only">내용에 따른 패턴 선택 기준</caption>
+          <thead><tr><th scope="col">전달할 내용</th><th scope="col">사용할 패턴</th><th scope="col">작성 기준</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">선택한 이유·과정</th><td><a href="#panels">일반 문단</a></td><td>문제 → 판단 → 근거 순서. 배경 패널은 필요한 요약에만 사용.</td></tr>
+            <tr><th scope="row">환경·범위·주의점</th><td><a href="#panels">정보 패널</a></td><td>짧고 독립적인 정보 묶음. 전체 본문을 패널로 감싸지 않음.</td></tr>
+            <tr><th scope="row">품질·구현 차이</th><td><a href="#media">비교 이미지</a></td><td>같은 시점·구도·조건인지 밝히고 각 이미지에 캡션 제공.</td></tr>
+            <tr><th scope="row">측정 결과</th><td><a href="#tables">수치 표</a></td><td>단위·환경·측정 범위 필수. 근거가 없으면 관찰한 결과를 문장으로.</td></tr>
+            <tr><th scope="row">시간에 따른 변화</th><td><a href="#media">조작 가능한 영상</a></td><td>핵심 동작을 짧게 보여주고 설명·원본 링크 제공.</td></tr>
+            <tr><th scope="row">프로젝트 목록</th><td><a href="#cards">이미지 카드</a></td><td>결과물 + 한 문장 소개. 카드 전체는 상세 페이지로 연결.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cl-note">새 페이지는 <a href="projects/_template.html">상세 템플릿</a>에서 시작합니다. 코드의 <code>[REPLACE]</code>, 경로, 번역, 샘플 수치를 교체한 후 <a href="#responsive">완료 기준</a>을 확인하세요.</p>
+    </section>
 
     <div class="cl-divider"></div>
 
     <!-- ==================== COLORS ==================== -->
     <section id="colors" class="cl-section" tabindex="-1">
       <h2>Colors</h2>
-
-      <p class="cl-label">Background</p>
-      <div class="flex flex-wrap gap-6 mb-10">
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#FFFFFF"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#FFFFFF</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">bg</p>
+      <p class="cl-intro">현재 미리보기: <strong data-current-theme>라이트</strong>. 색상칩은 공통 CSS 변수에 연결되고 HEX는 그 변수의 현재 값을 읽어 표시합니다. 예: <code>text-muted → --c-muted</code>.</p>
+        <div class="overflow-x-auto cl-palette">
+          <table class="cl-reference-table">
+            <caption class="sr-only">현재 미리보기 색상 토큰과 용도</caption>
+            <thead><tr><th scope="col">토큰</th><th scope="col">CSS 값</th><th scope="col">용도</th></tr></thead>
+            <tbody>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-bg))" aria-hidden="true"></span><code>bg</code></th><td><code data-color-token="--c-bg">--c-bg</code></td><td>페이지 바탕</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-surface))" aria-hidden="true"></span><code>surface</code></th><td><code data-color-token="--c-surface">--c-surface</code></td><td>환경·범위를 묶는 패널</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-body))" aria-hidden="true"></span><code>body</code></th><td><code data-color-token="--c-body">--c-body</code></td><td>기본 글자·소개</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-heading))" aria-hidden="true"></span><code>heading</code></th><td><code data-color-token="--c-heading">--c-heading</code></td><td>선택한 제목·표 레이블</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-muted))" aria-hidden="true"></span><code>muted</code></th><td><code data-color-token="--c-muted">--c-muted</code></td><td>본문 설명·캡션·메타정보</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-accent))" aria-hidden="true"></span><code>accent</code></th><td><code data-color-token="--c-accent">--c-accent</code></td><td>링크·검증된 변화량</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-border))" aria-hidden="true"></span><code>border</code></th><td><code data-color-token="--c-border">--c-border</code></td><td>구분선·경계</td></tr>
+            </tbody>
+          </table>
         </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#F5F5F7"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#F5F5F7</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">surface</p>
+      <p class="cl-note"><code>heading</code>은 <code>body</code>보다 밝습니다. 색만으로 성과·상태를 구분하지 말고 텍스트도 함께 제공합니다.</p>
+      <details class="cl-details">
+        <summary>보조 다크 팔레트 · 내부 점검용</summary>
+        <p class="cl-note">공개 페이지는 라이트로 시작하며 테마 버튼이 없습니다. 아래 팔레트는 공통 CSS의 다크 변수입니다. 전체 화면 점검은 <a href="#language-controls">테마 미리보기</a>에서 합니다.</p>
+        <div class="overflow-x-auto cl-palette" data-theme="dark">
+          <table class="cl-reference-table">
+            <caption class="sr-only">보조 다크 색상 토큰과 용도</caption>
+            <thead><tr><th scope="col">토큰</th><th scope="col">CSS 값</th><th scope="col">용도</th></tr></thead>
+            <tbody>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-bg))" aria-hidden="true"></span><code>bg</code></th><td><code data-color-token="--c-bg">--c-bg</code></td><td>페이지 바탕</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-surface))" aria-hidden="true"></span><code>surface</code></th><td><code data-color-token="--c-surface">--c-surface</code></td><td>환경·범위를 묶는 패널</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-body))" aria-hidden="true"></span><code>body</code></th><td><code data-color-token="--c-body">--c-body</code></td><td>기본 글자·소개</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-heading))" aria-hidden="true"></span><code>heading</code></th><td><code data-color-token="--c-heading">--c-heading</code></td><td>선택한 제목·표 레이블</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-muted))" aria-hidden="true"></span><code>muted</code></th><td><code data-color-token="--c-muted">--c-muted</code></td><td>본문 설명·캡션·메타정보</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-accent))" aria-hidden="true"></span><code>accent</code></th><td><code data-color-token="--c-accent">--c-accent</code></td><td>링크·검증된 변화량</td></tr>
+            <tr><th scope="row"><span class="cl-color-chip" style="background:rgb(var(--c-border))" aria-hidden="true"></span><code>border</code></th><td><code data-color-token="--c-border">--c-border</code></td><td>구분선·경계</td></tr>
+            </tbody>
+          </table>
         </div>
-      </div>
-
-      <p class="cl-label">Text</p>
-      <div class="flex flex-wrap gap-6 mb-10">
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#55555A"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#55555A</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">heading</p>
-        </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#28282D"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#28282D</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">body</p>
-        </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#6E6E73"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#6E6E73</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">muted</p>
-        </div>
-      </div>
-
-      <p class="cl-label">Accent &amp; Border</p>
-      <div class="flex flex-wrap gap-6 mb-10">
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#505FE6"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#505FE6</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">accent</p>
-        </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#E1E1E6"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#E1E1E6</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">border</p>
-        </div>
-      </div>
-
-      <p class="text-sm text-muted mb-6">Light is the current public default. Dark tokens are retained for internal preview; public pages do not expose a theme toggle.</p>
-      <p class="cl-label">Dark Mode — Background</p>
-      <div class="flex flex-wrap gap-6 mb-10">
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#16161A"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#16161A</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">bg</p>
-        </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#202026"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#202026</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">surface</p>
-        </div>
-      </div>
-
-      <p class="cl-label">Dark Mode — Text</p>
-      <div class="flex flex-wrap gap-6 mb-10">
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#AFAFB4"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#AFAFB4</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">heading</p>
-        </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#D2D2D7"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#D2D2D7</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">body</p>
-        </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#96969B"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#96969B</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">muted</p>
-        </div>
-      </div>
-
-      <p class="cl-label">Dark Mode — Accent &amp; Border</p>
-      <div class="flex flex-wrap gap-6 mb-10">
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#6478F0"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#6478F0</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">accent</p>
-        </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#32323A"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#32323A</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">border</p>
-        </div>
-      </div>
-
-      <p class="cl-label">Code Block</p>
-      <div class="flex flex-wrap gap-6">
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#1a1a2e"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#1a1a2e</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">code bg</p>
-        </div>
-        <div class="text-center">
-          <div class="cl-swatch" style="background:#b8d4a8"></div>
-          <p class="text-xs mt-2" style="color:rgb(var(--c-muted))">#b8d4a8</p>
-          <p class="text-xs" style="color:rgb(var(--c-muted))">code text</p>
-        </div>
-      </div>
+      </details>
+      <p class="cl-note">코드 블록, 이미지 위 흰 글자·검은 그라데이션, 확대 뷰어는 별도 색상을 사용합니다. <a href="#panels">코드 블록 예시</a> · <a href="#cards">카드 예시</a></p>
     </section>
 
     <div class="cl-divider"></div>
@@ -223,62 +126,44 @@
     <!-- ==================== TYPOGRAPHY ==================== -->
     <section id="typography" class="cl-section" tabindex="-1">
       <h2>Typography</h2>
-
-      <p class="cl-label">1. Hero Tagline — Noto Rashi Hebrew / 2.0rem / 400 / .hero-tagline</p>
-      <div class="cl-specimen mb-8">
-        <p class="hero-tagline text-body" data-ko="테크니컬 아티스트">Technical Artist</p>
+      <p class="cl-intro">언어를 바꾸면 실제 예시와 아래 CSS 정보가 함께 바뀝니다. 글꼴명은 브라우저에 지정된 첫 번째 글꼴이며, 다운로드 실패 시에는 대체 글꼴로 표시될 수 있습니다.</p>
+      <div class="cl-controls" role="group" aria-label="타이포그래피 예시 언어">
+        <button type="button" data-lang="ko" data-preview-language aria-pressed="true">한국어 예시</button>
+        <button type="button" data-lang="en" data-preview-language aria-pressed="false">English sample</button>
       </div>
-
-      <p class="cl-label">Hero Summary — .hero-summary / clamp(1.05rem, 2.1vw, 1.35rem) / line-height 1.75</p>
-      <div class="cl-specimen mb-8">
-        <p class="hero-summary text-body" data-ko="시각적 표현을 위한 기술을 탐색·검증하고, 창작자가 활용하는 도구와 제작 파이프라인으로 구현합니다.">I explore and validate technologies for visual expression, then turn them into tools and production pipelines for creators.</p>
+      <div class="cl-type-row">
+        <div class="cl-type-name"><strong>홈 직무</strong><code>.hero-tagline</code></div>
+        <div class="cl-type-example"><p id="type-sample-0" class="hero-tagline text-body" data-ko="테크니컬 아티스트">Technical Artist</p><p class="cl-type-spec" data-type-for="type-sample-0">CSS 값 읽는 중</p></div>
       </div>
-      <p class="text-sm text-muted mb-6">Ko uses Noto Sans KR for titles and body. En uses Noto Rashi Hebrew for selected title classes. Use the language control below to inspect both.</p>
-
-      <p class="cl-label">2. Page Title — Noto Rashi Hebrew / 2.0rem / 700 / .page-title</p>
-      <div class="cl-specimen mb-8">
-        <p class="page-title">MMD Player</p>
+      <div class="cl-type-row">
+        <div class="cl-type-name"><strong>홈 설명</strong><code>.hero-summary</code></div>
+        <div class="cl-type-example"><p id="type-sample-1" class="hero-summary text-body" data-ko="시각적 표현을 위한 기술을 탐색하고, 창작자가 활용하는 도구로 구현합니다.">I explore technologies for visual expression and build tools for creators.</p><p class="cl-type-spec" data-type-for="type-sample-1">CSS 값 읽는 중</p></div>
       </div>
-
-      <p class="cl-label">3. Section Title (H2) — Noto Sans KR / 1.25rem (text-xl) / 700</p>
-      <div class="cl-specimen mb-8">
-        <h2 class="text-xl font-bold">About</h2>
+      <div class="cl-type-row">
+        <div class="cl-type-name"><strong>상세 제목</strong><code>.page-title</code></div>
+        <div class="cl-type-example"><p id="type-sample-2" class="page-title" data-ko="프로젝트 제목">Project title</p><p class="cl-type-spec" data-type-for="type-sample-2">CSS 값 읽는 중</p></div>
       </div>
-
-      <p class="cl-label">4. Card Title — Noto Rashi Hebrew / 1.05rem / 500 / .card-title</p>
-      <div class="cl-specimen mb-8">
-        <h3 class="card-title">Matcap Painter</h3>
+      <div class="cl-type-row">
+        <div class="cl-type-name"><strong>섹션 제목</strong><code>text-xl font-bold</code></div>
+        <div class="cl-type-example"><h3 id="type-sample-3" class="text-xl font-bold" data-ko="접근과 판단">Approach and decisions</h3><p class="cl-type-spec" data-type-for="type-sample-3">CSS 값 읽는 중</p></div>
       </div>
-
-      <p class="cl-label">5. Body — Noto Sans KR / 0.9375rem (text-sm) / 400</p>
-      <div class="cl-specimen mb-8">
-        <p class="text-muted text-sm leading-relaxed">Started as a source verifier for the PMX-to-VRM conversion pipeline. I needed a tool to verify that the original model and motion work correctly before conversion.</p>
+      <div class="cl-type-row">
+        <div class="cl-type-name"><strong>기본 카드 제목</strong><code>.card-title</code></div>
+        <div class="cl-type-example"><p id="type-sample-4" class="card-title" data-ko="제작 도구">Production tool</p><p class="cl-type-spec" data-type-for="type-sample-4">CSS 값 읽는 중</p></div>
       </div>
-
-      <p class="cl-label">6. Small / Label — 0.8125rem / .card-subtitle, .about-detail</p>
-      <div class="cl-specimen mb-8">
-        <p class="card-subtitle text-muted">NPR Matcap real-time production tool</p>
-        <p class="about-detail text-muted mt-2">Cinamon · 2023–Present</p>
+      <div class="cl-type-row">
+        <div class="cl-type-name"><strong>본문</strong><code>text-sm leading-relaxed</code></div>
+        <div class="cl-type-example"><p id="type-sample-5" class="text-sm text-muted leading-relaxed" data-ko="원본의 형태를 유지하면서 반복 작업을 줄이기 위해 변환 과정을 도구로 만들었습니다.">I built a conversion tool to reduce repetitive work while preserving the source shape.</p><p class="cl-type-spec" data-type-for="type-sample-5">CSS 값 읽는 중</p></div>
       </div>
-
-      <p class="cl-label">7. XS — 0.75rem / .section-label, captions</p>
-      <div class="cl-specimen mb-8">
-        <p class="text-muted uppercase tracking-[0.15em] section-label">Career</p>
-        <p class="text-xs text-muted text-center mt-2">Left: Original — Right: Converted</p>
+      <div class="cl-type-row">
+        <div class="cl-type-name"><strong>세부 설명</strong><code>.card-subtitle / .about-detail</code></div>
+        <div class="cl-type-example"><p id="type-sample-6" class="card-subtitle text-muted" data-ko="개인 도구 · 원본 검증">Personal tool · Source validation</p><p class="cl-type-spec" data-type-for="type-sample-6">CSS 값 읽는 중</p></div>
       </div>
-
-      <p class="cl-label">8. Nav Logo — Noto Sans KR / 1.25rem / 700 / .nav-logo</p>
-      <div class="cl-specimen mb-8">
-        <nav aria-label="Logo specimen"><a href="index.html" class="nav-logo">Younsoo Lim</a></nav>
+      <div class="cl-type-row">
+        <div class="cl-type-name"><strong>캡션</strong><code>text-xs</code></div>
+        <div class="cl-type-example"><p id="type-sample-7" class="text-xs text-muted" data-ko="실제 개발 화면 · 촬영 시점과 조건">Development screenshot · Date and conditions</p><p class="cl-type-spec" data-type-for="type-sample-7">CSS 값 읽는 중</p></div>
       </div>
-
-      <p class="cl-label">9. Nav Links — Noto Rashi Hebrew / 0.875rem</p>
-      <div class="cl-specimen">
-        <nav aria-label="Link typography specimen"><div class="nav-links flex gap-8">
-          <a href="index.html#projects" class="text-body">Projects</a>
-          <a href="index.html#about" class="text-body">About</a>
-        </div></nav>
-      </div>
+      <p class="cl-note">CSS 정보 순서: 글꼴 · 크기 · 굵기 · 줄높이. 카드 위 제목은 <strong>17.6px / 600</strong>, 부제는 <strong>14px</strong>로 재정의됩니다. <a href="#cards">실제 카드</a>에서 확인하세요. 내비·경력 서체는 <a href="#navigation">Navigation</a>과 <a href="#about-layout">About Layout</a> 예시를 참고합니다.</p>
     </section>
 
     <div class="cl-divider"></div>
@@ -286,6 +171,7 @@
     <!-- ==================== CARDS ==================== -->
     <section id="cards" class="cl-section" tabindex="-1">
       <h2>Cards</h2>
+      <p class="cl-intro">사용 상황: 홈에서 작업을 고르는 목록. 16:9 썸네일에 제목과 한 문장 소개를 올리고 상세로 연결합니다. UI 세부를 읽어야 하는 이미지는 상세에서 원본 비율로 제공합니다.</p>
 
       <p class="cl-label">Current Project Card — 16:9 image / persistent bottom overlay / whole-card link</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -310,21 +196,57 @@
         </a>
       </div>
       <p class="text-sm text-muted">Overlay titles override the base class to 1.1rem / 600, subtitles to 0.875rem. Hover scales the image to 1.04 over 0.5s. Titles remain visible on touch screens. Cards navigate; they do not open the image viewer.</p>
+      <details class="cl-source">
+        <summary>프로젝트 카드 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note">홈 목록용 · <code>index.html</code> 기준 경로입니다. 상세 캡처는 아래 이미지 패턴을 사용합니다. 첫 화면의 핵심 이미지는 lazy 적용 여부를 별도로 판단합니다.</p>
+          <button type="button" class="cl-copy" data-copy="code-card" aria-label="프로젝트 카드 HTML 복사" hidden>코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="프로젝트 카드 HTML 코드"><code id="code-card">&lt;!-- index.html 기준. [REPLACE]와 경로를 교체합니다. --&gt;
+&lt;a href="projects/project-slug.html" class="card-overlay group"&gt;
+  &lt;div class="card-overlay-inner"&gt;
+    &lt;img src="assets/images/project-slug/thumbnail.webp"
+         alt="[REPLACE] 결과물 설명" class="card-overlay-img"
+         loading="lazy" decoding="async"&gt;
+    &lt;div class="card-overlay-text"&gt;
+      &lt;h3 class="card-title" data-ko="[REPLACE] 프로젝트 제목"&gt;[REPLACE] Project title&lt;/h3&gt;
+      &lt;p class="card-subtitle" data-ko="[REPLACE] 역할과 핵심 내용"&gt;[REPLACE] Role and work&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+        </div>
+      </details>
     </section>
 
     <div class="cl-divider"></div>
 
     <!-- ==================== PANELS ==================== -->
     <section id="panels" class="cl-section" tabindex="-1">
-      <h2>Panels</h2>
+      <h2>Panels &amp; Body</h2>
+      <p class="cl-intro">일반 문단은 판단과 과정을 설명할 때, 패널은 환경·범위처럼 따로 읽어도 이해되는 짧은 정보에 사용합니다.</p>
+      <p class="cl-label">기본 · 일반 문단</p>
+      <p class="text-sm text-muted leading-relaxed mb-6" data-ko="같은 입력을 반복 확인하는 시간을 줄이기 위해 검증 단계를 도구로 묶었습니다. 아래 자료는 입력과 결과를 확인하는 과정을 보여줍니다.">I combined validation steps into a tool to reduce repeated checks. The examples below show how inputs and results are inspected.</p>
+      <details class="cl-source">
+        <summary>일반 본문 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note">상세 페이지의 기본 섹션입니다. 제목 단계는 문서 계층에 맞춰 사용합니다.</p>
+          <button type="button" class="cl-copy" data-copy="code-body" aria-label="일반 본문 HTML 복사" hidden>코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="일반 본문 HTML 코드"><code id="code-body">&lt;section class="mb-16"&gt;
+  &lt;h2 class="text-xl font-bold mb-4" data-ko="접근과 판단"&gt;Approach and decisions&lt;/h2&gt;
+  &lt;p class="text-muted text-sm leading-relaxed"
+     data-ko="[REPLACE] 선택한 접근과 그 이유"&gt;[REPLACE] Approach and rationale&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+        </div>
+      </details>
 
       <p class="cl-label">Surface Panel — bg-surface / rounded-lg</p>
-      <div class="bg-surface rounded-lg p-5 mb-8">
+      <div class="bg-surface rounded-lg p-6 mb-8">
         <p class="text-sm text-muted leading-relaxed">A surface-colored panel with rounded-lg corners. Used for grouping related content.</p>
       </div>
 
       <p class="cl-label">Card Panel — bg-surface / h3 separator (border-bottom: border color)</p>
-      <div class="bg-surface rounded-lg p-5 mb-8">
+      <div class="bg-surface rounded-lg p-6 mb-8">
         <h3>Pipeline Flow</h3>
         <p>ZIP &rarr; scan .pmx &rarr; humanoid check &rarr; buildGltf() &rarr; writeGlb()</p>
       </div>
@@ -333,6 +255,18 @@
       <pre><code>// Example code block
 const result = await convertPMX(input);
 console.log(`Converted ${result.count} models`);</code></pre>
+      <details class="cl-source">
+        <summary>정보 패널 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note">환경·제약·작업 범위 등 짧은 요약에 사용합니다. 이 패널 안의 본문은 공통 CSS에 따라 14px / 행간 1.7입니다.</p>
+          <button type="button" class="cl-copy" data-copy="code-panel" aria-label="정보 패널 HTML 복사" hidden>코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="정보 패널 HTML 코드"><code id="code-panel">&lt;aside class="bg-surface rounded-lg p-6 mb-8"&gt;
+  &lt;h3 data-ko="검증 환경"&gt;Validation environment&lt;/h3&gt;
+  &lt;p data-ko="[REPLACE] 환경과 확인 범위"&gt;[REPLACE] Environment and scope&lt;/p&gt;
+&lt;/aside&gt;</code></pre>
+        </div>
+      </details>
     </section>
 
     <div class="cl-divider"></div>
@@ -340,6 +274,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
     <!-- ==================== TABLES ==================== -->
     <section id="tables" class="cl-section" tabindex="-1">
       <h2>Tables</h2>
+      <p class="cl-intro">같은 기준으로 비교할 항목이 있을 때 사용합니다. 수치에는 환경·단위·조건을 붙이고, 수치로 확인하지 못한 결과는 일반 문단으로 설명합니다.</p>
 
       <p class="cl-label">Data Table — border-collapse / border-b border-border</p>
       <div class="overflow-x-auto">
@@ -370,6 +305,29 @@ console.log(`Converted ${result.count} models`);</code></pre>
         </table>
       </div>
 
+      <details class="cl-source">
+        <summary>수치 표 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note">상세 페이지용 · 단위와 측정 조건을 채우고, 수치 셀은 같은 자리수 기준으로 정리합니다. 예시 값을 그대로 성과로 사용하지 않습니다.</p>
+          <button type="button" class="cl-copy" data-copy="code-table" aria-label="수치 표 HTML 복사" hidden>코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="수치 표 HTML 코드"><code id="code-table">&lt;div class="overflow-x-auto"&gt;
+  &lt;table class="tbl"&gt;
+    &lt;caption class="text-xs text-muted text-left mb-3"
+      data-ko="[REPLACE] 환경 · 단위 · 같은 입력/설정 · 측정 범위"&gt;[REPLACE] Environment · Unit · Matching conditions · Scope&lt;/caption&gt;
+    &lt;thead&gt;&lt;tr&gt;
+      &lt;th scope="col" data-ko="항목"&gt;Item&lt;/th&gt;
+      &lt;th scope="col" class="!text-right" data-ko="이전"&gt;Before&lt;/th&gt;
+      &lt;th scope="col" class="!text-right" data-ko="이후"&gt;After&lt;/th&gt;
+    &lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;&lt;tr&gt;
+      &lt;th scope="row" class="lbl" data-ko="[REPLACE] 측정 항목"&gt;[REPLACE] Metric&lt;/th&gt;
+      &lt;td class="val-r"&gt;[REPLACE]&lt;/td&gt;&lt;td class="val-r"&gt;[REPLACE]&lt;/td&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </details>
     </section>
 
     <div class="cl-divider"></div>
@@ -382,29 +340,31 @@ console.log(`Converted ${result.count} models`);</code></pre>
       <div class="cl-specimen mb-8 space-y-4">
         <div>
           <p class="text-xs mb-1" style="color:rgb(var(--c-muted))">nav link — text-body / hover:text-heading</p>
-          <a href="#" class="text-sm text-body hover:text-heading transition">Projects</a>
+          <a href="index.html#projects" class="text-sm text-body hover:text-heading transition">Projects</a>
         </div>
         <div>
           <p class="text-xs mb-1" style="color:rgb(var(--c-muted))">inline link — text-accent / hover:underline</p>
-          <a href="#" class="text-accent hover:underline text-sm">MMD Player</a>
+          <a href="projects/mmd-player.html" class="text-accent hover:underline text-sm">MMD Player</a>
         </div>
         <div>
           <p class="text-xs mb-1" style="color:rgb(var(--c-muted))">prev/next — text-muted / hover:text-heading</p>
-          <a href="#" class="text-muted hover:text-heading transition text-sm">&larr; NPR Shading &amp; Look Development</a>
+          <a href="projects/npr-shader.html" class="text-muted hover:text-heading transition text-sm">&larr; NPR Shading &amp; Look Development</a>
         </div>
         <div>
           <p class="text-xs mb-1" style="color:rgb(var(--c-muted))">social icon — text-body / hover:text-heading / w-5 h-5</p>
           <div class="flex gap-4">
-            <a href="#" class="text-body hover:text-heading transition">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <a href="https://github.com/tomlim2" target="_blank" rel="noopener" aria-label="GitHub — 새 탭" class="text-body hover:text-heading transition">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             </a>
-            <a href="#" class="text-body hover:text-heading transition">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <a href="https://www.linkedin.com/in/tommlimm/" target="_blank" rel="noopener" aria-label="LinkedIn — 새 탭" class="text-body hover:text-heading transition">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
           </div>
         </div>
       </div>
 
+      <details class="cl-details">
+        <summary>보조 패턴 · 커스텀 커서</summary>
       <p class="cl-label">Custom Cursors — 24x24 white circle PNG, hotspot 12 12</p>
       <div class="flex flex-wrap gap-8">
         <div class="text-center">
@@ -436,6 +396,17 @@ console.log(`Converted ${result.count} models`);</code></pre>
           <p class="text-xs" style="color:rgb(var(--c-muted))">mailto links</p>
         </div>
       </div>
+      </details>
+      <details class="cl-source">
+        <summary>외부 링크 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note">아이콘만 있는 링크에도 목적지를 설명하는 aria-label이 필요합니다. 툴팁은 이름을 대신하지 않습니다.</p>
+          <button type="button" class="cl-copy" data-copy="code-link" aria-label="외부 링크 HTML 복사" hidden>코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="외부 링크 HTML 코드"><code id="code-link">&lt;a href="https://github.com/tomlim2" target="_blank" rel="noopener"
+   class="text-accent hover:underline" aria-label="GitHub — 새 탭"&gt;GitHub ↗&lt;/a&gt;</code></pre>
+        </div>
+      </details>
     </section>
 
     <div class="cl-divider"></div>
@@ -447,11 +418,11 @@ console.log(`Converted ${result.count} models`);</code></pre>
       <p class="cl-label">Tooltip — data-tip / CSS ::after / opacity transition 0.1s</p>
       <div class="cl-specimen mb-8">
         <div class="flex gap-6">
-          <a href="#" class="text-body hover:text-heading transition" data-tip="Resume">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 -960 960 960"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Z"/></svg>
+          <a href="assets/resume.pdf" target="_blank" rel="noopener" aria-label="Resume — 새 탭" class="text-body hover:text-heading transition" data-tip="Resume">
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 -960 960 960"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Z"/></svg>
           </a>
-          <a href="#" class="text-body hover:text-heading transition" data-tip="GitHub">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://github.com/tomlim2" target="_blank" rel="noopener" aria-label="GitHub — 새 탭" class="text-body hover:text-heading transition" data-tip="GitHub">
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
         <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Hover icons above to see tooltips</p>
@@ -472,21 +443,24 @@ console.log(`Converted ${result.count} models`);</code></pre>
         </div>
       </div>
 
+      <details class="cl-details">
+        <summary>이전 패턴 · 비밀번호 모달 (신규 사용 안 함)</summary>
       <p class="cl-label">Legacy Password Modal — retained reference, not a new-page pattern</p>
       <p class="text-sm text-muted mb-4">Current case studies are public HTML. Do not use this specimen as a content-protection workflow; see CLAUDE.md for the legacy status.</p>
       <div class="cl-specimen">
         <div class="w-full max-w-sm mx-auto">
           <div class="flex items-center justify-center w-12 h-12 rounded-full bg-bg border border-border mb-4 mx-auto">
-            <svg class="w-5 h-5 text-muted" fill="currentColor" viewBox="0 -960 960 960"><path d="M252.31-100q-29.92 0-51.12-21.19Q180-142.39 180-172.31v-375.38q0-29.92 21.19-51.12Q222.39-620 252.31-620H300v-80q0-74.92 52.54-127.46Q405.08-880 480-880q74.92 0 127.46 52.54Q660-774.92 660-700v80h47.69q29.92 0 51.12 21.19Q780-577.61 780-547.69v375.38q0 29.92-21.19 51.12Q737.61-100 707.69-100H252.31Z"/></svg>
+            <svg aria-hidden="true" class="w-5 h-5 text-muted" fill="currentColor" viewBox="0 -960 960 960"><path d="M252.31-100q-29.92 0-51.12-21.19Q180-142.39 180-172.31v-375.38q0-29.92 21.19-51.12Q222.39-620 252.31-620H300v-80q0-74.92 52.54-127.46Q405.08-880 480-880q74.92 0 127.46 52.54Q660-774.92 660-700v80h47.69q29.92 0 51.12 21.19Q780-577.61 780-547.69v375.38q0 29.92-21.19 51.12Q737.61-100 707.69-100H252.31Z"/></svg>
           </div>
           <p class="text-center text-muted text-sm mb-4">NDA project.<br>Enter password to view.</p>
           <div class="flex gap-2">
-            <input type="password" placeholder="Password" disabled class="min-w-0 flex-1 bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-heading placeholder-muted">
+            <input aria-label="Legacy password specimen" type="password" placeholder="Password" disabled class="min-w-0 flex-1 bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-heading placeholder-muted">
             <button disabled class="shrink-0 px-5 py-2.5 bg-heading text-bg text-sm font-medium rounded-lg">Unlock</button>
           </div>
           <p class="text-red-400 text-xs mt-3 text-center">Incorrect password</p>
         </div>
       </div>
+      </details>
     </section>
 
     <div class="cl-divider"></div>
@@ -510,8 +484,8 @@ console.log(`Converted ${result.count} models`);</code></pre>
       <p class="cl-label">Prev / Next — flex justify-between / border-t / pt-8</p>
       <div class="cl-specimen">
         <div class="flex justify-between items-center pt-4 border-t border-border">
-          <a href="#" class="text-muted hover:text-heading transition text-sm">&larr; NPR Shading &amp; Look Development</a>
-          <a href="#" class="text-muted hover:text-heading transition text-sm">PMX to VRM Pipeline &rarr;</a>
+          <a href="projects/npr-shader.html" class="text-muted hover:text-heading transition text-sm">&larr; NPR Shading &amp; Look Development</a>
+          <a href="projects/pmx-to-vrm.html" class="text-muted hover:text-heading transition text-sm">PMX to VRM Pipeline &rarr;</a>
         </div>
       </div>
     </section>
@@ -535,7 +509,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
         <div class="text-muted text-xs">
           <button id="theme-toggle" type="button" aria-label="Preview color theme">Lt / Dk</button>
         </div>
-        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Working internal preview. theme.js sets data-theme="dark" on html; reload returns to light. Color swatches above deliberately retain their labeled values.</p>
+        <p class="text-xs mt-4" style="color:rgb(var(--c-muted))">Working internal preview. theme.js sets data-theme="dark" on html; reload returns to light. The primary color table and type specifications update from the current CSS; the collapsed dark palette always shows the scoped dark tokens.</p>
       </div>
     </section>
 
@@ -585,46 +559,21 @@ console.log(`Converted ${result.count} models`);</code></pre>
     <section id="layout" class="cl-section" tabindex="-1">
       <h2>Layout</h2>
 
-      <p class="cl-label">Max Widths</p>
-      <div class="space-y-6">
-        <div>
-          <p class="text-xs mb-2" style="color:rgb(var(--c-muted))">MAX-W-[1400PX] — nav, hero, projects, about</p>
-          <div class="bg-surface/50 rounded-lg p-3 border border-border/50">
-            <div class="bg-surface rounded h-8 flex items-center justify-center text-xs text-muted" style="max-width:1400px;">1400px</div>
-          </div>
-        </div>
-        <div>
-          <p class="text-xs mb-2" style="color:rgb(var(--c-muted))">MAX-W-4XL (896PX) — subpage content</p>
-          <div class="bg-surface/50 rounded-lg p-3 border border-border/50">
-            <div class="bg-surface rounded h-8 flex items-center justify-center text-xs text-muted" style="max-width:896px;">896px</div>
-          </div>
-        </div>
-        <div>
-          <p class="text-xs mb-2" style="color:rgb(var(--c-muted))">MAX-W-3XL (768PX) — comparison images</p>
-          <div class="bg-surface/50 rounded-lg p-3 border border-border/50">
-            <div class="bg-surface rounded h-8 flex items-center justify-center text-xs text-muted" style="max-width:768px;">768px</div>
-          </div>
-        </div>
-        <div>
-          <p class="text-xs mb-2" style="color:rgb(var(--c-muted))">MAX-W-XL (576PX) — video, inline media</p>
-          <div class="bg-surface/50 rounded-lg p-3 border border-border/50">
-            <div class="bg-surface rounded h-8 flex items-center justify-center text-xs text-muted" style="max-width:576px;">576px</div>
-          </div>
-        </div>
-        <div>
-          <p class="text-xs mb-2" style="color:rgb(var(--c-muted))">MAX-W-LG (512PX) — debug images</p>
-          <div class="bg-surface/50 rounded-lg p-3 border border-border/50">
-            <div class="bg-surface rounded h-8 flex items-center justify-center text-xs text-muted" style="max-width:512px;">512px</div>
-          </div>
-        </div>
-      </div>
-
+      <p class="cl-intro">아래 막대는 <strong>1400px을 100%로 환산한 비례 도식</strong>입니다. 화면에서 실제 픽셀 크기로 표시한 것이 아닙니다. 실제 레이아웃은 뷰포트 안에서 줄어듭니다.</p>
+      <figure class="cl-widths">
+        <div class="cl-width-row"><p><strong>1400px</strong> · 홈·내비 <code>max-w-[1400px]</code></p><div class="cl-width-track" aria-hidden="true"><span style="width:100.0000%"></span></div></div>
+        <div class="cl-width-row"><p><strong>896px</strong> · 상세 본문 <code>max-w-4xl</code></p><div class="cl-width-track" aria-hidden="true"><span style="width:64.0000%"></span></div></div>
+        <div class="cl-width-row"><p><strong>768px</strong> · 비교 이미지 <code>max-w-3xl</code></p><div class="cl-width-track" aria-hidden="true"><span style="width:54.8571%"></span></div></div>
+        <div class="cl-width-row"><p><strong>576px</strong> · 좁은 영상 <code>max-w-xl</code></p><div class="cl-width-track" aria-hidden="true"><span style="width:41.1429%"></span></div></div>
+        <div class="cl-width-row"><p><strong>512px</strong> · 디버그 이미지 <code>max-w-lg</code></p><div class="cl-width-track" aria-hidden="true"><span style="width:36.5714%"></span></div></div>
+        <figcaption class="cl-note">홈·상세 컨테이너의 최대 폭에는 좌우 24px 패딩이 포함됩니다. 상세 896px일 때 내부 폭은 최대 848px입니다.</figcaption>
+      </figure>
       <p class="cl-label" style="margin-top:2rem;">Case Study Entry (Editorial Full-Bleed)</p>
-      <p class="text-xs mb-4" style="color:rgb(var(--c-muted))">No card background. Title + stat subtitle + body + full-width image. Entries separated by thin hr + generous vertical spacing (space-y-16).</p>
+      <p class="cl-note">상세 사례 구성 예시: 제목 → 관찰한 결과 → 판단과 구현 설명 → 근거 이미지. 수치는 측정한 경우에만 넣습니다. 아래 이미지는 레이아웃 자리표시자입니다.</p>
       <div class="space-y-16">
         <div>
           <h3 class="font-medium mb-1 text-heading">Case Title — Technique Summary</h3>
-          <p class="text-xs text-muted mb-4">Key metric (e.g. 68% reduction)</p>
+          <p class="text-xs text-muted mb-4">Observed result · 실제 확인한 결과</p>
           <p class="text-muted text-sm leading-relaxed mb-6">Description of the problem, approach, and outcome. No card container — content breathes at full content width.</p>
           <div class="w-full h-40 bg-surface/50 border border-border/30 flex items-center justify-center text-xs text-muted mb-2">Full-width image</div>
           <p class="text-xs text-muted text-center">Image caption with metrics</p>
@@ -707,6 +656,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
     <div class="cl-divider"></div>
     <section id="media" class="cl-section" tabindex="-1">
       <h2>Media &amp; Image Viewer</h2>
+      <p class="cl-intro">정적 결과·UI·노드 그래프는 원본 비율 이미지, 순서·타이밍·조작은 영상으로 보여줍니다. 비교 이미지는 같은 조건의 두 장을 모바일에서 위아래로 배치하고 각 캡션에 차이를 적습니다.</p>
       <p class="cl-label">Detail image — original ratio / figure + caption / data-image-viewer</p>
       <figure class="mb-8">
         <a href="assets/images/shotloom/thumbnail-editor-v2.png" data-image-viewer class="block" aria-label="Enlarge the AI-retouched Shotloom example">
@@ -715,9 +665,73 @@ console.log(`Converted ${result.count} models`);</code></pre>
         <figcaption class="text-xs text-muted mt-2 text-center" data-ko="예시 · 실제 에디터 화면을 바탕으로 AI 보정한 Shotloom 썸네일. 클릭하면 확대됩니다.">Example · AI-retouched Shotloom thumbnail based on an editor screenshot. Click to enlarge.</figcaption>
       </figure>
       <p class="text-sm text-muted mb-8">Working viewer: actual-size / fit, Escape or close button, backdrop close, and return to the trigger. Captions follow the current language. Home cards, videos, and demo links do not use this viewer.</p>
+      <details class="cl-source">
+        <summary>상세 이미지 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note"><code>projects/</code> 안의 HTML 기준입니다. 실제 width/height를 추가하세요. 대표 이미지는 lazy를 제거하고, 템플릿의 뷰어 CSS/JS를 유지합니다.</p>
+          <button type="button" class="cl-copy" data-copy="code-image" aria-label="상세 이미지 HTML 복사" hidden>코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="상세 이미지 HTML 코드"><code id="code-image">&lt;!-- projects/project-slug.html 기준 경로. 이미지 뷰어 CSS/JS가 필요합니다. --&gt;
+&lt;figure class="mb-10"&gt;
+  &lt;a href="../assets/images/project-slug/detail.png" data-image-viewer
+     class="block" aria-label="[REPLACE] 화면 확대"&gt;
+    &lt;img src="../assets/images/project-slug/detail.png"
+         alt="[REPLACE] 화면의 핵심 정보" class="w-full h-auto"
+         loading="lazy" decoding="async"&gt;
+  &lt;/a&gt;
+  &lt;figcaption class="text-xs text-muted mt-2 text-center"
+    data-ko="[REPLACE] 실제 캡처 여부 · 시점 · 조건"&gt;[REPLACE] Source · Date · Conditions&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+        </div>
+      </details>
+      <details class="cl-source">
+        <summary>비교 이미지 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note">projects/ 기준 · 실제 width/height를 추가합니다. 작은 글자가 읽히지 않으면 md:grid-cols-2를 제거해 세로로 유지합니다.</p>
+          <button type="button" class="cl-copy" data-copy="code-comparison" aria-label="비교 이미지 HTML 복사" hidden>코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="비교 이미지 HTML 코드"><code id="code-comparison">&lt;!-- projects/ 기준. 두 이미지가 같은 조건인지 먼저 확인합니다. --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10"&gt;
+  &lt;figure&gt;
+    &lt;a href="../assets/images/project-slug/before.png" data-image-viewer
+       class="block" aria-label="[REPLACE] 이전 이미지 확대"&gt;
+      &lt;img src="../assets/images/project-slug/before.png" alt="[REPLACE] 이전 상태"
+           class="w-full h-auto" loading="lazy" decoding="async"&gt;
+    &lt;/a&gt;
+    &lt;figcaption class="text-xs text-muted mt-2"
+      data-ko="[REPLACE] 이전 · 조건"&gt;[REPLACE] Before · Conditions&lt;/figcaption&gt;
+  &lt;/figure&gt;
+  &lt;figure&gt;
+    &lt;a href="../assets/images/project-slug/after.png" data-image-viewer
+       class="block" aria-label="[REPLACE] 이후 이미지 확대"&gt;
+      &lt;img src="../assets/images/project-slug/after.png" alt="[REPLACE] 이후 상태"
+           class="w-full h-auto" loading="lazy" decoding="async"&gt;
+    &lt;/a&gt;
+    &lt;figcaption class="text-xs text-muted mt-2"
+      data-ko="[REPLACE] 이후 · 변경점 · 관찰된 차이"&gt;[REPLACE] After · Change · Observation&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </details>
       <p class="cl-label">New-page video default — user-controlled, inline, metadata preload</p>
       <video controls playsinline preload="metadata" class="w-full h-auto max-w-xl mx-auto" aria-label="Matcap Painter component example" src="assets/images/matcap-painter/shader-mode-demo.mp4"></video>
       <p class="text-xs text-muted mt-2 text-center">Example footage from Matcap Painter. Existing pages also contain decorative autoplay loops.</p>
+      <details class="cl-source">
+        <summary>설명 영상 · HTML 코드</summary>
+        <div class="cl-source-body">
+          <p class="cl-note"><code>projects/</code> 기준 · 조작 과정을 보여줄 때 사용합니다. 소리로 전달하는 내용에는 자막 또는 동등한 텍스트 설명도 제공합니다.</p>
+          <button type="button" class="cl-copy" data-copy="code-video" aria-label="설명 영상 HTML 복사" hidden>코드 복사</button>
+          <span class="cl-copy-status" role="status" aria-live="polite"></span>
+          <pre tabindex="0" aria-label="설명 영상 HTML 코드"><code id="code-video">&lt;figure class="mb-10"&gt;
+  &lt;video controls playsinline preload="metadata" class="w-full h-auto"
+    aria-label="[REPLACE] 핵심 동작 설명" src="../assets/images/project-slug/demo.mp4"&gt;&lt;/video&gt;
+  &lt;figcaption class="text-xs text-muted mt-2"
+    data-ko="[REPLACE] 볼 동작과 시점"&gt;[REPLACE] Action and timestamp&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;a href="../assets/images/project-slug/demo.mp4" class="text-accent hover:underline"
+   data-ko="영상 원본 열기"&gt;Open original video&lt;/a&gt;</code></pre>
+        </div>
+      </details>
     </section>
 
     <div class="cl-divider"></div>
@@ -736,6 +750,17 @@ console.log(`Converted ${result.count} models`);</code></pre>
         </table>
       </div>
       <p class="text-sm text-muted mt-6">Check 390px and desktop widths, long Korean/English copy, table scrolling, keyboard image-viewer controls, and the mobile menu in the <a href="projects/_template.html" class="text-accent hover:underline">project template</a>.</p>
+      <div class="cl-checklist">
+        <h3>적용 후 완료 기준</h3>
+        <ul>
+          <li>390px·768px·데스크톱에서 긴 한·영 제목, 표, 코드가 페이지 전체를 가로로 밀지 않는다.</li>
+          <li>Ko/En 전환 후 내용·폰트가 맞고, 카드·메뉴·이미지 확대가 동작한다.</li>
+          <li>Tab/Enter로 링크와 버튼을 조작하고, Escape로 이미지 뷰어를 닫으면 원래 링크로 돌아온다.</li>
+          <li>[REPLACE]·샘플 수치·샘플 미디어를 교체하고 측정 조건·담당 범위를 확인한다.</li>
+          <li><code>python3 scripts/build_site.py</code>로 공개 페이지의 경로·앵커·h1 검증을 통과한다.</li>
+        </ul>
+        <p class="cl-note">이 체크리스트는 적용 확인 항목입니다. 전체 접근성 적합성을 인증하는 것은 아닙니다. <a href="docs/style-guide.md">현재 한계와 규칙</a>도 함께 확인하세요.</p>
+      </div>
     </section>
 
   </main>
@@ -747,6 +772,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
       <nav aria-label="Component Library sections">
         <ol class="cl-toc-list">
           <li><a href="#overview" aria-current="location">Overview</a></li>
+          <li><a href="#choosing-patterns">Choose a Pattern</a></li>
           <li><a href="#colors">Colors</a></li>
           <li><a href="#typography">Typography</a></li>
           <li><a href="#cards">Cards</a></li>
@@ -772,66 +798,6 @@ console.log(`Converted ${result.count} models`);</code></pre>
   <script src="js/i18n.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/image-viewer.js"></script>
-  <script>
-    // Internal documentation navigation; keep this out of public site scripts.
-    (function () {
-      var disclosure = document.getElementById('cl-toc-disclosure');
-      var links = Array.from(document.querySelectorAll('.cl-toc-list a'));
-      var targets = links.map(function (link) {
-        return document.getElementById(link.hash.slice(1));
-      });
-      var currentLabel = document.querySelector('.cl-toc-current');
-      var desktop = window.matchMedia('(min-width: 768px)');
-      var activeIndex = -1;
-      var scheduled = false;
-
-      function updateCurrent() {
-        scheduled = false;
-        var index = 0;
-        var threshold = desktop.matches ? 96 : 112;
-        targets.forEach(function (target, i) {
-          if (target.getBoundingClientRect().top <= threshold) index = i;
-        });
-        // The final section may be too short to reach the top of the viewport.
-        if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-          index = links.length - 1;
-        }
-        if (index === activeIndex) return;
-        activeIndex = index;
-        links.forEach(function (link, i) {
-          if (i === index) link.setAttribute('aria-current', 'location');
-          else link.removeAttribute('aria-current');
-        });
-        currentLabel.textContent = links[index].textContent;
-      }
-
-      function scheduleUpdate() {
-        if (scheduled) return;
-        scheduled = true;
-        window.requestAnimationFrame(updateCurrent);
-      }
-
-      function syncLayout() {
-        disclosure.open = desktop.matches;
-        scheduleUpdate();
-      }
-
-      disclosure.addEventListener('click', function (event) {
-        var link = event.target.closest('a[href^="#"]');
-        if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        if (!desktop.matches) disclosure.open = false;
-        // Native anchors retain deep links, keyboard focus, and browser history.
-      });
-      window.addEventListener('scroll', scheduleUpdate, { passive: true });
-      window.addEventListener('resize', scheduleUpdate);
-      window.addEventListener('hashchange', scheduleUpdate);
-      window.addEventListener('load', scheduleUpdate);
-      desktop.addEventListener('change', syncLayout);
-      if ('ResizeObserver' in window) {
-        new ResizeObserver(scheduleUpdate).observe(document.querySelector('.cl-main'));
-      }
-      syncLayout();
-    })();
-  </script>
+  <script src="docs/component-library.js"></script>
 </body>
 </html>
