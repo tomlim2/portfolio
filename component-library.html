@@ -34,11 +34,11 @@
     }
   </script>
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="css/style.css?v=20260925-footer-stacked">
+  <link rel="stylesheet" href="css/style.css?v=20260925-neutral-actions">
   <link rel="stylesheet" href="css/preview-modal.css">
   <link rel="stylesheet" href="css/resume-viewer.css?v=20260925-preview-modal">
   <link rel="stylesheet" href="css/image-viewer.css?v=20260925-preview-modal">
-  <link rel="stylesheet" href="docs/component-library.css?v=20260925-icon-group">
+  <link rel="stylesheet" href="docs/component-library.css?v=20260925-neutral-actions">
 </head>
 <body class="bg-bg text-body">
 
@@ -535,6 +535,16 @@ console.log(`Converted ${result.count} models`);</code></pre>
     <section id="links-cursors" class="cl-section" tabindex="-1">
       <h2>Links &amp; Cursors</h2>
 
+      <p class="cl-label">Hero contact links — text-only Ghost</p>
+      <div class="cl-specimen mb-8">
+        <p class="text-sm text-muted" data-ko="소개문 아래에 이메일과 이력서 링크를 배치합니다.">Email and resume links sit below the introduction.</p>
+        <div class="hero-actions">
+          <a href="mailto:tomandlim@gmail.com" class="btn btn--ghost"><span>tomandlim@gmail.com</span></a>
+          <a href="resume-viewer.html" data-resume-viewer class="btn btn--ghost"><span data-ko="이력서 보기">View resume</span></a>
+        </div>
+        <p class="cl-note">14px / 20px · 최소 높이 44px · 소개와 간격 16px · 링크 사이 24px. 텍스트 시작선을 소개문에 맞추고 좁은 화면에서는 줄바꿈합니다. 이력서는 공통 모달로 열며 GitHub·LinkedIn은 홈 푸터에 둡니다.</p>
+      </div>
+
       <p class="cl-label">Link Styles</p>
       <div class="cl-specimen mb-8 space-y-4">
         <div>
@@ -586,7 +596,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
       </div>
       <p id="cursor-demo-status" class="cl-note" role="status" aria-live="polite">Try action은 이 메시지만 변경합니다. Download PDF는 이력서 파일을 저장합니다.</p>
       <p class="cl-note">다운로드 커서: 24×24px 흰 원형 배경, 중앙 20px 아이콘, <strong>hotspot 12 12</strong>. 마우스의 실제 클릭 좌표가 이미지 중심에 놓입니다. 일반 링크와 동작은 커스텀 이미지 없이 기본 손 모양을 사용합니다.</p>
-      <p class="cl-note">Resume 열기는 기본 손 모양으로 현재 페이지에서 모달을 엽니다. 상단은 왼쪽 닫기 아이콘 · 가운데 이름 · 오른쪽 다운로드 아이콘이며, PDF 다운로드 버튼은 download 속성으로 파일을 저장하고 다운로드 커서를 사용합니다. 동작을 하는 예외적인 링크는 data-cursor="action"을 사용합니다. 이미지 뷰어는 활성화 여부에 관계없이 기본 손 모양입니다. JavaScript가 없으면 원본으로 이동하는 링크로 동작합니다. 비활성 버튼은 not-allowed를 유지합니다. 기존 링크·확대·메일·자물쇠·손 흔들기 전용 이미지 커서는 사용하지 않습니다.</p>
+      <p class="cl-note">Resume 열기는 기본 손 모양으로 현재 페이지에서 모달을 엽니다. 상단은 왼쪽 닫기 아이콘 · 가운데 PDF 파일명(Younsoo-Lim-Resume.pdf) · 오른쪽 다운로드 아이콘이며, PDF 다운로드 버튼은 download 속성으로 파일을 저장하고 다운로드 커서를 사용합니다. 동작을 하는 예외적인 링크는 data-cursor="action"을 사용합니다. 이미지 뷰어는 활성화 여부에 관계없이 기본 손 모양입니다. JavaScript가 없으면 원본으로 이동하는 링크로 동작합니다. 비활성 버튼은 not-allowed를 유지합니다. 기존 링크·확대·메일·자물쇠·손 흔들기 전용 이미지 커서는 사용하지 않습니다.</p>
       <details class="cl-source">
         <summary class="btn btn--ghost btn--disclosure">SNS SVG·커서 · HTML 코드</summary>
         <div class="cl-source-body">
@@ -1175,7 +1185,7 @@ console.log(`Converted ${result.count} models`);</code></pre>
   <script src="js/theme.js"></script>
   <script src="js/preview-modal.js"></script>
   <script src="js/image-viewer.js?v=20260925-preview-modal"></script>
-  <script src="js/resume-viewer.js?v=20260925-preview-modal"></script>
+  <script src="js/resume-viewer.js?v=20260925-filename"></script>
   <script src="docs/component-library.js"></script>
 </body>
 </html>

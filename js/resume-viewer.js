@@ -26,7 +26,7 @@
       frame.title = korean ? '임연수 이력서' : 'Younsoo Lim resume';
       frame.src = new URL('resume.html', root).href;
       modal.open(link, {
-        title: korean ? '임연수' : 'Younsoo Lim',
+        title: download.download,
         closeLabel: korean ? '이력서 닫기' : 'Close resume',
         closeTip: korean ? '닫기' : 'Close'
       });

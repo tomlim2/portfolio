@@ -161,6 +161,8 @@
 
 ### 링크·내비·푸터
 
+상단 소개문 아래에는 **tomandlim@gmail.com / 이력서 보기** 두 개의 텍스트 전용 Ghost 링크를 둔다. `.hero-actions`는 위 간격 16px, 링크 사이 가로 간격 24px로 배치하고 좁은 화면에서는 줄바꿈한다. 링크는 공통 `.btn.btn--ghost`의 14px / 20px와 최소 높이 44px를 유지하되 좌우 패딩을 없애 소개문 시작선에 맞춘다. 이메일은 `mailto:`, 이력서는 `data-resume-viewer`로 기존 모달에 연결한다. GitHub·LinkedIn은 홈 푸터에서 제공한다.
+
 본문 링크는 `text-accent hover:underline`, 내비는 `text-body hover:text-heading`을 사용한다. 외부 새 탭 링크에는 `target="_blank" rel="noopener"`를 함께 쓴다. 아이콘 링크에는 `aria-label`을 제공한다. `data-tip`은 hover·키보드 포커스 보조 설명이며 접근 가능한 이름을 대신하지 않는다.
 
 홈 내비는 스크롤 다운 시 숨고 위로 스크롤하면 나타난다. 모바일 메뉴는 `#hamburger-btn` / `#mobile-menu`를 사용하고 링크 클릭 후 닫힌다. 메뉴 버튼의 `.mobile-menu-toggle`은 768px 이상에서 숨기는 배치 규칙이다. 일부 오래된 상세에는 모바일 메뉴가 없으므로 새 페이지는 템플릿의 메뉴를 따른다. 홈 푸터는 **왼쪽 저작권 · 가운데 tomandlim@gmail.com / 이력서 / 깃허브 / 링크드인 · 오른쪽 언어 선택**으로 배치한다. `.footer-layout`은 좌우 열 너비가 같은 3열 grid이며, `.footer-copyright`, `.footer-links`, `.footer-language`를 순서대로 놓는다. 가운데 목록 안의 `.footer-item`에 `.btn.btn--ghost.footer-link`를 사용한다. 푸터 텍스트·링크·언어 선택은 모두 12px / 16px이며, 조작 높이는 44px를 유지한다. 이력서는 공통 미리보기 모달, GitHub·LinkedIn은 외부 새 탭, 이메일은 `mailto:`로 연결한다. 라벨은 `data-ko`로 번역하며 링크 자체를 번역 과정에서 교체하지 않는다. 언어 선택은 보이는 라벨을 `aria-labelledby`로 연결한다.
@@ -366,7 +368,7 @@ LinkedIn은 `brand-icon--linkedin`을 사용한다. SVG 파일 경로는 공통 
 
 홈의 Resume 링크에 `data-resume-viewer`를 붙이면 현재 페이지의 네이티브 `dialog`로 열린다. `css/preview-modal.css` · `js/preview-modal.js`를 먼저 포함한 뒤 `css/resume-viewer.css` · `js/resume-viewer.js`를 포함하고 Google Fonts `icon_names`에 `article_person,close,download`를 추가한다. 일반 손 모양 커서를 사용하며, JavaScript 미지원 또는 수정 키 클릭 시 `href="resume-viewer.html"`의 독립 읽기 화면을 사용할 수 있다.
 
-상단은 **왼쪽 닫기 아이콘 · 가운데 이름(임연수 / Younsoo Lim) · 오른쪽 다운로드 아이콘**의 3열이다. 양쪽은 `44px`, 가운데는 `minmax(0, 1fr)`로 이름의 중심을 유지한다. 닫기는 `button`, 다운로드는 `a[download]`이며 둘 다 `.btn.btn--ghost.btn--icon`을 사용한다. Google 아이콘은 weight 300, 접근 가능한 이름과 짧은 툴팁을 제공한다. 툴바 끝의 툴팁은 가장자리 안쪽으로 정렬해 잘림을 방지한다. 다운로드는 `download="Younsoo-Lim-Resume.pdf"`로 원본 PDF를 저장하며 다운로드 커서를 사용한다.
+상단은 **왼쪽 닫기 아이콘 · 가운데 PDF 파일명(Younsoo-Lim-Resume.pdf) · 오른쪽 다운로드 아이콘**의 3열이다. 양쪽은 `44px`, 가운데는 `minmax(0, 1fr)`로 파일명의 중심을 유지한다. 제목은 다운로드 링크의 `download` 속성에서 읽고 언어와 관계없이 같은 파일명을 표시한다. 직접 열기용 `resume-viewer.html`에도 같은 파일명을 유지한다. 닫기는 `button`, 다운로드는 `a[download]`이며 둘 다 `.btn.btn--ghost.btn--icon`을 사용한다. Google 아이콘은 weight 300, 접근 가능한 이름과 짧은 툴팁을 제공한다. 툴바 끝의 툴팁은 가장자리 안쪽으로 정렬해 잘림을 방지한다. 다운로드는 `download="Younsoo-Lim-Resume.pdf"`로 원본 PDF를 저장하며 다운로드 커서를 사용한다.
 
 데스크톱 모달은 최대 960px, 바깥 여백 24px, 반경 12px, 배경은 검정 65%다. 600px 이하에서는 전체 화면으로 표시한다. 기존 `resume.html`을 이름 있는 iframe으로 표시하고 문서만 스크롤해 툴바를 계속 유지한다. 모달이 열리면 배경은 조작·스크롤할 수 없고 닫기 버튼에 포커스가 놓인다. Tab/Shift+Tab은 상단 버튼과 문서의 연락처 링크 사이에서 순환한다. 닫기 버튼·바깥 배경 클릭·Esc로 종료하며, iframe 안에서도 Esc를 지원한다. 닫을 때 열었던 링크로 포커스를 돌려주고 원래 페이지의 스크롤 위치를 유지한다. 독립 읽기 화면의 닫기 링크는 홈으로 이동한다.
 
