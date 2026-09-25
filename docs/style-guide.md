@@ -164,6 +164,35 @@
 
 홈 내비는 스크롤 다운 시 숨고 위로 스크롤하면 나타난다. 모바일 메뉴는 `#hamburger-btn` / `#mobile-menu`를 사용하고 링크 클릭 후 닫힌다. 일부 오래된 상세에는 모바일 메뉴가 없으므로 새 페이지는 템플릿의 메뉴를 따른다. 푸터는 저작권과 `#lang-toggle` 하나를 사용한다. ID를 복제하지 않는다.
 
+### 아이콘 — Material Symbols, weight 300
+
+일반 UI 아이콘은 [Google Fonts의 Material Symbols](https://fonts.google.com/icons)에서 선택한다. **기본 weight는 300**이다. 패밀리는 **Material Symbols Outlined**, `FILL=0`, `GRAD=0`으로 통일한다. 실제 모양과 복사 코드는 [Icons 예시](../component-library.html#icons)에서 확인한다.
+
+| 상황 | 클래스 | 크기 / Optical size | Weight |
+|---|---|---|---|
+| 독립 아이콘·메뉴 | `material-symbols-outlined` | 24px / 24 | 300 |
+| 텍스트 옆·보조 아이콘 | `material-symbols-outlined icon-sm` | 20px / 20 | 300 |
+
+색상은 주변 글자색을 상속한다. 아이콘만 있는 버튼·링크의 조작 영역은 아이콘 크기와 별개로 44px 이상 확보하고, 목적을 나타내는 `aria-label`을 제공한다. 장식 아이콘에는 `aria-hidden="true"`를 붙인다. 아이콘 이름은 번역하지 않으며 아이콘 span을 `data-ko` 텍스트 요소 밖에 둔다.
+
+아이콘 폰트는 사용하는 페이지의 head에서 로드하고, 그 뒤에 공통 `css/style.css`를 로드한다. Google Fonts 요청에도 **`wght=300`을 명시**하고 `icon_names`는 실제 사용하는 이름만 알파벳순으로 나열한다. 아래 예시는 `download`, `menu`, `open_in_new`만 로드한다.
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,300,0,0&amp;icon_names=download,menu,open_in_new&amp;display=block">
+
+<a href="../assets/resume.pdf" target="_blank" rel="noopener"
+   class="inline-flex items-center gap-2 text-accent hover:underline">
+  <span class="material-symbols-outlined icon-sm" aria-hidden="true">download</span>
+  <span data-ko="이력서 PDF · 새 탭">Resume PDF · New tab</span>
+</a>
+```
+
+공통 CSS가 `font-weight: 300` 및 `font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24`를 적용한다. `icon-sm`은 크기와 `opsz`를 20으로 변경한다. 일반 문구의 굵기를 바꾸더라도 아이콘 weight는 300을 유지한다. 요청 URL에 지정하지 않은 아이콘은 표시되지 않을 수 있으므로 새 아이콘을 추가할 때 목록도 갱신한다. 한글/영문 폰트나 기존 SVG에 `font-weight: 300`만 지정하는 것으로 대체하지 않는다.
+
+SVG로 사용하는 경우도 Google Fonts에서 Outlined / weight 300 / Fill 0 / Grade 0 / 해당 Optical size를 선택해 내려받는다. **GitHub·LinkedIn 등 브랜드 로고는 별도 원형 SVG**를 사용하며 Material Symbols의 weight 규칙을 적용하지 않는다. 기존 공개 페이지의 이전 SVG는 일괄 교체된 상태가 아니다. 새 페이지 템플릿과 새로 추가·교체하는 일반 UI 아이콘부터 이 기준을 적용한다.
+
+출처: [공식 Material Symbols 가이드](https://developers.google.com/fonts/docs/material_symbols). `display=block`과 사용하는 이름만 요청하는 방법도 이 가이드를 따른다.
+
 ## 7. 이미지·영상·확대 뷰어
 
 ### 정적 이미지

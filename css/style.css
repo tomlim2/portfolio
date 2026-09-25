@@ -63,6 +63,35 @@ pre code {
   font-size: inherit;
 }
 
+/* ── UI Icons: Material Symbols Outlined, default weight 300 ── */
+/* Load only used icon_names with wght=300 in the page's Google Fonts URL.
+   Brand logos retain their original SVG artwork. See docs/style-guide.md. */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: 300;
+  font-style: normal;
+  font-size: 24px;
+  font-synthesis: none;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  vertical-align: middle;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.icon-sm {
+  font-size: 20px;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+}
+
 /* ── Typography Classes ── */
 
 .hero-tagline {

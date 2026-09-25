@@ -66,6 +66,8 @@ mkdir -p assets/images/project-slug
 5. 이미지 뷰어는 템플릿의 CSS/JS를 유지한다. 내부 문서의 `cl-*` 클래스나 `docs/component-library.*`는 새 프로젝트에 복사하지 않는다.
 6. 이미지 링크·영상·코드가 있는 컨테이너 전체를 번역 대상으로 지정하지 않았는지 확인한다.
 
+일반 UI 아이콘은 [Material Symbols Outlined / weight 300](style-guide.md#아이콘--material-symbols-weight-300)을 사용한다. 템플릿의 메뉴 아이콘은 이 기준으로 로드된다. 다른 아이콘을 추가할 때 head의 `icon_names=menu` 목록에도 이름을 알파벳순으로 추가한다. 20px 아이콘도 쓰면 로드 URL의 `opsz`를 `20..24`로 바꾸고 `icon-sm`을 사용한다. [Icons 예시와 코드](../component-library.html#icons)를 참고한다.
+
 ## 4. 미디어와 기술 자료
 
 - 대표 결과는 문맥을 이해할 수 있는 이미지·영상 하나부터 시작한다.
